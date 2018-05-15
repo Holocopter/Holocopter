@@ -19,7 +19,6 @@ public class ContactPlane : MonoBehaviour {
             transform.position = newPos;
         	
             //print(hit.point.y + " hit " + hit.distance);
-            // test lines
         
         }
         
