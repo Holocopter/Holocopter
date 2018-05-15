@@ -269,18 +269,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 180742, guid: 21dce77b727d241d5b4101b0835619e7, type: 2}
-      propertyPath: m_Name
-      value: Model
-      objectReference: {fileID: 0}
-    - target: {fileID: 11428078, guid: 21dce77b727d241d5b4101b0835619e7, type: 2}
-      propertyPath: r_slide
-      value: 
-      objectReference: {fileID: 1967456272}
     - target: {fileID: 11428078, guid: 21dce77b727d241d5b4101b0835619e7, type: 2}
       propertyPath: control_helper
       value: 
       objectReference: {fileID: 1980189700}
+    - target: {fileID: 180742, guid: 21dce77b727d241d5b4101b0835619e7, type: 2}
+      propertyPath: m_Name
+      value: Model
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21dce77b727d241d5b4101b0835619e7, type: 2}
   m_IsPrefabParent: 0
