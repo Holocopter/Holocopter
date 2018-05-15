@@ -4660,9 +4660,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1b8252fa55d47acaad89ad484efda6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skin: {fileID: 11400000, guid: 8d59f8683c7bd4b2c8beba4b23b99a5e, type: 2}
-  itsKGFOrbitCam: {fileID: 0}
-  r_slide: {fileID: 0}
   control_helper: {fileID: 0}
   fixed_cam: {fileID: 4490626791684058}
   collectivey: 0
