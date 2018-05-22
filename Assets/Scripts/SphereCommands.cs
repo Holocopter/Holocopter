@@ -3,7 +3,7 @@
 public class SphereCommands : MonoBehaviour
 {
     Vector3 originalPosition;
-
+    
     // Use this for initialization
     void Start()
     {

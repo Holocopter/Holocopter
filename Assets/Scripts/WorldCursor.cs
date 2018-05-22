@@ -3,7 +3,7 @@
 public class WorldCursor : MonoBehaviour
 {
     private MeshRenderer meshRenderer;
-
+    
     // Use this for initialization
     void Start()
     {
