@@ -8,7 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/Test.unity
     guid: dc94fab0f38fb324987f364a56814cf6
+  - enabled: 0
+    path: Assets/helicopter_rotor 1.unity
+    guid: 9d3092c576adb4575ac65047c4811da0
+  - enabled: 1
+    path: Assets/Scenes/holocopter_2.unity
+    guid: 6f87d953a0696af478c4e17933168ed1
   m_configObjects: {}
