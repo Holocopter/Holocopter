@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BoxCommands : MonoBehaviour {
 
-    PistonsController PC = GameObject.FindObjectOfType<PistonsController>();
+	PistonsController PC;
 	// Use this for initialization
 	void Start () {
-		
+		PC = GameObject.FindObjectOfType<PistonsController>();
 	}
 	
 	// Update is called once per frame
@@ -17,5 +17,6 @@ public class BoxCommands : MonoBehaviour {
 
     public void OnSelect() {
         PC.collectivey += 0.1f;
+		Debug.Log ("dasdas");
     }
 }
