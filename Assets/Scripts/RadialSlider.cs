@@ -91,7 +91,7 @@ public class RadialSlider: MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 					//throttle_rect.localEulerAngles = rot;
 					
 				}
-				itsKGFOrbitCam.SetPanningEnable( !isPointerDown );
+				//itsKGFOrbitCam.SetPanningEnable( !isPointerDown );
 				yield return 0;
 			}        
 		}

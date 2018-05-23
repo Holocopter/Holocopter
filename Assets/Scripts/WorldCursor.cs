@@ -3,13 +3,18 @@
 public class WorldCursor : MonoBehaviour
 {
 	private MeshRenderer meshRenderer;
-
-	// Use this for initialization
+    Transform oldLocation;
+    // Use this for initialization
+    void Awake() {
+       // oldLocation.position = new Vector3(0f, 0.8f, -1.85f);
+    }
 	void Start()
 	{
+        
 		// Grab the mesh renderer that's on the same object as this script.
 		meshRenderer = this.gameObject.GetComponentInChildren<MeshRenderer>();
-	}
+       
+    }
 
 	// Update is called once per frame
 	void Update()
@@ -33,10 +38,13 @@ public class WorldCursor : MonoBehaviour
 			// Rotate the cursor to hug the surface of the hologram.
 			this.transform.rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
 		}
+        
 		else
 		{
-			// If the raycast did not hit a hologram, hide the cursor mesh.
-			meshRenderer.enabled = false;
+            // If the raycast did not hit a hologram, hide the cursor mesh.
+             meshRenderer.enabled = false;
+            // this.transform.position = new Vector3(headPosition.x, headPosition.y, headPosition.z + 0.1f);
+           // this.transform.position = oldLocation.position;
 		}
 	}
 }

@@ -12,7 +12,7 @@ public class PistonsController : MonoBehaviour {
 	public float slidersp = 0;
 	public float collectivey_old = 0;
     public float slidersp_old = 0;
-	public float sp_max = 300;
+	public float sp_max = 500;
 	
 	public Vector3 fc_init;
 	public float slider_fixedcam = 0;
