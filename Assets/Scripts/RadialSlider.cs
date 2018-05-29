@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class RadialSlider: MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
 	bool isPointerDown=false;
-	public KGFOrbitCam itsKGFOrbitCam;	//reference to the orbitcam	
+	//public KGFOrbitCam itsKGFOrbitCam;	//reference to the orbitcam	
 	
 	private RectTransform throttle_rect;
 	private RectTransform thisRect;
