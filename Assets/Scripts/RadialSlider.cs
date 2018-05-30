@@ -50,6 +50,7 @@ public class RadialSlider: MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 	{
 		var ray = GetComponentInParent<GraphicRaycaster>();
 		var input = FindObjectOfType<StandaloneInputModule>();
+        var input_holo = FindObjectOfType<HoloLensInputModule>();
 
 		var text = GetComponentInChildren<Text>();
 		
@@ -84,7 +85,7 @@ public class RadialSlider: MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 						
 					};	
 					
-					rad = ( localPos.magnitude ) / (0.5f*thisRect.rect.width);
+					rad = ( localPos.magnitude ) / (0.5f*thisRect.rect.width)*0.5f;
 					
 					//Vector3 rot = throttle_rect.localEulerAngles;
 					//rot.z = -ang;

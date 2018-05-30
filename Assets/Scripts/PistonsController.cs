@@ -5,7 +5,7 @@ public class PistonsController : MonoBehaviour {
 	
 	
 	// UI - controls 
-	//public RadialSlider r_slide;
+	public RadialSlider r_slide;
 	public Transform control_helper; 
 	public Transform fixed_cam;
 	public float collectivey = 0;
@@ -13,6 +13,7 @@ public class PistonsController : MonoBehaviour {
 	public float collectivey_old = 0;
     public float slidersp_old = 0;
 	public float sp_max = 500;
+    public float size = 1.0f;
 	
 	public Vector3 fc_init;
 	public float slider_fixedcam = 0;
@@ -66,7 +67,7 @@ public class PistonsController : MonoBehaviour {
         Vector3 _3 = p3.position;
            
 		if (control_helper){
-		//	control_helper.rotation = Quaternion.Euler(0, r_slide.ang, r_slide.rad*ang_max);
+			control_helper.rotation = Quaternion.Euler(0, r_slide.ang, r_slide.rad*ang_max);
 			targy.y = y_init + collectivey;
 			control_helper.position = Vector3.MoveTowards(control_helper.position, targy, 100);		
 		}
@@ -81,7 +82,7 @@ public class PistonsController : MonoBehaviour {
       	Vector3 obj_pos = targetObj.position;
       	obj_pos.y = -1.0f*plane.distance;
       	targetObj.position = obj_pos;
-      	              
+        this.transform.localScale = new Vector3(size, size, size);
 	}
 	
 	void LateUpdate(){
