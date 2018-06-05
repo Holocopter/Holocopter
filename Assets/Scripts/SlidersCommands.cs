@@ -23,9 +23,6 @@ public class SlidersCommands : MonoBehaviour {
         SizeSlier = GameObject.Find("SizeSlider");
         sizeSlider = SizeSlier.GetComponent<SliderGestureControl>();
         MainCamera = GameObject.Find("MixedRealityCameraParent");
-        speedSlider.value = 0.0f;
-        collectiveSlider.value = 0.0f;
-        sizeSlider.value = 0.0f;
 	}
 	
 	// Update is called once per frame
