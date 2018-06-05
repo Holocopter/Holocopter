@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using HoloToolkit.Examples.InteractiveElements;
 
 public class SlidersCommands : MonoBehaviour {
     PistonsController pc;
@@ -10,26 +9,26 @@ public class SlidersCommands : MonoBehaviour {
     GameObject CollectiveSlider;
     GameObject SizeSlier;
     GameObject MainCamera;
-    public SliderGestureControl speedSlider;
-    public SliderGestureControl collectiveSlider;
-    public SliderGestureControl sizeSlider;
+    public Slider speedSlider;
+    public Slider collectiveSlider;
+    public Slider sizeSlider;
 	// Use this for initialization
 	void Start () {
         pc = GameObject.FindObjectOfType<PistonsController>();
         SpeedSlider = GameObject.Find("SpeedSlider");
-        speedSlider = SpeedSlider.GetComponent<SliderGestureControl>();
+        speedSlider = SpeedSlider.GetComponent<Slider>();
         CollectiveSlider = GameObject.Find("CollectiveSlider");
-        collectiveSlider = CollectiveSlider.GetComponent<SliderGestureControl>();
+        collectiveSlider = CollectiveSlider.GetComponent<Slider>();
         SizeSlier = GameObject.Find("SizeSlider");
-        sizeSlider = SizeSlier.GetComponent<SliderGestureControl>();
+        sizeSlider = SizeSlier.GetComponent<Slider>();
         MainCamera = GameObject.Find("MixedRealityCameraParent");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        pc.sp = speedSlider.SliderValue;
-        pc.collectivey = collectiveSlider.SliderValue;
-        MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y, sizeSlider.SliderValue);
+        pc.sp = speedSlider.value;
+        pc.collectivey = collectiveSlider.value;
+        MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y, sizeSlider.value);
         
     }
 

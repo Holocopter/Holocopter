@@ -37,34 +37,18 @@ namespace HoloToolkit.Unity.InputModule
         private Transform elementTransform;
 
         protected MotionControllerInfo ControllerInfo;
-
-        private bool started = false;
 #endif
 
         protected virtual void OnEnable()
         {
 #if UNITY_WSA && UNITY_2017_2_OR_NEWER
-            if (!MotionControllerVisualizer.ConfirmInitialized())
+            // Look if the controller has loaded.
+            if (MotionControllerVisualizer.Instance.TryGetControllerModel(handedness, out ControllerInfo))
             {
-                // The motion controller visualizer singleton could not be found.
-                return;
+                AddControllerTransform(ControllerInfo);
             }
-
-            if (started)
-            {
-                CheckModelAlreadyLoaded();
-            }
-
             MotionControllerVisualizer.Instance.OnControllerModelLoaded += AddControllerTransform;
             MotionControllerVisualizer.Instance.OnControllerModelUnloaded += RemoveControllerTransform;
-#endif
-        }
-
-        protected virtual void Start()
-        {
-#if UNITY_WSA && UNITY_2017_2_OR_NEWER
-            CheckModelAlreadyLoaded();
-            started = true;
 #endif
         }
 
@@ -90,26 +74,10 @@ namespace HoloToolkit.Unity.InputModule
 #endif
         }
 
-        /// <summary>
-        /// Allows the object to change which controller it tracks, based on handedness.
-        /// </summary>
-        /// <param name="newHandedness">The new handedness to track. Does nothing if the handedness doesn't change.</param>
-#if UNITY_WSA && UNITY_2017_2_OR_NEWER
-        public void ChangeHandedness(InteractionSourceHandedness newHandedness)
-        {
-            if (newHandedness != handedness)
-            {
-                RemoveControllerTransform(ControllerInfo);
-                handedness = newHandedness;
-                CheckModelAlreadyLoaded();
-            }
-        }
-#endif
-
         protected virtual void AddControllerTransform(MotionControllerInfo newController)
         {
 #if UNITY_WSA && UNITY_2017_2_OR_NEWER
-            if (newController.Handedness == handedness && !newController.Equals(ControllerInfo))
+            if (newController.Handedness == handedness)
             {
                 if (!newController.TryGetElement(element, out elementTransform))
                 {
@@ -131,27 +99,6 @@ namespace HoloToolkit.Unity.InputModule
             {
                 ControllerInfo = null;
                 ElementTransform = null;
-            }
-#endif
-        }
-
-        /// <summary>
-        /// Look if the controller was already loaded. This could happen if the
-        /// GameObject was instantiated at runtime and the model loaded event has already fired.
-        /// </summary>
-        private void CheckModelAlreadyLoaded()
-        {
-            if (!MotionControllerVisualizer.ConfirmInitialized())
-            {
-                // The motion controller visualizer singleton could not be found.
-                return;
-            }
-
-#if UNITY_WSA && UNITY_2017_2_OR_NEWER
-            MotionControllerInfo newController;
-            if (MotionControllerVisualizer.Instance.TryGetControllerModel(handedness, out newController))
-            {
-                AddControllerTransform(newController);
             }
 #endif
         }

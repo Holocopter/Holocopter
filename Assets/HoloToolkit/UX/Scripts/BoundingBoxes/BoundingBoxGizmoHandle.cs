@@ -368,17 +368,14 @@ namespace HoloToolkit.Unity.UX
         public void OnSourceDetected(SourceStateEventData eventData)
         {
         }
-
         public void OnSourceLost(SourceStateEventData eventData)
         {
-            if ((inputDownEventData != null) &&
-                (eventData.SourceId == inputDownEventData.SourceId))
+            if (eventData.SourceId == inputDownEventData.SourceId)
             {
                 inputDownEventData = null;
                 ResetRigHandles();
-
-                eventData.Use();
             }
+            eventData.Use();
         }
     }
 }

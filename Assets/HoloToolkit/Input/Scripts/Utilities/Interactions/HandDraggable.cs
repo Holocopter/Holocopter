@@ -360,19 +360,19 @@ namespace HoloToolkit.Unity.InputModule
             eventData.InputSource.TryGetSourceKind(eventData.SourceId, out sourceKind);
             if (sourceKind != InteractionSourceInfo.Hand)
             {
-                if (!eventData.InputSource.SupportsInputInfo(eventData.SourceId, SupportedInputInfo.GripPosition))
+                if (!eventData.InputSource.SupportsInputInfo(eventData.SourceId, SupportedInputInfo.Position))
                 {
-                    // The input source must provide grip positional data for this script to be usable
+                    // The input source must provide positional data for this script to be usable
                     return;
                 }
             }
 #else
-            if (!eventData.InputSource.SupportsInputInfo(eventData.SourceId, SupportedInputInfo.PointerPosition))
+            if (!eventData.InputSource.SupportsInputInfo(eventData.SourceId, SupportedInputInfo.Position))
             {
                 // The input source must provide positional data for this script to be usable
                 return;
             }
-#endif // UNITY_2017_2_OR_NEWER
+#endif
 
             eventData.Use(); // Mark the event as used, so it doesn't fall through to other handlers.
 

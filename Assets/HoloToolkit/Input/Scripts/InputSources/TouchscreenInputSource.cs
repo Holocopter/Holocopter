@@ -215,7 +215,7 @@ namespace HoloToolkit.Unity.InputModule
 
         public override SupportedInputInfo GetSupportedInputInfo(uint sourceId)
         {
-            return SupportedInputInfo.PointerPosition | SupportedInputInfo.Pointing;
+            return SupportedInputInfo.Position | SupportedInputInfo.Pointing;
         }
 
         public override bool TryGetThumbstick(uint sourceId, out bool isPressed, out Vector2 position)

@@ -238,7 +238,7 @@ namespace HoloToolkit.UI.Keyboard
             m_ObjectBounds = new Vector3(canvasBounds.size.x * rect.localScale.x, canvasBounds.size.y * rect.localScale.y, canvasBounds.size.z * rect.localScale.z);
 
             // Actually find microphone key in the keyboard
-            var dictationButton = HoloToolkit.Unity.Utils.GetChildRecursive(gameObject.transform, "Dictation");
+            var dictationButton = Utils.GetChildRecursive(gameObject.transform, "Dictation");
             if (dictationButton != null)
             {
                 var dictationIcon = dictationButton.Find("keyboard_closeIcon");
@@ -250,10 +250,6 @@ namespace HoloToolkit.UI.Keyboard
                     _recordImage.material = material;
                 }
             }
-
-            // Setting the keyboardType to an undefined TouchScreenKeyboardType,
-            // which prevents the MRTK keyboard from triggering the system keyboard itself.
-            InputField.keyboardType = (TouchScreenKeyboardType)(-1);
 
             // Keep keyboard deactivated until needed
             gameObject.SetActive(false);
@@ -326,10 +322,6 @@ namespace HoloToolkit.UI.Keyboard
         /// <param name="eventData">Dictation event data</param>
         public void OnDictationResult(DictationEventData eventData)
         {
-            if (eventData.used)
-            {
-                return;
-            }
             var text = eventData.DictationResult;
             ResetClosingTime();
             if (text != null)
@@ -340,7 +332,6 @@ namespace HoloToolkit.UI.Keyboard
                 m_CaretPosition += text.Length;
 
                 UpdateCaretPosition(m_CaretPosition);
-                eventData.Use();
             }
         }
 
@@ -387,8 +378,8 @@ namespace HoloToolkit.UI.Keyboard
 
             OnPlacement(this, EventArgs.Empty);
 
-            // todo: if the app is built for xaml, our prefab and the system keyboard may be displayed.
-            InputField.ActivateInputField();
+            //This bring up the default keyboard in MR so the user is presented with TWO keyboards
+            //InputField.ActivateInputField();
 
             SetMicrophoneDefault();
         }

@@ -57,7 +57,10 @@ namespace HoloToolkit.UI.Keyboard
         /// <param name="newText"></param>
         private void Keyboard_OnTextUpdated(string newText)
         {
-            text = newText;
+            if (!string.IsNullOrEmpty(newText))
+            {
+                text = newText;
+            }
         }
 
         /// <summary>

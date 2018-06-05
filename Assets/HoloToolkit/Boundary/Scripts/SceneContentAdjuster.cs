@@ -99,9 +99,9 @@ namespace HoloToolkit.Unity.Boundary
             if (alignmentType == AlignmentType.AlignWithHeadHeight || alignmentType == AlignmentType.UsePresetXAndZWithHeadHeight)
             {
                 contentPosition.x = containerObject.position.x;
-                contentPosition.y = containerObject.position.y ;
+                contentPosition.y = containerObject.position.y + CameraCache.Main.transform.position.y;
                 contentPosition.z = containerObject.position.z;
-                //+ CameraCache.Main.transform.position.y
+
                 containerObject.position = contentPosition;
             }
         }

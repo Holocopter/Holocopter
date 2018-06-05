@@ -16,9 +16,6 @@ namespace HoloToolkit.Unity
     /// </summary>
     public class ProjectSettingsWindow : AutoConfigureWindow<ProjectSettingsWindow.ProjectSetting>
     {
-        private const int SpatialMappingLayerId = 31;
-        private const string SpatialMappingLayerName = "Spatial Mapping";
-
         private const string SharingServiceURL = "https://raw.githubusercontent.com/Microsoft/MixedRealityToolkit-Unity/master/External/HoloToolkit/Sharing/Server/SharingService.exe";
 
         /// <summary>
@@ -67,14 +64,13 @@ namespace HoloToolkit.Unity
 
         public enum ProjectSetting
         {
-            BuildWsaUwp = 0,
+            BuildWsaUwp,
             WsaEnableXR,
             WsaUwpBuildToD3D,
             TargetOccludedDevices,
             SharingServices,
             UseInputManagerAxes,
             DotNetScriptingBackend,
-            SetDefaultSpatialMappingLayer
         }
 
         /// <summary>
@@ -82,7 +78,7 @@ namespace HoloToolkit.Unity
         /// </summary>
         private enum AxisType
         {
-            KeyOrMouseButton = 0,
+            KeyOrMouseButton,
             MouseMovement,
             JoystickAxis
         };
@@ -139,7 +135,7 @@ namespace HoloToolkit.Unity
 
         protected override void LoadSettings()
         {
-            for (int i = (int)ProjectSetting.BuildWsaUwp; i <= (int)ProjectSetting.SetDefaultSpatialMappingLayer; i++)
+            for (int i = (int)ProjectSetting.BuildWsaUwp; i <= (int)ProjectSetting.DotNetScriptingBackend; i++)
             {
                 switch ((ProjectSetting)i)
                 {
@@ -147,7 +143,6 @@ namespace HoloToolkit.Unity
                     case ProjectSetting.WsaEnableXR:
                     case ProjectSetting.WsaUwpBuildToD3D:
                     case ProjectSetting.DotNetScriptingBackend:
-                    case ProjectSetting.SetDefaultSpatialMappingLayer:
                         Values[(ProjectSetting)i] = true;
                         break;
                     case ProjectSetting.TargetOccludedDevices:
@@ -356,23 +351,6 @@ namespace HoloToolkit.Unity
                     ? ScriptingImplementation.WinRTDotNET
                     : ScriptingImplementation.IL2CPP);
 
-            if (Values[ProjectSetting.SetDefaultSpatialMappingLayer])
-            {
-                if (SetSpatialMappingLayer())
-                {
-                    // Setting the Spatial Mapping layer implies the need for the Spatial Perception capability.
-                    PlayerSettings.WSA.SetCapability(PlayerSettings.WSACapability.SpatialPerception, true);
-                }
-                else
-                {
-                    EditorUtility.DisplayDialog("Attention!",
-                        "Unable to set the Spatial Mapping layer.\n\n" +
-                        "This likely means that layer " + SpatialMappingLayerId.ToString() + " is already in use.\n\n" +
-                        "Please check your project's Tags && Layers settings in the Inspector.",
-                        "Ok");
-                }
-            }
-
             AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
             Close();
         }
@@ -433,14 +411,6 @@ namespace HoloToolkit.Unity
             Descriptions[ProjectSetting.DotNetScriptingBackend] =
                 "Recommended\n\n" +
                 "If you have the .NET unity module installed this will update the backend scripting profile, otherwise the scripting backend will be IL2CPP.";
-
-            Names[ProjectSetting.SetDefaultSpatialMappingLayer] = "Set Default Spatial Mapping Layer";
-            Descriptions[ProjectSetting.SetDefaultSpatialMappingLayer] =
-                "Recommended\n\n" +
-                "Sets the default Spatial Mapping physics layer.\n\n" +
-                "On HoloLens, this enables specifying the Spatial Mapping mesh for collision detection and raycasting.\n\n" +
-                "<color=#ffff00ff><b>Note:</b></color> Selecting \"Set Default Spatial Mapping Layer\" implies the project will be using Spatial Mapping. " +
-                "The Spatial Perception capability is automatically enabled for you.";
         }
 
         protected override void OnEnable()
@@ -568,50 +538,6 @@ namespace HoloToolkit.Unity
             {
                 axisNames.Add(axesProperty.GetArrayElementAtIndex(i).displayName);
             }
-        }
-
-        /// <summary>
-        /// Attempts to set or clear the Spatial Mapping physics layer.
-        /// </summary>
-        /// <returns>
-        /// True if the target layer as successfully changed.
-        /// </returns>
-        private bool SetSpatialMappingLayer()
-        {
-            UnityEngine.Object[] tagAssets = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset");
-            if ((tagAssets == null) || 
-                (tagAssets.Length == 0))
-            {
-                return false;
-            }
-
-            SerializedObject tagsManager = new SerializedObject(tagAssets);
-            if (tagsManager == null)
-            {
-                return false;
-            }
-
-            SerializedProperty layers = tagsManager.FindProperty("layers");
-            if (layers == null)
-            {
-                return false;
-            }
-
-            SerializedProperty spatialMappingLayer = layers.GetArrayElementAtIndex(SpatialMappingLayerId);
-            if (spatialMappingLayer.stringValue == SpatialMappingLayerName)
-            {
-                // Spatial Mapping layer already set
-                return true;
-            }
-            else if (spatialMappingLayer.stringValue != string.Empty)
-            {
-                // Target layer in use and may be being used for something other than Spatial Mapping
-                return false;
-            }
-
-            // Set the layer name.
-            spatialMappingLayer.stringValue = SpatialMappingLayerName;
-            return tagsManager.ApplyModifiedProperties();
         }
     }
 }
