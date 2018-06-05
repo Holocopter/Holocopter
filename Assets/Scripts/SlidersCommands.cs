@@ -13,12 +13,12 @@ public class SlidersCommands : MonoBehaviour
     GameObject MainCamera;
     public Slider speedSlider;
     public Slider collectiveSlider;
-
     public Slider sizeSlider;
 
-    private float sizeTargetValue = 0.0f;
-    private float sizeCurValue = 0.0f;
-    private bool animiDone = true;
+
+    private SliderAnimation _speedAnimation;
+    private SliderAnimation _sizeAnimation;
+    private SliderAnimation _collectiveAnimation;
 
     // Use this for initialization
     void Start()
@@ -30,10 +30,11 @@ public class SlidersCommands : MonoBehaviour
         collectiveSlider = CollectiveSlider.GetComponent<Slider>();
         SizeSlier = GameObject.Find("SizeSlider");
         sizeSlider = SizeSlier.GetComponent<Slider>();
-        sizeSlider.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
         MainCamera = GameObject.Find("MixedRealityCameraParent");
 
-        sizeTargetValue = sizeCurValue = sizeSlider.value;
+        _speedAnimation = new SliderAnimation(speedSlider);
+        _sizeAnimation = new SliderAnimation(sizeSlider);
+        _collectiveAnimation = new SliderAnimation(collectiveSlider);
     }
 
     // Update is called once per frame
@@ -44,24 +45,53 @@ public class SlidersCommands : MonoBehaviour
         MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y,
             sizeSlider.value);
 
-        sizeCurValue = Mathf.MoveTowards(sizeCurValue, sizeTargetValue, Time.deltaTime * 1);
-        sizeSlider.value = sizeCurValue;
-        if (Math.Abs(sizeCurValue - sizeTargetValue) < 0.01)
-        {
-            animiDone = true;
-        }
+
+        _speedAnimation.UpdatePos();
+        _sizeAnimation.UpdatePos();
+        _collectiveAnimation.UpdatePos();
     }
 
-    public void ValueChangeCheck()
-    {
-        if (animiDone)
-        {
-            sizeTargetValue = sizeSlider.value;
-            animiDone = false;
-        }
-    }
 
     void Speed_slider()
     {
+    }
+}
+
+public class SliderAnimation
+{
+    public float TargetValue { get; private set; }
+    public float CurValue { get; private set; }
+    public bool AnimiDone { get; private set; }
+    public Slider Slider { get; private set; }
+    private readonly float _sliderAnimiSpeed;
+    private readonly double _tolerance;
+
+
+    public SliderAnimation(Slider slider)
+    {
+        this.Slider = slider;
+        TargetValue = CurValue = slider.value;
+        AnimiDone = true;
+        Slider.onValueChanged.AddListener(delegate { OnValueChange(); });
+        _sliderAnimiSpeed = (Slider.maxValue - Slider.minValue) / 3;
+        _tolerance = Math.Min(0.01, (Slider.maxValue - Slider.minValue) / 100);
+    }
+
+    public void UpdatePos()
+    {
+        if (AnimiDone) return;
+        CurValue = Mathf.MoveTowards(CurValue, TargetValue, Time.deltaTime * _sliderAnimiSpeed);
+        Slider.value = CurValue;
+        if (Math.Abs(CurValue - TargetValue) < _tolerance)
+        {
+            AnimiDone = true;
+        }
+    }
+
+    private void OnValueChange()
+    {
+        if (!this.AnimiDone) return;
+        TargetValue = Slider.value;
+        AnimiDone = false;
     }
 }
