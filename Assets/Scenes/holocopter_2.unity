@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 41035641}
   - component: {fileID: 41035643}
   - component: {fileID: 41035642}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: pin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 46810681}
   - component: {fileID: 46810683}
   - component: {fileID: 46810682}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: plate - Cylinder008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,7 +415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 60265349}
   - component: {fileID: 60265350}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: airflow-bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -492,7 +492,7 @@ GameObject:
   m_Component:
   - component: {fileID: 65016960}
   - component: {fileID: 65016961}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Prop holder 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,7 +542,7 @@ GameObject:
   - component: {fileID: 83207607}
   - component: {fileID: 83207609}
   - component: {fileID: 83207608}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Box048
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -634,16 +634,24 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 84460840}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: 0, y: 0, z: 0.08099985}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
   m_Children: []
   m_Father: {fileID: 626757823}
   m_RootOrder: 6
+=======
+  m_LocalPosition: {x: 0, y: 0, z: -1.5629997}
+  m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
+  m_Children: []
+  m_Father: {fileID: 322521126}
+  m_RootOrder: 1
+>>>>>>> 56449c0c927b155295dbb48b626649f7c622136f
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -572.16296, y: -265.65704}
-  m_SizeDelta: {x: -1132, y: -525}
+  m_SizeDelta: {x: -84, y: -90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &84460842
 MonoBehaviour:
@@ -687,7 +695,7 @@ GameObject:
   m_Component:
   - component: {fileID: 96023512}
   - component: {fileID: 96023513}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GizmoPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -756,14 +764,19 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 102367947}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.081}
+  m_LocalPosition: {x: 0, y: 0, z: -1.5629997}
   m_LocalScale: {x: 0.00906, y: 0.00906, z: 0.00906}
   m_Children:
   - {fileID: 1003123679}
   - {fileID: 518412163}
   - {fileID: 754066424}
+<<<<<<< HEAD
   m_Father: {fileID: 626757823}
   m_RootOrder: 1
+=======
+  m_Father: {fileID: 322521126}
+  m_RootOrder: 3
+>>>>>>> 56449c0c927b155295dbb48b626649f7c622136f
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -872,14 +885,19 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 134508754}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.081}
+  m_LocalPosition: {x: 0, y: 0, z: -1.5629997}
   m_LocalScale: {x: 0.00906, y: 0.00906, z: 0.00906}
   m_Children:
   - {fileID: 929080924}
   - {fileID: 919569599}
   - {fileID: 470051839}
+<<<<<<< HEAD
   m_Father: {fileID: 626757823}
   m_RootOrder: 3
+=======
+  m_Father: {fileID: 322521126}
+  m_RootOrder: 6
+>>>>>>> 56449c0c927b155295dbb48b626649f7c622136f
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1040,7 +1058,7 @@ GameObject:
   - component: {fileID: 142518922}
   - component: {fileID: 142518924}
   - component: {fileID: 142518923}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Pin 03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1115,7 +1133,7 @@ GameObject:
   - component: {fileID: 146800091}
   - component: {fileID: 146800090}
   - component: {fileID: 146800089}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder014
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1388,7 +1406,7 @@ GameObject:
   - component: {fileID: 160589878}
   - component: {fileID: 160589880}
   - component: {fileID: 160589879}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: arm - Box009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1495,7 +1513,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 177331178}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: mesh holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1529,7 +1547,7 @@ GameObject:
   m_Component:
   - component: {fileID: 193506287}
   - component: {fileID: 193506288}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: 'Prop p1 target '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1640,7 +1658,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 199397045}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: pin (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1671,7 +1689,7 @@ GameObject:
   - component: {fileID: 203746442}
   - component: {fileID: 203746444}
   - component: {fileID: 203746443}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: pin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1793,7 +1811,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 206586151}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Prop pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1825,7 +1843,7 @@ GameObject:
   - component: {fileID: 211799976}
   - component: {fileID: 211799978}
   - component: {fileID: 211799977}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder025
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1899,7 +1917,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 212716970}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: arm p2 - pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1929,7 +1947,7 @@ GameObject:
   m_Component:
   - component: {fileID: 217101214}
   - component: {fileID: 217101215}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Arm2 script
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1978,7 +1996,7 @@ GameObject:
   - component: {fileID: 224652207}
   - component: {fileID: 224652209}
   - component: {fileID: 224652208}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: pin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2051,7 +2069,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 226195656}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: arm2 p1 target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2217,7 +2235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 240425924}
   - component: {fileID: 240425925}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: piston 1 - IK Chain001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2317,7 +2335,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 262320247}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2346,6 +2364,7 @@ GameObject:
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 5
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 262671658}
   - component: {fileID: 262671663}
   - component: {fileID: 262671662}
@@ -2354,6 +2373,13 @@ GameObject:
   - component: {fileID: 262671659}
   m_Layer: 0
   m_Name: SliderKnob
+=======
+  - component: {fileID: 291691366}
+  - component: {fileID: 291691368}
+  - component: {fileID: 291691367}
+  m_Layer: 2
+  m_Name: Box046
+>>>>>>> 56449c0c927b155295dbb48b626649f7c622136f
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2481,10 +2507,18 @@ GameObject:
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 5
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 271674646}
   - component: {fileID: 271674647}
   m_Layer: 0
   m_Name: Fill
+=======
+  - component: {fileID: 304127824}
+  - component: {fileID: 304127826}
+  - component: {fileID: 304127825}
+  m_Layer: 2
+  m_Name: Box045
+>>>>>>> 56449c0c927b155295dbb48b626649f7c622136f
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2688,7 +2722,7 @@ GameObject:
   - component: {fileID: 307232342}
   - component: {fileID: 307232344}
   - component: {fileID: 307232343}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Box047
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2763,7 +2797,7 @@ GameObject:
   - component: {fileID: 309788470}
   - component: {fileID: 309788472}
   - component: {fileID: 309788471}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Object007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2828,6 +2862,59 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 309788469}
   m_Mesh: {fileID: 4300022, guid: 705e3b13d51ee4c70be51e3166980a58, type: 3}
+--- !u!1 &322521125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 322521126}
+  - component: {fileID: 322521127}
+  m_Layer: 5
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &322521126
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 322521125}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1517692951}
+  - {fileID: 84460841}
+  - {fileID: 955499871}
+  - {fileID: 102367948}
+  - {fileID: 1769269561}
+  - {fileID: 501700486}
+  - {fileID: 134508755}
+  m_Father: {fileID: 626757823}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &322521127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 322521125}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c386d0b61210cfa43aa47110cfef112f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target_transform: {fileID: 450472703}
 --- !u!1 &328117279
 GameObject:
   m_ObjectHideFlags: 0
@@ -3028,7 +3115,7 @@ GameObject:
   - component: {fileID: 340072896}
   - component: {fileID: 340072898}
   - component: {fileID: 340072897}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: arm - Box008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3103,7 +3190,7 @@ GameObject:
   - component: {fileID: 344247171}
   - component: {fileID: 344247173}
   - component: {fileID: 344247172}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder031
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3178,7 +3265,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 374050851}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: arm2 p2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3212,7 +3299,7 @@ GameObject:
   - component: {fileID: 378925106}
   - component: {fileID: 378925108}
   - component: {fileID: 378925107}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: arm p2 target - Pin 05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3454,7 +3541,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 406683535}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: arm2 p1 pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3562,7 +3649,7 @@ GameObject:
   m_Component:
   - component: {fileID: 434293802}
   - component: {fileID: 434293803}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Arm1 script
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3610,7 +3697,7 @@ GameObject:
   - component: {fileID: 441708870}
   - component: {fileID: 441708872}
   - component: {fileID: 441708871}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder026
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3675,7 +3762,50 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 441708869}
   m_Mesh: {fileID: 4300102, guid: 705e3b13d51ee4c70be51e3166980a58, type: 3}
+<<<<<<< HEAD
 --- !u!1 &457080289
+=======
+--- !u!4 &450472703 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4587520633816736, guid: d29bc40b7f3df26479d6a0aac211c355,
+    type: 2}
+  m_PrefabInternal: {fileID: 1809930236}
+--- !u!1 &470051838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 470051839}
+  m_Layer: 5
+  m_Name: Handle Slide Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &470051839
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 470051838}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1559997095}
+  m_Father: {fileID: 134508755}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -20, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &471202986
+>>>>>>> 56449c0c927b155295dbb48b626649f7c622136f
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 1000011713906408, guid: a61fbf52f79ff5b479d7c59ec56dd0bc,
@@ -3683,6 +3813,7 @@ GameObject:
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 5
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 457080290}
   - component: {fileID: 457080295}
   - component: {fileID: 457080294}
@@ -3691,6 +3822,12 @@ GameObject:
   - component: {fileID: 457080291}
   m_Layer: 0
   m_Name: SizeSlider
+=======
+  - component: {fileID: 471202987}
+  - component: {fileID: 471202988}
+  m_Layer: 2
+  m_Name: piston 3 - IK Chain003
+>>>>>>> 56449c0c927b155295dbb48b626649f7c622136f
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3908,7 +4045,7 @@ GameObject:
   - component: {fileID: 486977679}
   - component: {fileID: 486977678}
   - component: {fileID: 486977677}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: X_Axis (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4010,7 +4147,7 @@ GameObject:
   - component: {fileID: 494570830}
   - component: {fileID: 494570832}
   - component: {fileID: 494570831}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Prop pusher mesh - Cylinder041
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4101,6 +4238,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 501700485}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: 0, y: 0, z: 0.08099985}
   m_LocalScale: {x: 0.00906, y: 0.009060001, z: 0.00906}
   m_Children:
@@ -4108,6 +4246,15 @@ RectTransform:
   - {fileID: 1592329504}
   m_Father: {fileID: 626757823}
   m_RootOrder: 7
+=======
+  m_LocalPosition: {x: 0, y: 0, z: -1.563}
+  m_LocalScale: {x: 0.00906, y: 0.00906, z: 0.00906}
+  m_Children:
+  - {fileID: 236496600}
+  - {fileID: 1592329504}
+  m_Father: {fileID: 322521126}
+  m_RootOrder: 5
+>>>>>>> 56449c0c927b155295dbb48b626649f7c622136f
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4238,7 +4385,7 @@ GameObject:
   - component: {fileID: 529042004}
   - component: {fileID: 529042006}
   - component: {fileID: 529042005}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Pin 08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4312,7 +4459,7 @@ GameObject:
   m_Component:
   - component: {fileID: 529202249}
   - component: {fileID: 529202250}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Prop holder 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4658,7 +4805,7 @@ GameObject:
   - component: {fileID: 556712080}
   - component: {fileID: 556712082}
   - component: {fileID: 556712081}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder026
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4735,7 +4882,7 @@ GameObject:
   - component: {fileID: 561224323}
   - component: {fileID: 561224322}
   - component: {fileID: 561224321}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: fixedCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4824,7 +4971,7 @@ GameObject:
   - component: {fileID: 564291536}
   - component: {fileID: 564291538}
   - component: {fileID: 564291537}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: arm 2 - Pin 12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4898,7 +5045,7 @@ GameObject:
   m_Component:
   - component: {fileID: 564704924}
   - component: {fileID: 564704925}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Prop pusher mesh - Cylinder041 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4942,7 +5089,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 573963601}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Middle Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4978,7 +5125,7 @@ GameObject:
   - component: {fileID: 582966980}
   - component: {fileID: 582966982}
   - component: {fileID: 582966981}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: pin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5053,7 +5200,7 @@ GameObject:
   - component: {fileID: 591193963}
   - component: {fileID: 591193965}
   - component: {fileID: 591193964}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Pin 09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5126,7 +5273,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 623592469}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: pivot controller 3
   m_TagString: TopplatePivot
   m_Icon: {fileID: 0}
@@ -5245,6 +5392,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 3.925}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+<<<<<<< HEAD
   - {fileID: 1517692951}
   - {fileID: 102367948}
   - {fileID: 1769269561}
@@ -5253,6 +5401,9 @@ RectTransform:
   - {fileID: 1931967382}
   - {fileID: 84460841}
   - {fileID: 501700486}
+=======
+  - {fileID: 322521126}
+>>>>>>> 56449c0c927b155295dbb48b626649f7c622136f
   m_Father: {fileID: 919555698}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5272,7 +5423,7 @@ GameObject:
   - component: {fileID: 630566591}
   - component: {fileID: 630566593}
   - component: {fileID: 630566592}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Prop pusher mesh - Cylinder041
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5348,7 +5499,7 @@ GameObject:
   - component: {fileID: 648406508}
   - component: {fileID: 648406510}
   - component: {fileID: 648406509}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Pin 07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5422,7 +5573,7 @@ GameObject:
   m_Component:
   - component: {fileID: 652565754}
   - component: {fileID: 652565755}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: airflow-top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5497,7 +5648,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 657117561}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: topplate pivot 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5527,7 +5678,7 @@ GameObject:
   - component: {fileID: 670016238}
   - component: {fileID: 670016240}
   - component: {fileID: 670016239}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Box050
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5655,7 +5806,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 712537627}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: topplate pivot 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5685,7 +5836,7 @@ GameObject:
   - component: {fileID: 717625523}
   - component: {fileID: 717625525}
   - component: {fileID: 717625524}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Object021
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5759,7 +5910,7 @@ GameObject:
   m_Component:
   - component: {fileID: 719736406}
   - component: {fileID: 719736407}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: airflow-top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5903,7 +6054,7 @@ GameObject:
   m_Component:
   - component: {fileID: 744843543}
   - component: {fileID: 744843544}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: piston 2 - IK Chain002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5945,7 +6096,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 745500418}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: pivot controller 1
   m_TagString: TopplatePivot
   m_Icon: {fileID: 0}
@@ -6010,7 +6161,7 @@ GameObject:
   - component: {fileID: 768893925}
   - component: {fileID: 768893927}
   - component: {fileID: 768893926}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Pin 02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6162,7 +6313,7 @@ GameObject:
   - component: {fileID: 788092589}
   - component: {fileID: 788092591}
   - component: {fileID: 788092590}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Box049
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6238,7 +6389,7 @@ GameObject:
   - component: {fileID: 799602659}
   - component: {fileID: 799602661}
   - component: {fileID: 799602660}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder026
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6313,7 +6464,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 813297244}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Prop pusher pivot 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6375,6 +6526,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114611684728110934, guid: a611e772ef8ddf64d8106a9cbb70f31c,
+        type: 2}
+      propertyPath: SurfaceCursorDistance
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a611e772ef8ddf64d8106a9cbb70f31c, type: 2}
   m_IsPrefabParent: 0
@@ -6388,7 +6544,7 @@ GameObject:
   m_Component:
   - component: {fileID: 824819168}
   - component: {fileID: 824819169}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Prop mesh holder -  pivot x
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6447,7 +6603,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 824822689}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6478,7 +6634,7 @@ GameObject:
   - component: {fileID: 837306032}
   - component: {fileID: 837306031}
   - component: {fileID: 837306030}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Pin 04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6567,7 +6723,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 845461699}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Prop pivot - z
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6599,7 +6755,7 @@ GameObject:
   m_Component:
   - component: {fileID: 852562955}
   - component: {fileID: 852562956}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: airflow-bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6711,7 +6867,7 @@ GameObject:
   - component: {fileID: 856958096}
   - component: {fileID: 856958098}
   - component: {fileID: 856958097}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Prop pusher mesh - Cylinder041
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6788,7 +6944,7 @@ GameObject:
   - component: {fileID: 882638908}
   - component: {fileID: 882638910}
   - component: {fileID: 882638909}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder025
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6933,7 +7089,7 @@ GameObject:
   - component: {fileID: 893829489}
   - component: {fileID: 893829491}
   - component: {fileID: 893829490}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Box047
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7006,7 +7162,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 906061130}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Prop p2 target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7152,7 +7308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 922830031}
   - component: {fileID: 922830032}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Prop mesh holder -  Bone022 -1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7281,7 +7437,7 @@ GameObject:
   - component: {fileID: 941484684}
   - component: {fileID: 941484686}
   - component: {fileID: 941484685}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder031
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7371,14 +7527,23 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 955499870}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: 0, y: 0, z: 0.08099985}
+=======
+  m_LocalPosition: {x: 0, y: 0, z: -1.5629997}
+>>>>>>> 56449c0c927b155295dbb48b626649f7c622136f
   m_LocalScale: {x: 0.00945, y: 0.00945, z: 0.00945}
   m_Children:
   - {fileID: 1355749403}
   - {fileID: 2092501577}
   - {fileID: 1240484976}
+<<<<<<< HEAD
   m_Father: {fileID: 626757823}
   m_RootOrder: 4
+=======
+  m_Father: {fileID: 322521126}
+  m_RootOrder: 2
+>>>>>>> 56449c0c927b155295dbb48b626649f7c622136f
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7429,7 +7594,7 @@ GameObject:
   - component: {fileID: 964969826}
   - component: {fileID: 964969828}
   - component: {fileID: 964969827}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Box045
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7503,7 +7668,7 @@ GameObject:
   m_Component:
   - component: {fileID: 978951526}
   - component: {fileID: 978951527}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: top plate pivot holder 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7860,7 +8025,7 @@ GameObject:
   - component: {fileID: 1033355384}
   - component: {fileID: 1033355386}
   - component: {fileID: 1033355385}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Object006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7940,7 +8105,7 @@ GameObject:
   - component: {fileID: 1049263838}
   - component: {fileID: 1049263840}
   - component: {fileID: 1049263839}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Rotation plate - Cylinder012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8018,7 +8183,7 @@ GameObject:
   - component: {fileID: 1059965423}
   - component: {fileID: 1059965425}
   - component: {fileID: 1059965424}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Object010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8091,7 +8256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1063526739}
   - component: {fileID: 1063526740}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Prop pusher mesh - Cylinder041 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8265,7 +8430,7 @@ GameObject:
   - component: {fileID: 1065972254}
   - component: {fileID: 1065972256}
   - component: {fileID: 1065972255}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Box045
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8427,7 +8592,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1094683686}
   - component: {fileID: 1094683687}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: airflow-top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8505,7 +8670,7 @@ GameObject:
   - component: {fileID: 1108001816}
   - component: {fileID: 1108001818}
   - component: {fileID: 1108001817}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Box049
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8580,7 +8745,7 @@ GameObject:
   - component: {fileID: 1115294155}
   - component: {fileID: 1115294157}
   - component: {fileID: 1115294156}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Object012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8652,7 +8817,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1116157456}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: holder_tilt plates
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8687,7 +8852,7 @@ GameObject:
   - component: {fileID: 1125786692}
   - component: {fileID: 1125786694}
   - component: {fileID: 1125786693}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Box046
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8915,7 +9080,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1132693080}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: pin (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9104,7 +9269,7 @@ GameObject:
   - component: {fileID: 1174844279}
   - component: {fileID: 1174844281}
   - component: {fileID: 1174844280}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Box048
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9182,7 +9347,7 @@ GameObject:
   - component: {fileID: 1175055909}
   - component: {fileID: 1175055911}
   - component: {fileID: 1175055910}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Pin 06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9366,7 +9531,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1181561147}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Prop p2 target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9529,7 +9694,7 @@ GameObject:
   - component: {fileID: 1196874955}
   - component: {fileID: 1196874957}
   - component: {fileID: 1196874956}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Box048
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9610,7 +9775,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1206486189}
   - component: {fileID: 1206486190}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Box018
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9761,7 +9926,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1210607744}
   - component: {fileID: 1210607745}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Prop pusher mesh - Cylinder041 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9992,7 +10157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1258895944}
   - component: {fileID: 1258895945}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: top plate pivot holder 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10227,7 +10392,7 @@ GameObject:
   - component: {fileID: 1270931515}
   - component: {fileID: 1270931517}
   - component: {fileID: 1270931516}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Box047
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10301,7 +10466,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1324448246}
   - component: {fileID: 1324448247}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Prop holder 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10348,7 +10513,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1326258251}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Prop p2 target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10576,7 +10741,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1355330144}
   - component: {fileID: 1355330145}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder015
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10732,7 +10897,7 @@ GameObject:
   - component: {fileID: 1385002348}
   - component: {fileID: 1385002350}
   - component: {fileID: 1385002349}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: arm2 - Box006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10916,7 +11081,7 @@ GameObject:
   - component: {fileID: 1393044961}
   - component: {fileID: 1393044963}
   - component: {fileID: 1393044962}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Box049
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10992,7 +11157,7 @@ GameObject:
   - component: {fileID: 1397130639}
   - component: {fileID: 1397130638}
   - component: {fileID: 1397130637}
-  m_Layer: 10
+  m_Layer: 2
   m_Name: X_Axis (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11090,7 +11255,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1397953665}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: pistons holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11121,7 +11286,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1400437175}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Top plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11218,7 +11383,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1414955865}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: arm p1 - pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11347,7 +11512,7 @@ GameObject:
   - component: {fileID: 1438865198}
   - component: {fileID: 1438865200}
   - component: {fileID: 1438865199}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder025
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11475,7 +11640,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1456673595}
   - component: {fileID: 1456673596}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: 'Prop p1 target '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11519,7 +11684,7 @@ GameObject:
   - component: {fileID: 1459184720}
   - component: {fileID: 1459184722}
   - component: {fileID: 1459184721}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Box046
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11594,7 +11759,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1470392908}
   - component: {fileID: 1470392909}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: airflow-bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11669,7 +11834,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1480575738}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: topplate pivot 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11697,7 +11862,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1496911533}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: arm p1 target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11725,7 +11890,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1498123809}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone011
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11826,7 +11991,7 @@ GameObject:
   - component: {fileID: 1511743365}
   - component: {fileID: 1511743367}
   - component: {fileID: 1511743366}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Pin 14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11917,11 +12082,11 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1517692950}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.081}
+  m_LocalPosition: {x: 0, y: 0, z: -1.5629997}
   m_LocalScale: {x: 0.0059499997, y: 0.0059499997, z: 0.0059499997}
   m_Children:
   - {fileID: 1848218834}
-  m_Father: {fileID: 626757823}
+  m_Father: {fileID: 322521126}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -12054,7 +12219,7 @@ GameObject:
   - component: {fileID: 1520783621}
   - component: {fileID: 1520783623}
   - component: {fileID: 1520783622}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: arm - Box007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12127,7 +12292,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1534135175}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Prop pivot - z
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12160,7 +12325,7 @@ GameObject:
   - component: {fileID: 1545868531}
   - component: {fileID: 1545868533}
   - component: {fileID: 1545868532}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder032
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12236,7 +12401,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1557335741}
   - component: {fileID: 1557335742}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: 'Prop p1 target '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12346,7 +12511,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1591822422}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: pin (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12560,7 +12725,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1612324085}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12590,7 +12755,7 @@ GameObject:
   - component: {fileID: 1615222601}
   - component: {fileID: 1615222603}
   - component: {fileID: 1615222602}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder013
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12665,7 +12830,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1640043504}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Prop pusher pivot 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12698,7 +12863,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1641413721}
   - component: {fileID: 1641413722}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Prop mesh holder -  pivot x
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13028,6 +13193,7 @@ GameObject:
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 5
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 1696501824}
   - component: {fileID: 1696501829}
   - component: {fileID: 1696501828}
@@ -13036,6 +13202,13 @@ GameObject:
   - component: {fileID: 1696501825}
   m_Layer: 0
   m_Name: SliderKnob
+=======
+  - component: {fileID: 1662934947}
+  - component: {fileID: 1662934949}
+  - component: {fileID: 1662934948}
+  m_Layer: 2
+  m_Name: Object013
+>>>>>>> 56449c0c927b155295dbb48b626649f7c622136f
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13285,7 +13458,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1718336004}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: pivot controller 1
   m_TagString: TopplatePivot
   m_Icon: {fileID: 0}
@@ -13315,7 +13488,7 @@ GameObject:
   - component: {fileID: 1733924458}
   - component: {fileID: 1733924460}
   - component: {fileID: 1733924459}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Object011
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13396,7 +13569,7 @@ GameObject:
   - component: {fileID: 1742958937}
   - component: {fileID: 1742958939}
   - component: {fileID: 1742958938}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: pin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13552,7 +13725,7 @@ GameObject:
   - component: {fileID: 1763929223}
   - component: {fileID: 1763929225}
   - component: {fileID: 1763929224}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Rotor - Object031
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13641,14 +13814,19 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1769269560}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.081}
+  m_LocalPosition: {x: 0, y: 0, z: -1.5629997}
   m_LocalScale: {x: 0.00906, y: 0.00906, z: 0.00906}
   m_Children:
   - {fileID: 540775437}
   - {fileID: 1793077415}
   - {fileID: 167251933}
+<<<<<<< HEAD
   m_Father: {fileID: 626757823}
   m_RootOrder: 2
+=======
+  m_Father: {fileID: 322521126}
+  m_RootOrder: 4
+>>>>>>> 56449c0c927b155295dbb48b626649f7c622136f
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13735,7 +13913,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1774516570}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Central Rotor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13900,7 +14078,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1812098306}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone054
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13929,7 +14107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1833392606}
   - component: {fileID: 1833392607}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: top plate pivot holder 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14046,7 +14224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1849895885}
   - component: {fileID: 1849895884}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14201,7 +14379,7 @@ GameObject:
   - component: {fileID: 1884596312}
   - component: {fileID: 1884596314}
   - component: {fileID: 1884596313}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Object003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14277,7 +14455,7 @@ GameObject:
   - component: {fileID: 1885391171}
   - component: {fileID: 1885391173}
   - component: {fileID: 1885391172}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Box050
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14353,7 +14531,7 @@ GameObject:
   - component: {fileID: 1896901082}
   - component: {fileID: 1896901084}
   - component: {fileID: 1896901083}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder032
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14705,7 +14883,7 @@ GameObject:
   - component: {fileID: 1924951857}
   - component: {fileID: 1924951859}
   - component: {fileID: 1924951858}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Base - Cylinder001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14793,7 +14971,7 @@ GameObject:
   - component: {fileID: 1926289513}
   - component: {fileID: 1926289515}
   - component: {fileID: 1926289514}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder031
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14872,7 +15050,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1943895900}
   - component: {fileID: 1943895901}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Directional Light (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15076,7 +15254,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1978001465}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: arm2 p2 target - Pin 13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15108,7 +15286,7 @@ GameObject:
   - component: {fileID: 1980189701}
   - component: {fileID: 1980189704}
   - component: {fileID: 1980189705}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: cyclic control hit plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15295,7 +15473,7 @@ GameObject:
   - component: {fileID: 2014801946}
   - component: {fileID: 2014801948}
   - component: {fileID: 2014801947}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Object014
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15540,7 +15718,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2036770955}
   - component: {fileID: 2036770956}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15585,7 +15763,7 @@ GameObject:
   - component: {fileID: 2045227690}
   - component: {fileID: 2045227692}
   - component: {fileID: 2045227691}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Box050
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15661,7 +15839,7 @@ GameObject:
   - component: {fileID: 2069688300}
   - component: {fileID: 2069688302}
   - component: {fileID: 2069688301}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Pin 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15976,7 +16154,7 @@ GameObject:
   - component: {fileID: 2103843332}
   - component: {fileID: 2103843334}
   - component: {fileID: 2103843333}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder032
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16050,7 +16228,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2112692311}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Prop pusher pivot 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16194,7 +16372,7 @@ GameObject:
   - component: {fileID: 2136515057}
   - component: {fileID: 2136515059}
   - component: {fileID: 2136515058}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Object001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16269,7 +16447,7 @@ GameObject:
   - component: {fileID: 2140552699}
   - component: {fileID: 2140552701}
   - component: {fileID: 2140552700}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Pin 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
