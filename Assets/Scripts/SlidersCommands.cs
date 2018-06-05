@@ -7,13 +7,14 @@ using UnityEngine.UI;
 public class SlidersCommands : MonoBehaviour
 {
     PistonsController pc;
-    GameObject SpeedSlider;
-    GameObject CollectiveSlider;
-    GameObject SizeSlier;
+
+//    GameObject SpeedSlider;
+//    GameObject CollectiveSlider;
+//    GameObject SizeSlier;
     GameObject MainCamera;
-    public Slider speedSlider;
-    public Slider collectiveSlider;
-    public Slider sizeSlider;
+    public Slider SpeedSlider;
+    public Slider CollectiveSlider;
+    public Slider SizeSlider;
 
 
     private SliderAnimation _speedAnimation;
@@ -24,26 +25,23 @@ public class SlidersCommands : MonoBehaviour
     void Start()
     {
         pc = GameObject.FindObjectOfType<PistonsController>();
-        SpeedSlider = GameObject.Find("SpeedSlider");
-        speedSlider = SpeedSlider.GetComponent<Slider>();
-        CollectiveSlider = GameObject.Find("CollectiveSlider");
-        collectiveSlider = CollectiveSlider.GetComponent<Slider>();
-        SizeSlier = GameObject.Find("SizeSlider");
-        sizeSlider = SizeSlier.GetComponent<Slider>();
+        SpeedSlider = GameObject.Find("SpeedSlider").GetComponent<Slider>();
+        CollectiveSlider = GameObject.Find("CollectiveSlider").GetComponent<Slider>();
+        SizeSlider = GameObject.Find("SizeSlider").GetComponent<Slider>();
         MainCamera = GameObject.Find("MixedRealityCameraParent");
 
-        _speedAnimation = new SliderAnimation(speedSlider);
-        _sizeAnimation = new SliderAnimation(sizeSlider);
-        _collectiveAnimation = new SliderAnimation(collectiveSlider);
+        _speedAnimation = new SliderAnimation(SpeedSlider);
+        _sizeAnimation = new SliderAnimation(SizeSlider);
+        _collectiveAnimation = new SliderAnimation(CollectiveSlider);
     }
 
     // Update is called once per frame
     void Update()
     {
-        pc.sp = speedSlider.value;
-        pc.collectivey = collectiveSlider.value;
+        pc.sp = SpeedSlider.value;
+        pc.collectivey = CollectiveSlider.value;
         MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y,
-            sizeSlider.value);
+            SizeSlider.value);
 
 
         _speedAnimation.UpdatePos();
