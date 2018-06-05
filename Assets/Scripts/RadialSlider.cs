@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using HoloToolkit.Examples.InteractiveElements;
 
 public class RadialSlider: MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
@@ -10,8 +11,9 @@ public class RadialSlider: MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 	
 	private RectTransform throttle_rect;
 	private RectTransform thisRect;
-	
-	void Start(){
+    //private GestureInteractiveControl gestureInteractiveControl;
+
+    void Start(){
 		GameObject throttle_img = GameObject.FindWithTag("GameController");	
 		throttle_rect = throttle_img.GetComponent<RectTransform>();
 		thisRect = gameObject.GetComponent<RectTransform>();
