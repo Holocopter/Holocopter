@@ -23,11 +23,11 @@ public class ButtonEvent : MonoBehaviour {
         {
             case true:
                 pc.WindFx = false;
-                this.gameObject.GetComponentInChildren<Text>().text = "Wind Effect: OFF";
+                this.gameObject.GetComponentInChildren<Text>().text = "Airflow Effect : OFF";
                 break;
             case false:
                 pc.WindFx = true;
-                this.gameObject.GetComponentInChildren<Text>().text = "Wind Effect: ON";
+                this.gameObject.GetComponentInChildren<Text>().text = "Airflow Effect : ON";
                 break;
         }
     }
