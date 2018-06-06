@@ -29,7 +29,8 @@ public class ImageFadeOut : MonoBehaviour {
         yield return new WaitForSeconds(TimeToStayOnScreen);
         FadeOut();
         yield return new WaitForSeconds(TimeToFadeOut);
-        SceneManager.LoadScene(loadLevel);
+        Destroy(this.gameObject);
+      //  SceneManager.LoadScene(loadLevel);
         
     }
 	
