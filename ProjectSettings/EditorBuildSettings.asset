@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Context.unity
     guid: b51eeea27b6f96441ab99f7fbab1e2fa
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/holocopter_hao.unity
     guid: 2eb54d6160c70e14eac22b01ccad6416
+  - enabled: 1
+    path: Assets/Scenes/holocopter_2.unity
+    guid: 6f87d953a0696af478c4e17933168ed1
   m_configObjects: {}

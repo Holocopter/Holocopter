@@ -7,26 +7,16 @@ public class SpeechManager : MonoBehaviour
 {
     KeywordRecognizer keywordRecognizer = null;
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
-   
+
 
     // Use this for initialization
     void Start()
     {
-        keywords.Add("Reset", () =>
-        {
-            // Call the OnReset method on every descendant object.
-            this.BroadcastMessage("OnReset");
-        });
-
-        keywords.Add("Hello", () =>
-        {
-            var focusObject = GazeGestureManager.Instance.FocusedObject;
-            if (focusObject != null)
-            {
-                // Call the OnDrop method on just the focused object.
-                focusObject.SendMessage("OnDrop", SendMessageOptions.DontRequireReceiver);
-            }
-        });
+        var sliderCommand = GameObject.Find("Manager").GetComponent<SlidersCommands>();
+        keywords.Add("Make Faster",
+            () => { sliderCommand.SendMessage("OnMakeFaster", SendMessageOptions.DontRequireReceiver); });
+        keywords.Add("Make Slower",
+            () => { sliderCommand.SendMessage("OnMakeSlower", SendMessageOptions.DontRequireReceiver); });
 
         // Tell the KeywordRecognizer about our keywords.
         keywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
