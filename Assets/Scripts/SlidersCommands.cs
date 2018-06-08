@@ -38,18 +38,40 @@ public class SlidersCommands : MonoBehaviour
             sizeSlider.SliderValue);
     }
 
+    public void VoiceControlOnSlider(string voiceCommand)
+    {
+        if (voiceCommand == "Faster")
+            speedSlider.IncreaseSliderValue();
+        else if (voiceCommand == "Slower")
+        {
+            speedSlider.DecreaseSliderValue();
+        }
+        else if (voiceCommand == "Bigger")
+        {
+            sizeSlider.IncreaseSliderValue();
+        }
+        else if (voiceCommand == "Smaller")
+        {
+            sizeSlider.DecreaseSliderValue();
+        }
+        else if (voiceCommand == "Coll_de")
+        {
+            collectiveSlider.IncreaseSliderValue();
+        }
+        else if (voiceCommand == "Coll_in")
+        {
+            collectiveSlider.DecreaseSliderValue();
+        }
+    }
+
     public void OnMakeFaster()
     {
-        Debug.Log("Faster");
-        var step = (speedSlider.MaxSliderValue - speedSlider.MinSliderValue) / 5;
-        speedSlider.SetSliderValue(speedSlider.SliderValue + step);
+        speedSlider.IncreaseSliderValue();
     }
 
     public void OnMakeSlower()
     {
-        Debug.Log("Smaller");
-        var step = (speedSlider.MaxSliderValue - speedSlider.MinSliderValue) / 5;
-        speedSlider.SetSliderValue(speedSlider.SliderValue - step);
+        speedSlider.DecreaseSliderValue();
     }
 
     void Speed_slider()

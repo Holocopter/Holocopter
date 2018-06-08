@@ -13,10 +13,13 @@ namespace HoloToolkit.Examples.InteractiveElements
     {
         [Tooltip("The main bar of the slider, used to get the actual width of the slider")]
         public GameObject SliderBar;
+
         [Tooltip("The visual marker of the slider value")]
         public GameObject Knob;
+
         [Tooltip("The fill that represents the volume of the shader value")]
         public GameObject SliderFill;
+
         [Tooltip("The text representation of the slider value")]
         public TextMesh Label;
 
@@ -39,10 +42,7 @@ namespace HoloToolkit.Examples.InteractiveElements
                     OnUpdateEvent.Invoke(mSliderValue);
                 }
             }
-            get
-            {
-                return mSliderValue;
-            }
+            get { return mSliderValue; }
         }
 
         [Tooltip("Min numeric value to display in the slider label")]
@@ -79,6 +79,8 @@ namespace HoloToolkit.Examples.InteractiveElements
         private Vector3 mSliderVector;
         private Quaternion mCachedRotation;
 
+        private const int VoiceValueStep = 5;
+
         protected override void Awake()
         {
             base.Awake();
@@ -95,7 +97,8 @@ namespace HoloToolkit.Examples.InteractiveElements
             SliderBar.transform.rotation = Quaternion.identity;
 
             // set the width of the slider 
-            mSliderMagnitude = SliderBar.transform.InverseTransformVector(SliderBar.GetComponent<Renderer>().bounds.size).x;
+            mSliderMagnitude = SliderBar.transform
+                .InverseTransformVector(SliderBar.GetComponent<Renderer>().bounds.size).x;
 
             // set the center position
             mStartSliderPosition = mStartCenter + Vector3.left * mSliderMagnitude / 2;
@@ -118,7 +121,8 @@ namespace HoloToolkit.Examples.InteractiveElements
             if (SliderFill != null)
             {
                 mSliderFillScale = SliderFill.transform.localScale;
-                mSliderWidth = SliderFill.transform.InverseTransformVector(SliderFill.GetComponent<Renderer>().bounds.size).x;
+                mSliderWidth = SliderFill.transform
+                    .InverseTransformVector(SliderFill.GetComponent<Renderer>().bounds.size).x;
             }
 
             if (CenteredDot != null && !Centered)
@@ -131,22 +135,32 @@ namespace HoloToolkit.Examples.InteractiveElements
             UpdateVisuals();
             mCachedValue = mDeltaValue;
 
-            mSliderVector = SliderBar.transform.InverseTransformPoint(mStartCenter + SliderBar.transform.right * mSliderMagnitude / 2) - SliderBar.transform.InverseTransformPoint(mStartCenter - SliderBar.transform.right * mSliderMagnitude / 2);
+            mSliderVector =
+                SliderBar.transform.InverseTransformPoint(
+                    mStartCenter + SliderBar.transform.right * mSliderMagnitude / 2) -
+                SliderBar.transform.InverseTransformPoint(
+                    mStartCenter - SliderBar.transform.right * mSliderMagnitude / 2);
             AlignmentVector = SliderBar.transform.right;
             AlignmentVector = mSliderVector;
         }
 
-        public override void ManipulationUpdate(Vector3 startGesturePosition, Vector3 currentGesturePosition, Vector3 startHeadOrigin, Vector3 startHeadRay, GestureInteractive.GestureManipulationState gestureState)
+        public override void ManipulationUpdate(Vector3 startGesturePosition, Vector3 currentGesturePosition,
+            Vector3 startHeadOrigin, Vector3 startHeadRay, GestureInteractive.GestureManipulationState gestureState)
         {
             if (AlignmentVector != SliderBar.transform.right)
             {
-                mSliderVector = SliderBar.transform.InverseTransformPoint(mStartCenter + SliderBar.transform.right * mSliderMagnitude / 2) - SliderBar.transform.InverseTransformPoint(mStartCenter - SliderBar.transform.right * mSliderMagnitude / 2);
+                mSliderVector =
+                    SliderBar.transform.InverseTransformPoint(
+                        mStartCenter + SliderBar.transform.right * mSliderMagnitude / 2) -
+                    SliderBar.transform.InverseTransformPoint(
+                        mStartCenter - SliderBar.transform.right * mSliderMagnitude / 2);
                 AlignmentVector = SliderBar.transform.right;
 
                 mCachedRotation = SliderBar.transform.rotation;
             }
 
-            base.ManipulationUpdate(startGesturePosition, currentGesturePosition, startHeadOrigin, startHeadRay, gestureState);
+            base.ManipulationUpdate(startGesturePosition, currentGesturePosition, startHeadOrigin, startHeadRay,
+                gestureState);
 
             // get the current delta
             float delta = (CurrentDistance > 0) ? CurrentPercentage : -CurrentPercentage;
@@ -170,6 +184,18 @@ namespace HoloToolkit.Examples.InteractiveElements
                 // gesture ended - cache the current delta
                 mCachedValue = mDeltaValue;
             }
+        }
+
+        public void IncreaseSliderValue()
+        {
+            var step = (this.MaxSliderValue - this.MinSliderValue) / VoiceValueStep;
+            this.SetSliderValue(this.SliderValue + step);
+        }
+
+        public void DecreaseSliderValue()
+        {
+            var step = (this.MaxSliderValue - this.MinSliderValue) / VoiceValueStep;
+            this.SetSliderValue(this.SliderValue - step);
         }
 
         /// <summary>
@@ -197,6 +223,7 @@ namespace HoloToolkit.Examples.InteractiveElements
                     AutoSliderValue = 1;
                     break;
             }
+
             AutoSliderTimerCounter = 0;
         }
 
@@ -227,7 +254,6 @@ namespace HoloToolkit.Examples.InteractiveElements
             mDeltaValue = SliderValue / MaxSliderValue;
             UpdateVisuals();
             mCachedValue = mDeltaValue;
-
         }
 
         // update visuals
@@ -250,18 +276,22 @@ namespace HoloToolkit.Examples.InteractiveElements
                 Vector3 scale = mSliderFillScale;
                 scale.x = mSliderFillScale.x * mDeltaValue;
 
-                Vector3 position = Vector3.left * (mSliderWidth * 0.5f - mSliderWidth * mDeltaValue * 0.5f); // left justified;
+                Vector3 position =
+                    Vector3.left * (mSliderWidth * 0.5f - mSliderWidth * mDeltaValue * 0.5f); // left justified;
 
                 if (Centered)
                 {
                     if (SliderValue < 0)
                     {
-                        position = Vector3.left * (mSliderWidth * 0.5f - mSliderWidth * 0.5f * (mDeltaValue + 0.5f)); // pinned to center, going left
+                        position = Vector3.left *
+                                   (mSliderWidth * 0.5f -
+                                    mSliderWidth * 0.5f * (mDeltaValue + 0.5f)); // pinned to center, going left
                         scale.x = mSliderFillScale.x * (1 - mDeltaValue / 0.5f) * 0.5f;
                     }
                     else
                     {
-                        position = Vector3.right * ((mSliderWidth * 0.5f * (mDeltaValue - 0.5f))); // pinned to center, going right
+                        position = Vector3.right *
+                                   ((mSliderWidth * 0.5f * (mDeltaValue - 0.5f))); // pinned to center, going right
                         scale.x = mSliderFillScale.x * ((mDeltaValue - 0.5f) / 0.5f) * 0.5f;
                     }
                 }
@@ -282,7 +312,6 @@ namespace HoloToolkit.Examples.InteractiveElements
                 if (LabelFormat.IndexOf('.') > -1)
                 {
                     Label.text = displayValue.ToString(LabelFormat);
-
                 }
                 else
                 {
@@ -325,7 +354,6 @@ namespace HoloToolkit.Examples.InteractiveElements
                 }
 
                 UpdateVisuals();
-
             }
         }
     }

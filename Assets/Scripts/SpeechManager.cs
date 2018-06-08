@@ -3,20 +3,45 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
 
+public struct VoiceCommand
+{
+    public string Command;
+    public string Handler;
+    public string Parameter;
+
+    public VoiceCommand(string command, string handler, string parameter)
+    {
+        this.Command = command;
+        this.Handler = handler;
+        this.Parameter = parameter;
+    }
+}
+
 public class SpeechManager : MonoBehaviour
 {
     KeywordRecognizer keywordRecognizer = null;
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
 
+    private readonly List<VoiceCommand> _voiceCommands = new List<VoiceCommand>
+    {
+        new VoiceCommand("Make Faster", "VoiceControlOnSlider", "Faster"),
+        new VoiceCommand("Make Slower", "VoiceControlOnSlider", "Slower"),
+        new VoiceCommand("Make Bigger", "VoiceControlOnSlider", "Bigger"),
+        new VoiceCommand("Make Smaller", "VoiceControlOnSlider", "Smaller"),
+        new VoiceCommand("Increase Collective", "VoiceControlOnSlider", "Coll_de"),
+        new VoiceCommand("Decrease Collective", "VoiceControlOnSlider", "Coll_in")
+    };
 
     // Use this for initialization
     void Start()
     {
-        var sliderCommand = GameObject.Find("Manager").GetComponent<SlidersCommands>();
-        keywords.Add("Make Faster",
-            () => { sliderCommand.SendMessage("OnMakeFaster", SendMessageOptions.DontRequireReceiver); });
-        keywords.Add("Make Slower",
-            () => { sliderCommand.SendMessage("OnMakeSlower", SendMessageOptions.DontRequireReceiver); });
+        var sliderCommand = this.GetComponentInParent<SlidersCommands>();
+        foreach (var voice in _voiceCommands)
+        {
+            var voice1 = voice;
+            keywords.Add(voice.Command,
+                () => { sliderCommand.SendMessage(voice1.Handler, voice1.Parameter); });
+        }
 
         // Tell the KeywordRecognizer about our keywords.
         keywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
