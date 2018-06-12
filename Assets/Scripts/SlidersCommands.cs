@@ -11,6 +11,7 @@ public class SlidersCommands : MonoBehaviour
     GameObject CollectiveSlider;
     GameObject SizeSlier;
     GameObject AirFlow;
+    public GameObject FixedCamera;
     GameObject MainCamera;
     
     public SliderGestureControl speedSlider;
@@ -37,7 +38,7 @@ public class SlidersCommands : MonoBehaviour
     void Update()
     {
         pc.sp = speedSlider.SliderValue*0.5f;
-        pc.collectivey = collectiveSlider.SliderValue*0.0004f;
+        pc.collectivey = collectiveSlider.SliderValue*0.00004f;
         MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y,
             sizeSlider.SliderValue*0.004f);
     }
@@ -111,10 +112,10 @@ public class SlidersCommands : MonoBehaviour
         switch (voiceCommand)
         {
             case "FixedCam_ON":
-                GameObject.Find("Panel").gameObject.SetActive(true);
+                FixedCamera.gameObject.GetComponent<Image>().enabled = true;
                 break;
             case "FixedCam_OFF":
-                GameObject.Find("Panel").gameObject.SetActive(false);
+                FixedCamera.gameObject.GetComponent<Image>().enabled = false;
                 break;
         }
     }
