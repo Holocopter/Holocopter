@@ -29,7 +29,11 @@ public class SpeechManager : MonoBehaviour
         new VoiceCommand("Make Bigger", "VoiceControlOnSlider", "Bigger"),
         new VoiceCommand("Make Smaller", "VoiceControlOnSlider", "Smaller"),
         new VoiceCommand("Increase Collective", "VoiceControlOnSlider", "Coll_de"),
-        new VoiceCommand("Decrease Collective", "VoiceControlOnSlider", "Coll_in")
+        new VoiceCommand("Decrease Collective", "VoiceControlOnSlider", "Coll_in"),
+        new VoiceCommand("Show Airflow","VoiceControlOnButton","WindFX_ON"),
+        new VoiceCommand("Hide Airflow","VoiceControlOnButton","WindFX_OFF"),
+        new VoiceCommand("Show Fixed Camera","VoiceControlOnSprite","FixedCam_ON"),
+        new VoiceCommand("Hide Fixed Camera","VoiceControlOnSprite","FixedCam_OFF"),
     };
 
     // Use this for initialization
