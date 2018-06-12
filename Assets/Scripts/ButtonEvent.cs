@@ -17,18 +17,29 @@ public class ButtonEvent : MonoBehaviour {
     void Update () {
 		
 	}
-    public void WindFX()
+    public void WindFx_Switch()
     {
         switch (pc.WindFx)
         {
             case true:
                 pc.WindFx = false;
-                this.gameObject.GetComponentInChildren<Text>().text = "Airflow Effect : OFF";
+                this.gameObject.GetComponentInChildren<Text>().text = "Airflow Effect: OFF";
                 break;
             case false:
                 pc.WindFx = true;
-                this.gameObject.GetComponentInChildren<Text>().text = "Airflow Effect : ON";
+                this.gameObject.GetComponentInChildren<Text>().text = "Airflow Effect: ON";
                 break;
         }
+    }
+
+    public void WindFX_ON()
+    {
+        pc.WindFx = true;
+        this.gameObject.GetComponentInChildren<Text>().text = "Airflow Effect: ON";
+    }
+
+    public void WindFX_OFF() {
+        pc.WindFx = false;
+        this.gameObject.GetComponentInChildren<Text>().text = "Airflow Effect: OFF";
     }
 }

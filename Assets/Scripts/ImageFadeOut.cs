@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class ImageFadeOut : MonoBehaviour {
 
     public Image FadeImage;
+    public Image FadeBG;
     public int loadLevel;
     public float TimeToFadeIn;
     public float TimeToFadeOut;
@@ -29,7 +30,7 @@ public class ImageFadeOut : MonoBehaviour {
         yield return new WaitForSeconds(TimeToStayOnScreen);
         FadeOut();
         yield return new WaitForSeconds(TimeToFadeOut);
-        Destroy(this.gameObject);
+        Destroy(FadeBG.gameObject);
       //  SceneManager.LoadScene(loadLevel);
         
     }
@@ -44,6 +45,7 @@ public class ImageFadeOut : MonoBehaviour {
     void FadeOut()
     {
         FadeImage.CrossFadeAlpha(0.0f, 2.5f, false);
+        FadeBG.CrossFadeAlpha(0.0f, 2.5f, false);
         foreach (Text text in Texts)
             text.CrossFadeAlpha(0.0f, TimeToFadeOut, false);
     }
