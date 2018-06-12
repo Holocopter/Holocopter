@@ -40,7 +40,7 @@ public class SlidersCommands : MonoBehaviour
         pc.sp = speedSlider.SliderValue*0.5f;
         pc.collectivey = collectiveSlider.SliderValue*0.00004f;
         MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y,
-            sizeSlider.SliderValue*0.004f);
+            sizeSlider.SliderValue*0.002f);
     }
 
     public void VoiceControlOnSlider(string voiceCommand)
