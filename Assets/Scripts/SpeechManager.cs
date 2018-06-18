@@ -34,6 +34,7 @@ public class SpeechManager : MonoBehaviour
         new VoiceCommand("Hide Airflow","VoiceControlOnButton","WindFX_OFF"),
         new VoiceCommand("Show Fixed Camera","VoiceControlOnSprite","FixedCam_ON"),
         new VoiceCommand("Hide Fixed Camera","VoiceControlOnSprite","FixedCam_OFF"),
+        new VoiceCommand("Reset The Scene","VoiceControlOnScene","Reset")
     };
 
     // Use this for initialization

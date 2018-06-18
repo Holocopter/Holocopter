@@ -13,14 +13,13 @@ public class GazeGestureManager : MonoBehaviour
 	// Use this for initialization
 	void Awake()
 	{
-		Debug.Log ("ss");
+
 		Instance = this;
 
 		// Set up a GestureRecognizer to detect Select gestures.
 		recognizer = new GestureRecognizer();
 		recognizer.Tapped += (args) =>
 		{
-			Debug.Log ("ssss");
 			// Send an OnSelect message to the focused object and its ancestors.
 			if (FocusedObject != null)
 			{

@@ -34,7 +34,7 @@ namespace HoloToolkit.Examples.InteractiveElements
         /// </summary>
         public float SliderValue
         {
-            private set
+            set
             {
                 if (mSliderValue != value)
                 {
@@ -57,27 +57,27 @@ namespace HoloToolkit.Examples.InteractiveElements
         [Tooltip("Format the slider value and control decimal places if needed")]
         public string LabelFormat = "#.##";
 
-        private float mSliderValue;
+        public float mSliderValue;
 
         // calculation variables
-        private float mValueSpan;
-        private float mCachedValue;
-        private float mDeltaValue;
-        private Vector3 mStartCenter = new Vector3();
-        private float mSliderMagnitude;
-        private Vector3 mStartSliderPosition;
+        public float mValueSpan;
+        public float mCachedValue;
+        public float mDeltaValue;
+        public Vector3 mStartCenter = new Vector3();
+        public float mSliderMagnitude;
+        public Vector3 mStartSliderPosition;
 
         // cached UI values
-        private Vector3 mKnobVector;
-        private Vector3 mSliderFillScale;
-        private float mSliderWidth;
+        public Vector3 mKnobVector;
+        public Vector3 mSliderFillScale;
+        public float mSliderWidth;
 
         private float AutoSliderTime = 0.25f;
         private float AutoSliderTimerCounter = 0.5f;
         private float AutoSliderValue = 0;
 
-        private Vector3 mSliderVector;
-        private Quaternion mCachedRotation;
+        public Vector3 mSliderVector;
+        public Quaternion mCachedRotation;
 
         private const int VoiceValueStep = 5;
 

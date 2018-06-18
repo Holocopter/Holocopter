@@ -13,7 +13,9 @@ public class SlidersCommands : MonoBehaviour
     GameObject AirFlow;
     public GameObject FixedCamera;
     GameObject MainCamera;
-    
+    float start_camera_z;
+    public RadialSlider r_slide;
+
     public SliderGestureControl speedSlider;
     public SliderGestureControl collectiveSlider;
     public SliderGestureControl sizeSlider;
@@ -31,12 +33,14 @@ public class SlidersCommands : MonoBehaviour
         sizeSlider = SizeSlier.GetComponent<SliderGestureControl>();
         AirFlow = GameObject.Find("WindFx");
         airFlow = AirFlow.GetComponent<ButtonEvent>();
+        
         MainCamera = GameObject.Find("MixedRealityCameraParent");
     }
 
     // Update is called once per frame
     void Update()
     {
+
         pc.sp = speedSlider.SliderValue*0.5f;
         pc.collectivey = collectiveSlider.SliderValue*0.00004f;
         MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y,
@@ -116,6 +120,21 @@ public class SlidersCommands : MonoBehaviour
                 break;
             case "FixedCam_OFF":
                 FixedCamera.gameObject.GetComponent<Image>().enabled = false;
+                break;
+        }
+    }
+
+    public void VoiceControlOnScene(string voiceCommand)
+    {
+        switch (voiceCommand)
+        {
+            case "Reset":
+                speedSlider.SliderValue = 0;
+                collectiveSlider.SliderValue = 0;
+                sizeSlider.SliderValue = 0;
+                r_slide.ang = 0;
+                r_slide.rad = 0;
+                r_slide.ResetTheThrottle();
                 break;
         }
     }

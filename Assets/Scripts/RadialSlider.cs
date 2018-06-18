@@ -11,11 +11,13 @@ public class RadialSlider: MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 	
 	private RectTransform throttle_rect;
 	private RectTransform thisRect;
+    Vector2 throttle_ori;
     //private GestureInteractiveControl gestureInteractiveControl;
 
     void Start(){
 		GameObject throttle_img = GameObject.FindWithTag("GameController");	
 		throttle_rect = throttle_img.GetComponent<RectTransform>();
+        throttle_ori = throttle_rect.anchoredPosition;
 		thisRect = gameObject.GetComponent<RectTransform>();
 	}
 
@@ -46,7 +48,10 @@ public class RadialSlider: MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 	}
 	public float ang = 0;
 	public float rad = 0;
-	
+
+    public void ResetTheThrottle() {
+        throttle_rect.anchoredPosition = throttle_ori;
+    }
 	// mainloop
 	IEnumerator TrackPointer()
 	{
@@ -65,35 +70,38 @@ public class RadialSlider: MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 				if (isPointerDown)
 				{
 
-					Vector2 localPos; // Mouse position  
-					RectTransformUtility.ScreenPointToLocalPointInRectangle( transform as RectTransform, Input.mousePosition, ray.eventCamera, out localPos );
-						
-					// local pos is the mouse position.
-					float angle = (Mathf.Atan2(-localPos.y, localPos.x)*180f/Mathf.PI+180f)/360f;
+                    Vector2 localPos; // Mouse position  
+                    RectTransformUtility.ScreenPointToLocalPointInRectangle(transform as RectTransform, Input.mousePosition, ray.eventCamera, out localPos);
 
-					GetComponent<Image>().fillAmount = angle;
-										
-					ang = (int)((angle)*360f );
-					
-					
-					//text.text = ((int)((angle)*360f )).ToString();
-					if( localPos.magnitude < (0.43f*thisRect.rect.width)){
-						
-						throttle_rect.anchoredPosition = localPos;
+                    // local pos is the mouse position.
+                    float angle = (Mathf.Atan2(-localPos.y, localPos.x) * 180f / Mathf.PI + 180f) / 360f;
 
-					}else {
-						
-						throttle_rect.anchoredPosition = localPos.normalized * (0.4f*thisRect.rect.width);
-						
-					};	
-					
-					rad = ( localPos.magnitude ) / (0.5f*thisRect.rect.width)*0.5f;
-					
-					//Vector3 rot = throttle_rect.localEulerAngles;
-					//rot.z = -ang;
-					//throttle_rect.localEulerAngles = rot;
-					
-				}
+                    GetComponent<Image>().fillAmount = angle;
+
+                    ang = (int)((angle) * 360f);
+
+
+                    //text.text = ((int)((angle)*360f )).ToString();
+                    if (localPos.magnitude < (0.43f * thisRect.rect.width))
+                    {
+
+                        throttle_rect.anchoredPosition = localPos;
+
+                    }
+                    else
+                    {
+
+                        throttle_rect.anchoredPosition = localPos.normalized * (0.4f * thisRect.rect.width);
+
+                    };
+
+                    rad = (localPos.magnitude) / (0.5f * thisRect.rect.width);
+
+                    //Vector3 rot = throttle_rect.localEulerAngles;
+                    //rot.z = -ang;
+                    //throttle_rect.localEulerAngles = rot;
+
+                }
 				//itsKGFOrbitCam.SetPanningEnable( !isPointerDown );
 				yield return 0;
 			}        

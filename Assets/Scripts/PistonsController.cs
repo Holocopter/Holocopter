@@ -13,7 +13,6 @@ public class PistonsController : MonoBehaviour {
 	public float collectivey_old = 0;
     public float slidersp_old = 0;
 	public float sp_max = 500;
-    public float size = 1.0f;
 	
 	public Vector3 fc_init;
 	public float slider_fixedcam = 0;
@@ -46,10 +45,10 @@ public class PistonsController : MonoBehaviour {
 	public Vector3 targy;
 	
 	void Start () {
-	
-		Vector3 _1 = p1.position;
+      
+	Vector3 _1 = p1.position;
         Vector3 _2 = p2.position;
-        Vector3 _3 = p3.position;
+       Vector3 _3 = p3.position;
                 
 		plane = new Plane(_1, _2, _3);
 		
@@ -65,25 +64,30 @@ public class PistonsController : MonoBehaviour {
 		Vector3 _1 = p1.position;
         Vector3 _2 = p2.position;
         Vector3 _3 = p3.position;
-           
-		if (control_helper){
+       
+        if (control_helper){
 			control_helper.rotation = Quaternion.Euler(0, r_slide.ang, r_slide.rad*ang_max);
-			targy.y = y_init + collectivey;
-			control_helper.position = Vector3.MoveTowards(control_helper.position, targy, 100);		
-		}
- 
-	  	plane.Set3Points(_1, _2, _3);
-	  	
+			//targy.y = y_init + collectivey;
+           // control_helper.position = Vector3.MoveTowards(control_helper.position, targy, 100);	
+        }
+        if (collectivey != collectivey_old)
+        {
+            control_helper.position = new Vector3(control_helper.position.x, control_helper.position.y + (collectivey - collectivey_old), control_helper.position.z);
+        }
+        collectivey_old = collectivey;
+
+        plane.Set3Points(_1, _2, _3);
+
+
         // set plane
-	  	Vector3 newUp = Vector3.RotateTowards(targetObj.up, plane.normal, adjustSpeed*Mathf.Deg2Rad, 0);
-      	targetObj.rotation = Quaternion.FromToRotation(transform.up, plane.normal);
-      	
-      	// move plate as plane moves
-      	Vector3 obj_pos = targetObj.position;
-      	obj_pos.y = -1.0f*plane.distance;
-      	targetObj.position = obj_pos;
-        this.transform.localScale = new Vector3(size, size, size);
-	}
+       // Vector3 newUp = Vector3.RotateTowards(targetObj.up, plane.normal, adjustSpeed * Mathf.Deg2Rad, 0);
+        targetObj.rotation = Quaternion.FromToRotation(transform.up, plane.normal);
+
+        //// move plate as plane moves
+        Vector3 obj_pos = targetObj.position;
+        obj_pos.y = control_helper.position.y;          //-1.0f * plane.distance;
+        targetObj.position = obj_pos;
+    }
 	
 	void LateUpdate(){
         DoRotate();
