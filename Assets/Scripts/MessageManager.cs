@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using HoloToolkit.Sharing;
 using HoloToolkit.Sharing.Tests;
+using HoloToolkit.Unity;
 using UnityEngine;
 
-public class MessageManager : MonoBehaviour
+public class MessageManager : Singleton<MessageManager>
 {
     private NetworkConnection serverConnection;
     private NetworkConnectionAdapter connectionAdapter;
@@ -69,13 +70,19 @@ public class MessageManager : MonoBehaviour
 
         connectionAdapter = new NetworkConnectionAdapter();
         connectionAdapter.MessageReceivedCallback += OnMessageReceived;
+        connectionAdapter.ConnectedCallback += OnConnected;
 
         LocalUserID = SharingStage.Instance.Manager.GetLocalUser().GetID();
 
         MessageHandlers.Add(HoloMessageID.DebugMsg, LogDebugMsg);
         serverConnection.AddListener((byte) HoloMessageID.DebugMsg, connectionAdapter);
-        
+
         InvokeRepeating("SendDebugMessage", 1.0f, 2.0f);
+    }
+
+    private void OnConnected(NetworkConnection connection)
+    {
+        Debug.Log("P: Client connected!");
     }
 
     private void OnMessageReceived(NetworkConnection connection, NetworkInMessage msg)
@@ -93,14 +100,10 @@ public class MessageManager : MonoBehaviour
     {
         Debug.Log("Debug message invoked");
 
-        string debugMsg = "debug...";
+//        string debugMsg = "debug...";
         NetworkOutMessage msg = CreateMessage((byte) HoloMessageID.DebugMsg);
-        msg.Write(debugMsg);
-        serverConnection.Broadcast(
-            msg,
-            MessagePriority.Immediate,
-            MessageReliability.UnreliableSequenced,
-            MessageChannel.Avatar);
+        msg.Write(1f);
+        serverConnection.Broadcast(msg);
     }
 
     private NetworkOutMessage CreateMessage(byte messageType)
