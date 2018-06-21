@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ButtonEvent : MonoBehaviour {
 
     PistonsController pc;
+    public GameObject IndicationBar;
     // Use this for initialization
     void Start()
     {
@@ -41,5 +42,28 @@ public class ButtonEvent : MonoBehaviour {
     public void WindFX_OFF() {
         pc.WindFx = false;
         this.gameObject.GetComponentInChildren<Text>().text = "Airflow Effect: OFF";
+    }
+    public void ButtonIndicationEnter()
+    {
+        //IndicationBar = this.transform.Find("IndicationBar").gameObject;
+
+        if (IndicationBar != null)
+        {
+            IndicationBar.SetActive(true);
+        }
+
+
+    }
+
+    public void ButtonIndicationExit()
+    {
+        // IndicationBar = this.transform.Find("IndicationBar").gameObject;
+
+        if (IndicationBar != null)
+        {
+            IndicationBar.SetActive(false);
+        }
+
+
     }
 }
