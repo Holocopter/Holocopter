@@ -46,15 +46,14 @@ public class PistonsController : MonoBehaviour {
 	
 	void Start () {
       
-	Vector3 _1 = p1.position;
+	    Vector3 _1 = p1.position;
         Vector3 _2 = p2.position;
-       Vector3 _3 = p3.position;
+        Vector3 _3 = p3.position;
                 
 		plane = new Plane(_1, _2, _3);
 		
 		targy = control_helper.position;
         y_init = targy.y;
-        
         fc_init = fixed_cam.localPosition;
              
 	}
@@ -70,6 +69,7 @@ public class PistonsController : MonoBehaviour {
 			//targy.y = y_init + collectivey;
            // control_helper.position = Vector3.MoveTowards(control_helper.position, targy, 100);	
         }
+
         if (collectivey != collectivey_old)
         {
             control_helper.position = new Vector3(control_helper.position.x, control_helper.position.y + (collectivey - collectivey_old), control_helper.position.z);
