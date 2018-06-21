@@ -16,7 +16,10 @@ public class MessageManager : Singleton<MessageManager>
 
     private void LogDebugMsg(NetworkInMessage msg)
     {
-        Debug.Log(msg.ReadString());
+        var userId = msg.ReadInt64();
+
+        var a = msg.ReadString();
+        Debug.Log(string.Format("Debug message from {0}: {1}", userId, a));
     }
 
     private Dictionary<HoloMessageID, MessageCallback> messageHandlers =
@@ -70,20 +73,15 @@ public class MessageManager : Singleton<MessageManager>
 
         connectionAdapter = new NetworkConnectionAdapter();
         connectionAdapter.MessageReceivedCallback += OnMessageReceived;
-        connectionAdapter.ConnectedCallback += OnConnected;
 
         LocalUserID = SharingStage.Instance.Manager.GetLocalUser().GetID();
 
         MessageHandlers.Add(HoloMessageID.DebugMsg, LogDebugMsg);
         serverConnection.AddListener((byte) HoloMessageID.DebugMsg, connectionAdapter);
 
-        InvokeRepeating("SendDebugMessage", 1.0f, 2.0f);
+        InvokeRepeating("SendDebugMessage", 1.0f, 5.0f);
     }
 
-    private void OnConnected(NetworkConnection connection)
-    {
-        Debug.Log("P: Client connected!");
-    }
 
     private void OnMessageReceived(NetworkConnection connection, NetworkInMessage msg)
     {
@@ -98,11 +96,11 @@ public class MessageManager : Singleton<MessageManager>
 
     public void SendDebugMessage()
     {
-        Debug.Log("Debug message invoked");
+        Debug.Log("Send debug message to server...");
 
-//        string debugMsg = "debug...";
+        string debugMsg = "debug...";
         NetworkOutMessage msg = CreateMessage((byte) HoloMessageID.DebugMsg);
-        msg.Write(1f);
+        msg.Write(debugMsg);
         serverConnection.Broadcast(msg);
     }
 
