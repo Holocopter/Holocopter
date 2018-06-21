@@ -19,7 +19,7 @@ public class MessageManager : Singleton<MessageManager>
         var userId = msg.ReadInt64();
 
         var a = msg.ReadString();
-        Debug.Log(string.Format("Debug message from {0}: {1}", userId, a));
+        Debug.Log(string.Format("{0} Debug message from {1}: {2}", LocalUserID, userId, a));
     }
 
     private Dictionary<HoloMessageID, MessageCallback> messageHandlers =
