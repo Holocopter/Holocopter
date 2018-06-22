@@ -28,7 +28,6 @@ public class MessageManager : Singleton<MessageManager>
     {
         DebugMsg = HoloToolkit.Sharing.MessageID.UserMessageIDStart,
         ChangeSize,
-        Smaller,
         Max
     }
 
