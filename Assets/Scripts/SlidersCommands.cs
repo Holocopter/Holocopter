@@ -6,7 +6,7 @@ using HoloToolkit.Examples.InteractiveElements;
 
 public class SlidersCommands : MonoBehaviour
 {
-    PistonsController pc;
+    PistonsController pistonsController;
     GameObject SpeedSlider;
     GameObject CollectiveSlider;
     GameObject SizeSlier;
@@ -14,7 +14,7 @@ public class SlidersCommands : MonoBehaviour
     public GameObject FixedCamera;
     GameObject MainCamera;
     float start_camera_z;
-    public RadialSlider r_slide;
+    public RadialSlider radialSlider;
 
     public SliderGestureControl speedSlider;
     public SliderGestureControl collectiveSlider;
@@ -24,7 +24,7 @@ public class SlidersCommands : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        pc = GameObject.FindObjectOfType<PistonsController>();
+        pistonsController = GameObject.FindObjectOfType<PistonsController>();
         SpeedSlider = GameObject.Find("SpeedSlider");
         speedSlider = SpeedSlider.GetComponent<SliderGestureControl>();
         CollectiveSlider = GameObject.Find("CollectiveSlider");
@@ -41,8 +41,8 @@ public class SlidersCommands : MonoBehaviour
     void Update()
     {
 
-        pc.sp = speedSlider.SliderValue*0.5f;
-        pc.collectivey = collectiveSlider.SliderValue*0.00004f;
+        pistonsController.speed = speedSlider.SliderValue*0.5f;
+        pistonsController.collectivey = collectiveSlider.SliderValue*0.00004f;
         MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y,
             sizeSlider.SliderValue*0.002f);
     }
@@ -71,30 +71,6 @@ public class SlidersCommands : MonoBehaviour
                 break;
         }
   
-        /*
-        if (voiceCommand == "Faster")
-            speedSlider.IncreaseSliderValue();
-        else if (voiceCommand == "Slower")
-        {
-            speedSlider.DecreaseSliderValue();
-        }
-        else if (voiceCommand == "Bigger")
-        {
-            sizeSlider.IncreaseSliderValue();
-        }
-        else if (voiceCommand == "Smaller")
-        {
-            sizeSlider.DecreaseSliderValue();
-        }
-        else if (voiceCommand == "Coll_de")
-        {
-            collectiveSlider.IncreaseSliderValue();
-        }
-        else if (voiceCommand == "Coll_in")
-        {
-            collectiveSlider.DecreaseSliderValue();
-        }
-        */
     }
 
     public void VoiceControlOnButton(string voiceCommand)
@@ -132,9 +108,9 @@ public class SlidersCommands : MonoBehaviour
                 speedSlider.SliderValue = 0;
                 collectiveSlider.SliderValue = 0;
                 sizeSlider.SliderValue = 0;
-                r_slide.ang = 0;
-                r_slide.rad = 0;
-                r_slide.ResetTheThrottle();
+                radialSlider.ang = 0;
+                radialSlider.rad = 0;
+                radialSlider.ResetTheThrottle();
                 break;
         }
     }

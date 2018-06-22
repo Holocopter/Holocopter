@@ -5,7 +5,7 @@ public class PistonsController : MonoBehaviour {
 	
 	
 	// UI - controls 
-	public RadialSlider r_slide;
+	public RadialSlider radialSlider;
 	public Transform control_helper; 
 	public Transform fixed_cam;
 	public float collectivey = 0;
@@ -23,7 +23,7 @@ public class PistonsController : MonoBehaviour {
 	// rotation 
 	public Transform[] rotateObjects;
 	public bool WindFx = false;
-	public float sp = 300f;
+	public float speed = 300f;
 	
 	// define the piston points that push plate
 	public Transform p1;
@@ -65,7 +65,7 @@ public class PistonsController : MonoBehaviour {
         Vector3 _3 = p3.position;
        
         if (control_helper){
-			control_helper.rotation = Quaternion.Euler(0, r_slide.ang, r_slide.rad*ang_max);
+			control_helper.rotation = Quaternion.Euler(0, radialSlider.ang, radialSlider.rad*ang_max);
 			//targy.y = y_init + collectivey;
            // control_helper.position = Vector3.MoveTowards(control_helper.position, targy, 100);	
         }
@@ -91,106 +91,18 @@ public class PistonsController : MonoBehaviour {
 	
 	void LateUpdate(){
         DoRotate();
-		/*if (!Input.GetMouseButton(0))
-		{
-        
-        	if( (slidersp_old==slidersp) 
-        		&& (collectivey_old == collectivey) 
-        		&&(slider_fixedcam_old==slider_fixedcam) )
-        	{
-        		itsKGFOrbitCam.SetPanningEnable( true );
-       	 	};
-
-        	slidersp_old = slidersp;
-        	collectivey_old = collectivey;
-        	slider_fixedcam_old=slider_fixedcam;
-		}
-        */
 	}
 		
 	private void DoRotate(){
 		
 		foreach(Transform t in rotateObjects){
-			t.localRotation = Quaternion.Euler(0, sp*Time.time, 0);	
+			t.localRotation = Quaternion.Euler(0, speed*Time.time, 0);	
 		}
 	}
 		
-	/*void OnGUI(){
 
-        // draw GUI elements        
-        GUI.skin = skin;
-        
-        // instructions
-        GUILayout.TextArea("Left click and drag to pan. Right click and drag to rotate. Scrollwheel to zoom.");
-        
-        // side UI control
-        float area_w = 0.3f*Screen.width;
-       						
-		if (slidersp >=0) {
-			GUILayout.BeginArea(new Rect(Screen.width - area_w, Screen.height*.3f, area_w, 190f), new GUIStyle("window") );
-			
-			GUILayout.Label("Fixed Position Camera");
-			slider_fixedcam = GUILayout.HorizontalSlider(slider_fixedcam, slider_fixedcam_min, slider_fixedcam_max, new GUIStyle("box"), new GUIStyle("horizontalsliderthumb"), GUILayout.Width(area_w-5));	
-			GUILayout.Space(10);
-			
-			GUILayout.Label("Rotor speed");
-			
-			slidersp = GUILayout.HorizontalSlider(slidersp, 0, sp_max, new GUIStyle("box"), new GUIStyle("horizontalsliderthumb"), GUILayout.Width(area_w-5));			
-			
-			WindFx = GUILayout.Toggle(WindFx,"Toggle airflow effect");
-			
-			GUILayout.EndArea();
-			
-			// handle rotor slider
-			DetectOnChange(slidersp_old, slidersp);
-			if (slidersp_old == slidersp){
-				sp = slidersp;
-				DoRotate();	
-			}
-			
-			// handle fixed cam slider
-			DetectOnChange(slider_fixedcam_old, slider_fixedcam);
-					
-			Vector3 newfc_pos = fixed_cam.localPosition;
-			newfc_pos.x = slider_fixedcam;
-		
-			float theta = Vector3.Angle( newfc_pos, fc_init) - Vector3.Angle( fc_init, new Vector3(0,fc_init.y,0));
-			float _z = Vector3.Distance(fc_init,new Vector3(0,fc_init.y,0)) * Mathf.Sin(theta * Mathf.Deg2Rad);	
-			newfc_pos.z = -Mathf.Abs( _z );
-		
-			
-			fixed_cam.localPosition = Vector3.MoveTowards(fixed_cam.localPosition, newfc_pos, 100);
-							
-			
-			fixed_cam.gameObject.SetActive(true);
-		}else{
-			fixed_cam.gameObject.SetActive(false);
-		}
-		
-		// control sliders
-		 
-        GUILayout.BeginArea( new Rect(Screen.width-250, Screen.height - 240f, area_w, 150f) );
-      				
-			GUILayout.Label("Collective");
-			collectivey = GUILayout.VerticalSlider(collectivey, dy_max, dy_min);		
-        	DetectOnChange(collectivey_old, collectivey);
-        
-		GUILayout.EndArea();
-
-		
-		
-	}
-	*/
 	
 	float DetectOnChange( float oldVal, float newVal ) {	
-		
-	//	if(itsKGFOrbitCam != null){
-			// detect if user is using sliders -- slider values changing -- if so, disable mouse control
-			
-		//	if (oldVal != newVal){
-		//		itsKGFOrbitCam.SetPanningEnable(false);
-		//	}
-		//}
 		
 		
 		return newVal;

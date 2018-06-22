@@ -38,7 +38,7 @@ public class SlidersCommands_hao : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        pc.sp = SpeedSlider.value;
+        pc.speed = SpeedSlider.value;
         pc.collectivey = CollectiveSlider.value;
         MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y,
             SizeSlider.value);

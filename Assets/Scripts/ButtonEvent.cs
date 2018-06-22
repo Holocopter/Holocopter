@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class ButtonEvent : MonoBehaviour {
 
-    PistonsController pc;
+    PistonsController pistonsController;
     public GameObject IndicationBar;
     // Use this for initialization
     void Start()
     {
-        pc = GameObject.FindObjectOfType<PistonsController>();
+        pistonsController = GameObject.FindObjectOfType<PistonsController>();
         
     }
 
@@ -20,14 +20,14 @@ public class ButtonEvent : MonoBehaviour {
 	}
     public void WindFx_Switch()
     {
-        switch (pc.WindFx)
+        switch (pistonsController.WindFx)
         {
             case true:
-                pc.WindFx = false;
+                pistonsController.WindFx = false;
                 this.gameObject.GetComponentInChildren<Text>().text = "Airflow Effect: OFF";
                 break;
             case false:
-                pc.WindFx = true;
+                pistonsController.WindFx = true;
                 this.gameObject.GetComponentInChildren<Text>().text = "Airflow Effect: ON";
                 break;
         }
@@ -35,12 +35,12 @@ public class ButtonEvent : MonoBehaviour {
 
     public void WindFX_ON()
     {
-        pc.WindFx = true;
+        pistonsController.WindFx = true;
         this.gameObject.GetComponentInChildren<Text>().text = "Airflow Effect: ON";
     }
 
     public void WindFX_OFF() {
-        pc.WindFx = false;
+        pistonsController.WindFx = false;
         this.gameObject.GetComponentInChildren<Text>().text = "Airflow Effect: OFF";
     }
     public void ButtonIndicationEnter()
