@@ -6189,7 +6189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FixedCamera: {fileID: 84460840}
-  r_slide: {fileID: 501700487}
+  radialSlider: {fileID: 0}
   speedSlider: {fileID: 1344956180}
   collectiveSlider: {fileID: 597209209}
   sizeSlider: {fileID: 457080293}
@@ -13133,7 +13133,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1519913232}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac8d5b128a1d8204fb76c86f47b75912, type: 3}
   m_Name: 
@@ -15160,7 +15160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1b8252fa55d47acaad89ad484efda6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  r_slide: {fileID: 501700487}
+  radialSlider: {fileID: 0}
   control_helper: {fileID: 1980189700}
   fixed_cam: {fileID: 561224320}
   collectivey: 0
@@ -15177,7 +15177,7 @@ MonoBehaviour:
   - {fileID: 1774516570}
   - {fileID: 573963601}
   WindFx: 0
-  sp: 0
+  speed: 300
   p1: {fileID: 240425924}
   p2: {fileID: 744843543}
   p3: {fileID: 471202987}
