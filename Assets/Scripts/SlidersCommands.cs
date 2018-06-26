@@ -101,6 +101,12 @@ public class SlidersCommands : MonoBehaviour
             case "FixedCam_OFF":
                 FixedCamera.gameObject.GetComponent<Image>().enabled = false;
                 break;
+            case "FixedCam_A":
+                pistonsController.fix_angle = false;
+                break;
+            case "FixedCam_B":
+                pistonsController.fix_angle = true;
+                break;
         }
     }
 

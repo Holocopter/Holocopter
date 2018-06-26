@@ -278,7 +278,7 @@ namespace HoloToolkit.Examples.InteractiveElements
             var parentName = transform.name;
             SyncManager.SendSliderValue(parentName, value.ToString());
 //            var manager = GetComponent<MessageManager>();
-//            manager.SendSliderValue(msg2Send);
+//            manager.SendSliderValue(msg2Send); 
         }
 
         // update visuals
