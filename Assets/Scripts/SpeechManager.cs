@@ -6,10 +6,12 @@ using UnityEngine.Windows.Speech;
 public struct VoiceCommand
 {
     public string Command;
-    public string Handler;
+    public VoiceCallBack Handler;
     public string Parameter;
 
-    public VoiceCommand(string command, string handler, string parameter)
+    public delegate void VoiceCallBack(string command);
+
+    public VoiceCommand(string command, VoiceCallBack handler, string parameter)
     {
         this.Command = command;
         this.Handler = handler;
@@ -19,47 +21,50 @@ public struct VoiceCommand
 
 public class SpeechManager : MonoBehaviour
 {
-    KeywordRecognizer keywordRecognizer = null;
-    Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
+    private KeywordRecognizer _keywordRecognizer = null;
+    private readonly Dictionary<string, System.Action> _keywords = new Dictionary<string, System.Action>();
 
-    private readonly List<VoiceCommand> _voiceCommands = new List<VoiceCommand>
-    {
-        new VoiceCommand("Make Faster", "VoiceControlOnSlider", "Faster"),
-        new VoiceCommand("Make Slower", "VoiceControlOnSlider", "Slower"),
-        new VoiceCommand("Make Bigger", "VoiceControlOnSlider", "Bigger"),
-        new VoiceCommand("Make Smaller", "VoiceControlOnSlider", "Smaller"),
-        new VoiceCommand("Increase Collective", "VoiceControlOnSlider", "Coll_de"),
-        new VoiceCommand("Decrease Collective", "VoiceControlOnSlider", "Coll_in"),
-        new VoiceCommand("Show Airflow","VoiceControlOnButton","WindFX_ON"),
-        new VoiceCommand("Hide Airflow","VoiceControlOnButton","WindFX_OFF"),
-        new VoiceCommand("Show Fixed Camera","VoiceControlOnSprite","FixedCam_ON"),
-        new VoiceCommand("Hide Fixed Camera","VoiceControlOnSprite","FixedCam_OFF"),
-        new VoiceCommand("Reset The Scene","VoiceControlOnScene","Reset")
-    };
+    private List<VoiceCommand> _voiceCommands;
 
     // Use this for initialization
     void Start()
     {
         var sliderCommand = this.GetComponentInParent<SlidersCommands>();
+
+        _voiceCommands = new List<VoiceCommand>
+        {
+            new VoiceCommand("Make Faster", sliderCommand.VoiceControlOnSlider, "Faster"),
+            new VoiceCommand("Make Slower", sliderCommand.VoiceControlOnSlider, "Slower"),
+            new VoiceCommand("Make Bigger", sliderCommand.VoiceControlOnSlider, "Bigger"),
+            new VoiceCommand("Make Smaller", sliderCommand.VoiceControlOnSlider, "Smaller"),
+            new VoiceCommand("Increase Collective", sliderCommand.VoiceControlOnSlider, "Coll_de"),
+            new VoiceCommand("Decrease Collective", sliderCommand.VoiceControlOnSlider, "Coll_in"),
+            new VoiceCommand("Show Airflow", sliderCommand.VoiceControlOnButton, "WindFX_ON"),
+            new VoiceCommand("Hide Airflow", sliderCommand.VoiceControlOnButton, "WindFX_OFF"),
+            new VoiceCommand("Show Fixed Camera", sliderCommand.VoiceControlOnSprite, "FixedCam_ON"),
+            new VoiceCommand("Hide Fixed Camera", sliderCommand.VoiceControlOnSprite, "FixedCam_OFF"),
+            new VoiceCommand("Reset The Scene", sliderCommand.VoiceControlOnScene, "Reset")
+        };
+
         foreach (var voice in _voiceCommands)
         {
             var voice1 = voice;
-            keywords.Add(voice.Command,
-                () => { sliderCommand.SendMessage(voice1.Handler, voice1.Parameter); });
+            _keywords.Add(voice.Command,
+                () => { voice1.Handler(voice1.Parameter); });
         }
 
         // Tell the KeywordRecognizer about our keywords.
-        keywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
+        _keywordRecognizer = new KeywordRecognizer(_keywords.Keys.ToArray());
 
         // Register a callback for the KeywordRecognizer and start recognizing!
-        keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
-        keywordRecognizer.Start();
+        _keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
+        _keywordRecognizer.Start();
     }
 
     private void KeywordRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
     {
         System.Action keywordAction;
-        if (keywords.TryGetValue(args.text, out keywordAction))
+        if (_keywords.TryGetValue(args.text, out keywordAction))
         {
             keywordAction.Invoke();
         }

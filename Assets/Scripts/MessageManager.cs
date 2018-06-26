@@ -8,21 +8,6 @@ using UnityEngine;
 
 
 // SendMessage is 400 times slower than directly call.
-public class ServerMessageHandler
-{
-    public MessageManager.HoloMessageType MsgType { get; private set; }
-    public MessageCallback Handler { get; private set; }
-
-    public delegate void MessageCallback(long userId, string msg);
-
-
-    public ServerMessageHandler(MessageManager.HoloMessageType msgType, MessageCallback handler)
-    {
-        this.MsgType = msgType;
-        this.Handler = handler;
-    }
-}
-
 public class MessageManager : Singleton<MessageManager>
 {
     public enum HoloMessageType : byte
@@ -39,17 +24,17 @@ public class MessageManager : Singleton<MessageManager>
     private SlidersCommands _sliderCommand;
 
 
-    public delegate void MessageCallback(NetworkInMessage msg);
+    public delegate void MessageCallback(long userId, string msg);
 
-    private Dictionary<HoloMessageType, ServerMessageHandler.MessageCallback> _messageHandlers =
-        new Dictionary<HoloMessageType, ServerMessageHandler.MessageCallback>();
+    private Dictionary<HoloMessageType, MessageCallback> _messageHandlers =
+        new Dictionary<HoloMessageType, MessageCallback>();
 
 
     // Use this for initialization
     void Start()
     {
         _sliderCommand = GetComponentInParent<SlidersCommands>();
-        _messageHandlers = new Dictionary<HoloMessageType, ServerMessageHandler.MessageCallback>()
+        _messageHandlers = new Dictionary<HoloMessageType, MessageCallback>()
         {
             {HoloMessageType.DebugMsg, _sliderCommand.ShowServerMsg}
         };
