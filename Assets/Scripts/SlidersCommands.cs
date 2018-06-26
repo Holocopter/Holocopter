@@ -53,6 +53,18 @@ public class SlidersCommands : MonoBehaviour
         Debug.Log(string.Format("{0} said: {1} change to {2}", userId, msgKey, msgValue));
     }
 
+    public void NetControlOnSlider(long userId, string msgKey, string msgValue)
+    {
+        Debug.Log(string.Format("Got {0} value {1}", msgKey, float.Parse(msgValue)));
+
+        switch (msgKey)
+        {
+            case "CollectiveSlider":
+                collectiveSlider.SetSliderValue(float.Parse(msgValue));
+                break;
+        }
+    }
+
     public void VoiceControlOnSlider(string voiceCommand)
     {
         switch (voiceCommand)

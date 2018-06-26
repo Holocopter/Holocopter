@@ -65,6 +65,8 @@ namespace HoloToolkit.Examples.InteractiveElements
         public string LabelFormat = "#.##";
 
         public float mSliderValue;
+        private int _syncSliderValueChangeCount = 1;
+        private const int SyncTriggerInterval = 40;
 
         // calculation variables
         public float mValueSpan;
@@ -275,10 +277,17 @@ namespace HoloToolkit.Examples.InteractiveElements
                 return;
             }
 
+// By doing this, the sync event won't trigger too much times
+            if (_syncSliderValueChangeCount % SyncTriggerInterval != 0)
+            {
+                _syncSliderValueChangeCount += 1;
+                return;
+            }
+
+            _syncSliderValueChangeCount = 1;
+
             var parentName = transform.name;
             SyncManager.SendSliderValue(parentName, value.ToString());
-//            var manager = GetComponent<MessageManager>();
-//            manager.SendSliderValue(msg2Send); 
         }
 
         // update visuals
