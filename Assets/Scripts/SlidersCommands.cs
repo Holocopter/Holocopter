@@ -26,6 +26,7 @@ public class SlidersCommands : MonoBehaviour
     {
         pistonsController = GameObject.FindObjectOfType<PistonsController>();
         SpeedSlider = GameObject.Find("SpeedSlider");
+        
         speedSlider = SpeedSlider.GetComponent<SliderGestureControl>();
         CollectiveSlider = GameObject.Find("CollectiveSlider");
         collectiveSlider = CollectiveSlider.GetComponent<SliderGestureControl>();

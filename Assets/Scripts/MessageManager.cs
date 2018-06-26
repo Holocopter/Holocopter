@@ -13,7 +13,7 @@ public class MessageManager : Singleton<MessageManager>
     public enum HoloMessageType : byte
     {
         DebugMsg = HoloToolkit.Sharing.MessageID.UserMessageIDStart,
-        ChangeSize,
+        ChangeSlider,
         Max
     }
 
@@ -22,7 +22,6 @@ public class MessageManager : Singleton<MessageManager>
     private NetworkConnectionAdapter _connectionAdapter;
     public long LocalUserId { get; set; }
     private SlidersCommands _sliderCommand;
-
 
     public delegate void MessageCallback(long userId, string msg);
 
@@ -36,7 +35,8 @@ public class MessageManager : Singleton<MessageManager>
         _sliderCommand = GetComponentInParent<SlidersCommands>();
         _messageHandlers = new Dictionary<HoloMessageType, MessageCallback>()
         {
-            {HoloMessageType.DebugMsg, _sliderCommand.ShowServerMsg}
+            {HoloMessageType.DebugMsg, _sliderCommand.ShowServerMsg},
+            {HoloMessageType.ChangeSlider, _sliderCommand.ShowServerMsg}
         };
         if (SharingStage.Instance.IsConnected)
         {
@@ -110,8 +110,15 @@ public class MessageManager : Singleton<MessageManager>
 
     public void SendSizeInfo()
     {
-        var msg = CreateMessage((byte) HoloMessageType.ChangeSize);
+        var msg = CreateMessage((byte) HoloMessageType.ChangeSlider);
         msg.Write(10);
+        _serverConnection.Broadcast(msg);
+    }
+
+    public void SendSliderValue(string msgContent)
+    {
+        var msg = CreateMessage((byte) HoloMessageType.ChangeSlider);
+        msg.Write(msgContent);
         _serverConnection.Broadcast(msg);
     }
 

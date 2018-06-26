@@ -54,6 +54,9 @@ namespace HoloToolkit.Examples.InteractiveElements
         [Tooltip("Switches between a left justified or centered slider")]
         public bool Centered = false;
 
+        [Tooltip("Sync value across all clients")]
+        public bool SyncMessage = true;
+
         [Tooltip("Format the slider value and control decimal places if needed")]
         public string LabelFormat = "#.##";
 
@@ -254,6 +257,23 @@ namespace HoloToolkit.Examples.InteractiveElements
             mDeltaValue = SliderValue / MaxSliderValue;
             UpdateVisuals();
             mCachedValue = mDeltaValue;
+        }
+
+        /// <summary>
+        /// Sync message across the clients
+        /// </summary>
+        /// <param name="value"></param>
+        public void SyncValue(float value)
+        {
+            if (!SyncMessage)
+            {
+                return;
+            }
+
+            var parentName = transform.parent.name;
+            var msg2Send = string.Format("{0}_{1}", parentName, value);
+            var manager = GetComponent<MessageManager>();
+            manager.SendSliderValue(msg2Send);
         }
 
         // update visuals
