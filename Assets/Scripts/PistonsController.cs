@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PistonsController : MonoBehaviour {
 	
@@ -21,9 +22,13 @@ public class PistonsController : MonoBehaviour {
 	public float slider_fixedcam_old;
 
     public bool fix_angle;
-	
-	// rotation 
-	public Transform[] rotateObjects;
+    public float fix_speed;
+    float lerpStart = 0;
+    public float lerpEnd = 1.4f;
+    float moveTime_up;
+    float moveTime_down;
+    // rotation 
+    public Transform[] rotateObjects;
 	public bool WindFx = false;
 	public float speed = 300f;
 	
@@ -60,8 +65,10 @@ public class PistonsController : MonoBehaviour {
 		targy = control_helper.position;
         y_init = targy.y;
         fc_init = fixed_cam.localPosition;
-             
-	}
+        
+        
+
+    }
 	
 	void Update () {
 
@@ -93,15 +100,23 @@ public class PistonsController : MonoBehaviour {
         obj_pos.y = control_helper.position.y;          //-1.0f * plane.distance;
         targetObj.position = obj_pos;
 
-        //if (fix_angle)
-        //{
-        //    slider_fixedcam = 2.3f;
-        //}
-        //else
-        //{
-        //    slider_fixedcam = 0;
-        //}
+        moveTime_up += fix_speed * Time.deltaTime;
+        moveTime_down += fix_speed * Time.deltaTime;
+        if (fix_angle)
+        {
+            moveTime_down = 0;
+            slider_fixedcam = Mathf.Lerp(lerpStart, lerpEnd, moveTime_up);
 
+        }
+        else
+        {
+            moveTime_up = 0;
+            if (slider_fixedcam != 0)
+            {
+                slider_fixedcam = Mathf.Lerp(lerpEnd, lerpStart, moveTime_down);
+                
+            }
+        }
 
         newfc_pos = fixed_cam.localPosition;
         newfc_pos.x = slider_fixedcam;
@@ -111,9 +126,9 @@ public class PistonsController : MonoBehaviour {
         float _z_rounded;
         //if (newfc_pos != newfc_pos_old)
         //{
-            theta = Vector3.Angle(newfc_pos, fc_init) - Vector3.Angle(fc_init, new Vector3(0, fc_init.y, 0));
+        theta = Vector3.Angle(newfc_pos, fc_init) - Vector3.Angle(fc_init, new Vector3(0, fc_init.y, 0));
         theta_rounded = (Mathf.Round(theta * 100)) / 100;
-            float _z = Vector3.Distance(fc_init, new Vector3(0, fc_init.y, 0)) * Mathf.Sin(theta_rounded * Mathf.Deg2Rad);
+        float _z = Vector3.Distance(fc_init, new Vector3(0, fc_init.y, 0)) * Mathf.Sin(theta_rounded * Mathf.Deg2Rad);
         _z_rounded = (Mathf.Round(_z * 100)) / 100;
         newfc_pos.z = -Mathf.Abs(_z_rounded);
         //}
