@@ -23,7 +23,7 @@ public class MessageManager : Singleton<MessageManager>
     public long LocalUserId { get; set; }
     private SlidersCommands _sliderCommand;
 
-    public delegate void MessageCallback(long userId, string msg);
+    public delegate void MessageCallback(long userId, string msgKey, string msgValue);
 
     private Dictionary<HoloMessageType, MessageCallback> _messageHandlers =
         new Dictionary<HoloMessageType, MessageCallback>();
@@ -94,15 +94,15 @@ public class MessageManager : Singleton<MessageManager>
 
     private void OnMessageReceived(NetworkConnection connection, NetworkInMessage msg)
     {
-        Debug.Log("Messesage Received...");
         var messageType = msg.ReadByte();
         var userId = msg.ReadInt64();
-        string messageContent = msg.ReadString();
+        string messageKey = msg.ReadString();
+        string messageValue = msg.ReadString();
 
         var functionToCall = _messageHandlers[(HoloMessageType) messageType];
         if (functionToCall != null)
         {
-            functionToCall(userId, messageContent);
+            functionToCall(userId, messageKey, messageValue);
         }
     }
 
@@ -115,10 +115,12 @@ public class MessageManager : Singleton<MessageManager>
         _serverConnection.Broadcast(msg);
     }
 
-    public void SendSliderValue(string msgContent)
+    public void SendSliderValue(string whichSlider, string value)
     {
+        Debug.Log(string.Format("Sending slider {0} value {1}", whichSlider, value));
         var msg = CreateMessage((byte) HoloMessageType.ChangeSlider);
-        msg.Write(msgContent);
+        msg.Write(whichSlider);
+        msg.Write(value);
         _serverConnection.Broadcast(msg);
     }
 
@@ -129,6 +131,7 @@ public class MessageManager : Singleton<MessageManager>
         string debugMsg = string.Format("{0} is alive!", LocalUserId);
         NetworkOutMessage msg = CreateMessage((byte) HoloMessageType.DebugMsg);
         msg.Write(debugMsg);
+        msg.Write("...");
         _serverConnection.Broadcast(msg);
     }
 

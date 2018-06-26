@@ -20,6 +20,8 @@ namespace HoloToolkit.Examples.InteractiveElements
         [Tooltip("The fill that represents the volume of the shader value")]
         public GameObject SliderFill;
 
+        [Tooltip("The message manager")] public MessageManager SyncManager;
+
         [Tooltip("The text representation of the slider value")]
         public TextMesh Label;
 
@@ -38,7 +40,9 @@ namespace HoloToolkit.Examples.InteractiveElements
             {
                 if (mSliderValue != value)
                 {
+                    // TODO:  Dirty code, change mSliderValue at multiple places
                     mSliderValue = value;
+                    SyncValue(mSliderValue);
                     OnUpdateEvent.Invoke(mSliderValue);
                 }
             }
@@ -255,6 +259,7 @@ namespace HoloToolkit.Examples.InteractiveElements
 
             mSliderValue = Mathf.Clamp(value, MinSliderValue, MaxSliderValue);
             mDeltaValue = SliderValue / MaxSliderValue;
+            SyncValue(mSliderValue);
             UpdateVisuals();
             mCachedValue = mDeltaValue;
         }
@@ -270,10 +275,10 @@ namespace HoloToolkit.Examples.InteractiveElements
                 return;
             }
 
-            var parentName = transform.parent.name;
-            var msg2Send = string.Format("{0}_{1}", parentName, value);
-            var manager = GetComponent<MessageManager>();
-            manager.SendSliderValue(msg2Send);
+            var parentName = transform.name;
+            SyncManager.SendSliderValue(parentName, value.ToString());
+//            var manager = GetComponent<MessageManager>();
+//            manager.SendSliderValue(msg2Send);
         }
 
         // update visuals

@@ -4073,6 +4073,7 @@ MonoBehaviour:
   SliderBar: {fileID: 1065787399}
   Knob: {fileID: 262671657}
   SliderFill: {fileID: 2134371766}
+  SyncManager: {fileID: 0}
   Label: {fileID: 0}
   CenteredDot: {fileID: 2082869196}
   OnUpdateEvent:
@@ -4083,6 +4084,7 @@ MonoBehaviour:
   MinSliderValue: 0
   MaxSliderValue: 1000
   Centered: 0
+  SyncMessage: 1
   LabelFormat: 0.0
   mSliderValue: 0
   mValueSpan: 0
@@ -5552,6 +5554,7 @@ MonoBehaviour:
   SliderBar: {fileID: 20598609}
   Knob: {fileID: 765561408}
   SliderFill: {fileID: 1156182015}
+  SyncManager: {fileID: 703351044}
   Label: {fileID: 0}
   CenteredDot: {fileID: 1091323009}
   OnUpdateEvent:
@@ -5562,6 +5565,7 @@ MonoBehaviour:
   MinSliderValue: 0
   MaxSliderValue: 1000
   Centered: 0
+  SyncMessage: 1
   LabelFormat: 00
   mSliderValue: 0
   mValueSpan: 0
@@ -11555,6 +11559,7 @@ MonoBehaviour:
   SliderBar: {fileID: 147831806}
   Knob: {fileID: 1696501823}
   SliderFill: {fileID: 1264362686}
+  SyncManager: {fileID: 0}
   Label: {fileID: 0}
   CenteredDot: {fileID: 1175617624}
   OnUpdateEvent:
@@ -11565,6 +11570,7 @@ MonoBehaviour:
   MinSliderValue: 0
   MaxSliderValue: 1000
   Centered: 0
+  SyncMessage: 1
   LabelFormat: 00
   mSliderValue: 0
   mValueSpan: 0

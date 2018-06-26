@@ -26,7 +26,7 @@ public class SlidersCommands : MonoBehaviour
     {
         pistonsController = GameObject.FindObjectOfType<PistonsController>();
         SpeedSlider = GameObject.Find("SpeedSlider");
-        
+
         speedSlider = SpeedSlider.GetComponent<SliderGestureControl>();
         CollectiveSlider = GameObject.Find("CollectiveSlider");
         collectiveSlider = CollectiveSlider.GetComponent<SliderGestureControl>();
@@ -48,9 +48,9 @@ public class SlidersCommands : MonoBehaviour
     }
 
 
-    public void ShowServerMsg(long userId, string msgContent)
+    public void ShowServerMsg(long userId, string msgKey, string msgValue)
     {
-        Debug.Log(string.Format("{0} said: {1}", userId, msgContent));
+        Debug.Log(string.Format("{0} said: {1} change to {2}", userId, msgKey, msgValue));
     }
 
     public void VoiceControlOnSlider(string voiceCommand)
