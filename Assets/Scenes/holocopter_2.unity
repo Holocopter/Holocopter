@@ -859,7 +859,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 84460840}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -2743,6 +2743,10 @@ Prefab:
         type: 2}
       propertyPath: ServerAddress
       value: 192.168.0.102
+      objectReference: {fileID: 0}
+    - target: {fileID: 163528, guid: 8aaf37823b26ee449bb3b3d7775965c3, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8aaf37823b26ee449bb3b3d7775965c3, type: 2}
@@ -5116,7 +5120,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 561224319}
   m_LocalRotation: {x: 0.0065449546, y: -2.0010169e-11, z: 1.3096845e-13, w: 0.9999786}
-  m_LocalPosition: {x: 0.116, y: 1.026, z: -2.858}
+  m_LocalPosition: {x: 0, y: 1, z: -2.858}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1943895900}
@@ -13133,7 +13137,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1519913232}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac8d5b128a1d8204fb76c86f47b75912, type: 3}
   m_Name: 
@@ -15160,7 +15164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1b8252fa55d47acaad89ad484efda6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radialSlider: {fileID: 0}
+  radialSlider: {fileID: 501700487}
   control_helper: {fileID: 1980189700}
   fixed_cam: {fileID: 561224320}
   collectivey: 0
@@ -15173,6 +15177,7 @@ MonoBehaviour:
   slider_fixedcam_min: -2.3
   slider_fixedcam_max: 2.3
   slider_fixedcam_old: 0
+  fix_angle: 0
   rotateObjects:
   - {fileID: 1774516570}
   - {fileID: 573963601}
