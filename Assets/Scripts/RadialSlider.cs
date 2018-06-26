@@ -4,25 +4,45 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using HoloToolkit.Examples.InteractiveElements;
 
-public class RadialSlider: MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
+public class RadialSlider : GestureInteractiveControl
 {
-	bool isPointerDown=false;
-	//public KGFOrbitCam itsKGFOrbitCam;	//reference to the orbitcam	
-	
-	private RectTransform throttle_rect;
-	private RectTransform thisRect;
+    //bool isPointerDown=false;
+    //public KGFOrbitCam itsKGFOrbitCam;	//reference to the orbitcam	
+
+    private RectTransform throttle_rect;
+    private RectTransform thisRect;
+    //  private GestureInteractiveControl control;
+    // public GameObject radialSlider_handControll;
+    //private Vector3 HandPosition;
+    private Vector2 HandPosition2D;
+    private GestureInteractiveData vertData = new GestureInteractiveData(new Vector3(0, 1, 0), 0.1f, false);
+
     Vector2 throttle_ori;
     //private GestureInteractiveControl gestureInteractiveControl;
 
-    void Start(){
-		GameObject throttle_img = GameObject.FindWithTag("GameController");	
-		throttle_rect = throttle_img.GetComponent<RectTransform>();
+    void Start()
+    {
+        GameObject throttle_img = GameObject.FindWithTag("GameController");
+        throttle_rect = throttle_img.GetComponent<RectTransform>();
         throttle_ori = throttle_rect.anchoredPosition;
-		thisRect = gameObject.GetComponent<RectTransform>();
-	}
+        thisRect = gameObject.GetComponent<RectTransform>();
 
-	// Called when the pointer enters our GUI component.
-	// Start tracking the mouse
+        /*  if (radialSlider = null)
+          {
+               radialSlider =this.gameObject;
+
+          }*/
+
+        //control = radialSlider_handControll.GetComponent<GestureInteractiveControl>();
+        //HandPosition = control.CurrentGesturePosition;
+        //Debug.Log("StartHandPosition="+HandPosition);
+
+
+    }
+
+    // Called when the pointer enters our GUI component.
+    // Start tracking the mouse
+    /*
 	public void OnPointerEnter( PointerEventData eventData )
 	{
 		StartCoroutine( "TrackPointer" );            
@@ -45,36 +65,86 @@ public class RadialSlider: MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 	{
 		isPointerDown= false;
 		//Debug.Log("mousedown");
-	}
-	public float ang = 0;
-	public float rad = 0;
+	}*/
 
-    public void ResetTheThrottle() {
+    public float ang = 0;
+    public float rad = 0;
+
+    public void ResetTheThrottle()
+    {
         throttle_rect.anchoredPosition = throttle_ori;
     }
-	// mainloop
-	IEnumerator TrackPointer()
-	{
-		var ray = GetComponentInParent<GraphicRaycaster>();
-		var input = FindObjectOfType<StandaloneInputModule>();
+
+    public override void ManipulationUpdate(Vector3 startGesturePosition, Vector3 currentGesturePosition,
+            Vector3 startHeadOrigin, Vector3 startHeadRay, GestureInteractive.GestureManipulationState gestureState)
+    {
+        GestureInteractiveData gestureData = GetGestureData(new Vector3(1, 0, 0), MaxGestureDistance, FlipDirectionOnCameraForward);
+        vertData.Direction = gestureData.Direction;
+        HandPosition2D.x = vertData.Direction.x * 30;
+        HandPosition2D.y = vertData.Direction.y * 30;
+        base.ManipulationUpdate(startGesturePosition, currentGesturePosition, startHeadOrigin, startHeadRay,
+            gestureState);
+
+
+    }
+
+    public void StartCoroutineForCyclic()
+    {
+        StartCoroutine("TrackPointer");
+    }
+
+    public void StopCoroutineForCyclic()
+    {
+        StopCoroutine("TrackPointer");
+    }
+
+
+    protected override void Update()
+    {
+        base.Update();
+        //HandPosition = control.CurrentGesturePosition;
+        if (GestureStarted)
+        {
+            StartCoroutineForCyclic();
+
+        }
+        else
+        {
+            StopCoroutine("TrackPointer");
+        }
+    }
+    // mainloop
+    IEnumerator TrackPointer()
+    {
+        var ray = GetComponentInParent<GraphicRaycaster>();
+        var input = FindObjectOfType<StandaloneInputModule>();
         var input_holo = FindObjectOfType<HoloLensInputModule>();
 
-		var text = GetComponentInChildren<Text>();
-		
-		if( ray != null && input != null )
-		{
-			while( Application.isPlaying )
-			{                    
+        var text = GetComponentInChildren<Text>();
 
-				// TODO: if mousebutton down
-				if (isPointerDown)
-				{
+        if (ray != null && input != null)
+        {
+            while (Application.isPlaying)
+            {
 
-                    Vector2 localPos; // Mouse position  
-                    RectTransformUtility.ScreenPointToLocalPointInRectangle(transform as RectTransform, Input.mousePosition, ray.eventCamera, out localPos);
+                // TODO: if mousebutton down
+                if (GestureStarted)
+
+                {
+
+
+
+                    Vector2 CurrentLocalPosition; // Mouse position  
+
+                    RectTransformUtility.ScreenPointToLocalPointInRectangle(transform as RectTransform, HandPosition2D, null, out CurrentLocalPosition);
 
                     // local pos is the mouse position.
-                    float angle = (Mathf.Atan2(-localPos.y, localPos.x) * 180f / Mathf.PI + 180f) / 360f;
+                    //Debug.Log("HandPosition2D.x=" + HandPosition2D.x);
+                    // Debug.Log("HandPosition2D.y=" + HandPosition2D.y);
+
+                    CurrentLocalPosition.x = CurrentLocalPosition.x / 15;
+                    CurrentLocalPosition.y = CurrentLocalPosition.y / 15;
+                    float angle = (Mathf.Atan2(-CurrentLocalPosition.y, CurrentLocalPosition.x) * 180f / Mathf.PI + 180f) / 360f;
 
                     GetComponent<Image>().fillAmount = angle;
 
@@ -82,33 +152,35 @@ public class RadialSlider: MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
 
                     //text.text = ((int)((angle)*360f )).ToString();
-                    if (localPos.magnitude < (0.43f * thisRect.rect.width))
+
+                    if (CurrentLocalPosition.magnitude < (0.45f * thisRect.rect.width))
                     {
 
-                        throttle_rect.anchoredPosition = localPos;
+                        throttle_rect.anchoredPosition = CurrentLocalPosition;
+                        // Debug.Log("CurrentLocalPosition.magnitude =" + CurrentLocalPosition.magnitude);
 
                     }
                     else
                     {
 
-                        throttle_rect.anchoredPosition = localPos.normalized * (0.4f * thisRect.rect.width);
-
+                        throttle_rect.anchoredPosition = CurrentLocalPosition.normalized * (0.5f * thisRect.rect.width);
+                        // Debug.Log("CurrentLocalPosition.magnitude =" + CurrentLocalPosition.magnitude);
                     };
 
-                    rad = (localPos.magnitude) / (0.5f * thisRect.rect.width);
+                    rad = (CurrentLocalPosition.magnitude) / (0.5f * thisRect.rect.width);
 
-                    //Vector3 rot = throttle_rect.localEulerAngles;
-                    //rot.z = -ang;
-                    //throttle_rect.localEulerAngles = rot;
+                    // Vector3 rot = throttle_rect.localEulerAngles;
+                    // rot.z = -ang;
+                    // throttle_rect.localEulerAngles = rot;
 
                 }
-				//itsKGFOrbitCam.SetPanningEnable( !isPointerDown );
-				yield return 0;
-			}        
-		}
-		else
-			UnityEngine.Debug.LogWarning( "Could not find GraphicRaycaster and/or StandaloneInputModule" );        
-	}
+                //itsKGFOrbitCam.SetPanningEnable( !isPointerDown );
+                yield return 0;
+            }
+        }
+        else
+            UnityEngine.Debug.LogWarning("Could not find GraphicRaycaster and/or StandaloneInputModule");
+    }
 
 
 
