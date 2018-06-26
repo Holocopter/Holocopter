@@ -8,21 +8,12 @@ using UnityEngine;
 
 public class MessageManager : Singleton<MessageManager>
 {
-    private NetworkConnection serverConnection;
-    private NetworkConnectionAdapter connectionAdapter;
-    public long LocalUserID { get; set; }
+    private NetworkConnection _serverConnection;
+    private NetworkConnectionAdapter _connectionAdapter;
+    public long LocalUserId { get; set; }
 
 
     public delegate void MessageCallback(NetworkInMessage msg);
-
-
-    private Dictionary<HoloMessageType, MessageCallback> messageHandlers =
-        new Dictionary<HoloMessageType, MessageCallback>();
-
-    public Dictionary<HoloMessageType, MessageCallback> MessageHandlers
-    {
-        get { return messageHandlers; }
-    }
 
     public enum HoloMessageType : byte
     {
@@ -30,6 +21,15 @@ public class MessageManager : Singleton<MessageManager>
         ChangeSize,
         Max
     }
+
+    private Dictionary<HoloMessageType, MessageCallback> _messageHandlers =
+        new Dictionary<HoloMessageType, MessageCallback>();
+
+    public Dictionary<HoloMessageType, MessageCallback> MessageHandlers
+    {
+        get { return _messageHandlers; }
+    }
+
 
     // Use this for initialization
     void Start()
@@ -59,26 +59,35 @@ public class MessageManager : Singleton<MessageManager>
             return;
         }
 
-        serverConnection = sharingStage.Manager.GetServerConnection();
-        if (serverConnection == null)
+        _serverConnection = sharingStage.Manager.GetServerConnection();
+        if (_serverConnection == null)
         {
             Debug.Log("Cannot initialize CustomMessages. Cannot get a server connection.");
             return;
         }
 
-        connectionAdapter = new NetworkConnectionAdapter();
-        connectionAdapter.MessageReceivedCallback += OnMessageReceived;
+        _connectionAdapter = new NetworkConnectionAdapter();
+        _connectionAdapter.MessageReceivedCallback += OnMessageReceived;
 
-        LocalUserID = SharingStage.Instance.Manager.GetLocalUser().GetID();
+        LocalUserId = SharingStage.Instance.Manager.GetLocalUser().GetID();
 
-        MessageHandlers.Add(HoloMessageType.DebugMsg, LogDebugMsg);
-        MessageHandlers.Add(HoloMessageType.ChangeSize, HandleChangeSize);
 
-        serverConnection.AddListener((byte) HoloMessageType.DebugMsg, connectionAdapter);
+//        MessageHandlers.Add();
+//        MessageHandlers.Add(HoloMessageType.DebugMsg, LogDebugMsg);
+//        MessageHandlers.Add(HoloMessageType.ChangeSize, HandleChangeSize);
+
+        _serverConnection.AddListener((byte) HoloMessageType.DebugMsg, _connectionAdapter);
 
         InvokeRepeating("SendDebugMessage", 1.0f, 5.0f);
     }
 
+    private NetworkOutMessage CreateMessage(byte messageType)
+    {
+        NetworkOutMessage msg = _serverConnection.CreateMessage(messageType);
+        msg.Write(messageType);
+        msg.Write(LocalUserId);
+        return msg;
+    }
 
     private void OnMessageReceived(NetworkConnection connection, NetworkInMessage msg)
     {
@@ -92,12 +101,13 @@ public class MessageManager : Singleton<MessageManager>
         }
     }
 
+
     private void LogDebugMsg(NetworkInMessage msg)
     {
         var userId = msg.ReadInt64();
 
         var a = msg.ReadString();
-        Debug.Log(string.Format("{0} Debug message from {1}: {2}", LocalUserID, userId, a));
+        Debug.Log(string.Format("{0} Debug message from {1}: {2}", LocalUserId, userId, a));
     }
 
     private void HandleChangeSize(NetworkInMessage msg)
@@ -110,29 +120,16 @@ public class MessageManager : Singleton<MessageManager>
     {
         var msg = CreateMessage((byte) HoloMessageType.ChangeSize);
         msg.Write(10);
-        serverConnection.Broadcast(msg);
+        _serverConnection.Broadcast(msg);
     }
 
     public void SendDebugMessage()
     {
         Debug.Log("Send debug message to server...");
 
-        string debugMsg = string.Format("{0} is alive!", LocalUserID);
+        string debugMsg = string.Format("{0} is alive!", LocalUserId);
         NetworkOutMessage msg = CreateMessage((byte) HoloMessageType.DebugMsg);
         msg.Write(debugMsg);
-        serverConnection.Broadcast(msg);
-    }
-
-    private NetworkOutMessage CreateMessage(byte messageType)
-    {
-        NetworkOutMessage msg = serverConnection.CreateMessage(messageType);
-        msg.Write(messageType);
-        msg.Write(LocalUserID);
-        return msg;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        _serverConnection.Broadcast(msg);
     }
 }
