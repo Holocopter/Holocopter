@@ -23,6 +23,8 @@ public class MessageManager : Singleton<MessageManager>
     public long LocalUserId { get; set; }
     private SlidersCommands _sliderCommand;
 
+    public bool IsMaster { get; private set; }
+
     public delegate void MessageCallback(long userId, string msgKey, string msgValue);
 
     private Dictionary<HoloMessageType, MessageCallback> _messageHandlers =
@@ -74,7 +76,13 @@ public class MessageManager : Singleton<MessageManager>
         _connectionAdapter.MessageReceivedCallback += OnMessageReceived;
 
         LocalUserId = SharingStage.Instance.Manager.GetLocalUser().GetID();
-
+        this.IsMaster = true;
+        foreach (var user in SharingStage.Instance.SessionUsersTracker.CurrentUsers)
+        {
+            if (user.GetID() >= LocalUserId) continue;
+            this.IsMaster = false;
+            break;
+        }
 
         foreach (var entry in _messageHandlers)
         {

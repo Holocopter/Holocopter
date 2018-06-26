@@ -22,29 +22,11 @@ public struct VoiceCommand
 public class SpeechManager : MonoBehaviour
 {
     private KeywordRecognizer _keywordRecognizer = null;
+
     private readonly Dictionary<string, System.Action> _keywords = new Dictionary<string, System.Action>();
 
-<<<<<<< HEAD
-    private List<VoiceCommand> _voiceCommands;
-=======
-    private readonly List<VoiceCommand> _voiceCommands = new List<VoiceCommand>
-    {
-        new VoiceCommand("Make Faster", "VoiceControlOnSlider", "Faster"),
-        new VoiceCommand("Make Slower", "VoiceControlOnSlider", "Slower"),
-        new VoiceCommand("Make Bigger", "VoiceControlOnSlider", "Bigger"),
-        new VoiceCommand("Make Smaller", "VoiceControlOnSlider", "Smaller"),
-        new VoiceCommand("Increase Collective", "VoiceControlOnSlider", "Coll_de"),
-        new VoiceCommand("Decrease Collective", "VoiceControlOnSlider", "Coll_in"),
-        new VoiceCommand("Show Airflow","VoiceControlOnButton","WindFX_ON"),
-        new VoiceCommand("Hide Airflow","VoiceControlOnButton","WindFX_OFF"),
-        new VoiceCommand("Show Fixed Camera","VoiceControlOnSprite","FixedCam_ON"),
-        new VoiceCommand("Hide Fixed Camera","VoiceControlOnSprite","FixedCam_OFF"),
-        new VoiceCommand("Reset The Scene","VoiceControlOnScene","Reset"),
-        new VoiceCommand("Fixed Camera Angle A", "VoiceControlOnSprite","FixedCam_A"),
-        new VoiceCommand("Fixed Camera Angle B", "VoiceControlOnSprite","FixedCam_B")
-    };
->>>>>>> ff1a429de85c16a817e551366c178f5838d2755f
 
+    private List<VoiceCommand> _voiceCommands;
     // Use this for initialization
     void Start()
     {
@@ -62,7 +44,9 @@ public class SpeechManager : MonoBehaviour
             new VoiceCommand("Hide Airflow", sliderCommand.VoiceControlOnButton, "WindFX_OFF"),
             new VoiceCommand("Show Fixed Camera", sliderCommand.VoiceControlOnSprite, "FixedCam_ON"),
             new VoiceCommand("Hide Fixed Camera", sliderCommand.VoiceControlOnSprite, "FixedCam_OFF"),
-            new VoiceCommand("Reset The Scene", sliderCommand.VoiceControlOnScene, "Reset")
+            new VoiceCommand("Reset The Scene", sliderCommand.VoiceControlOnScene, "Reset"),
+            new VoiceCommand("Fixed Camera Angle A", sliderCommand.VoiceControlOnSprite, "FixedCam_A"),
+            new VoiceCommand("Fixed Camera Angle B", sliderCommand.VoiceControlOnSprite, "FixedCam_B")
         };
 
         foreach (var voice in _voiceCommands)

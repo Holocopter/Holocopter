@@ -270,7 +270,7 @@ namespace HoloToolkit.Examples.InteractiveElements
         /// <param name="value"></param>
         public void SyncValue(float value)
         {
-            if (!SyncMessage)
+            if (!SyncMessage || !SyncManager.IsMaster)
             {
                 return;
             }
