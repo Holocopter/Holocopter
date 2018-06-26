@@ -48,6 +48,11 @@ public class MessageManager : Singleton<MessageManager>
     // Use this for initialization
     void Start()
     {
+        _sliderCommand = GetComponentInParent<SlidersCommands>();
+        _messageHandlers = new Dictionary<HoloMessageType, ServerMessageHandler.MessageCallback>()
+        {
+            {HoloMessageType.DebugMsg, _sliderCommand.ShowServerMsg}
+        };
         if (SharingStage.Instance.IsConnected)
         {
             Connected();
@@ -85,25 +90,11 @@ public class MessageManager : Singleton<MessageManager>
 
         LocalUserId = SharingStage.Instance.Manager.GetLocalUser().GetID();
 
-        _sliderCommand = GetComponentInParent<SlidersCommands>();
-
-
-        _messageHandlers = new Dictionary<HoloMessageType, ServerMessageHandler.MessageCallback>()
-        {
-            {HoloMessageType.DebugMsg, _sliderCommand.ShowServerMsg}
-        };
-
 
         foreach (var entry in _messageHandlers)
         {
             _serverConnection.AddListener((byte) entry.Key, _connectionAdapter);
         }
-
-//        MessageHandlers.Add();
-//        MessageHandlers.Add(HoloMessageType.DebugMsg, LogDebugMsg);
-//        MessageHandlers.Add(HoloMessageType.ChangeSize, HandleChangeSize);
-
-//        _serverConnection.AddListener((byte) HoloMessageType.DebugMsg, _connectionAdapter);
 
         InvokeRepeating("SendDebugMessage", 1.0f, 5.0f);
     }
@@ -130,21 +121,7 @@ public class MessageManager : Singleton<MessageManager>
         }
     }
 
-    #region Handlers
-
-    private void LogDebugMsg(NetworkInMessage msg)
-    {
-        var userId = msg.ReadInt64();
-
-        var a = msg.ReadString();
-        Debug.Log(string.Format("{0} Debug message from {1}: {2}", LocalUserId, userId, a));
-    }
-
-    private void HandleChangeSize(NetworkInMessage msg)
-    {
-        var userId = msg.ReadInt64();
-        var size = msg.ReadInt32();
-    }
+    #region SendMessage
 
     public void SendSizeInfo()
     {
