@@ -6,15 +6,25 @@ using HoloToolkit.Sharing.Tests;
 using HoloToolkit.Unity;
 using UnityEngine;
 
+
+// SendMessage is 400 times slower than directly call.
+public class ServerMessageHandler
+{
+    public MessageManager.HoloMessageType MsgType { get; private set; }
+    public MessageCallback Handler { get; private set; }
+
+    public delegate void MessageCallback(long userId, string msg);
+
+
+    public ServerMessageHandler(MessageManager.HoloMessageType msgType, MessageCallback handler)
+    {
+        this.MsgType = msgType;
+        this.Handler = handler;
+    }
+}
+
 public class MessageManager : Singleton<MessageManager>
 {
-    private NetworkConnection _serverConnection;
-    private NetworkConnectionAdapter _connectionAdapter;
-    public long LocalUserId { get; set; }
-
-
-    public delegate void MessageCallback(NetworkInMessage msg);
-
     public enum HoloMessageType : byte
     {
         DebugMsg = HoloToolkit.Sharing.MessageID.UserMessageIDStart,
@@ -22,13 +32,17 @@ public class MessageManager : Singleton<MessageManager>
         Max
     }
 
-    private Dictionary<HoloMessageType, MessageCallback> _messageHandlers =
-        new Dictionary<HoloMessageType, MessageCallback>();
 
-    public Dictionary<HoloMessageType, MessageCallback> MessageHandlers
-    {
-        get { return _messageHandlers; }
-    }
+    private NetworkConnection _serverConnection;
+    private NetworkConnectionAdapter _connectionAdapter;
+    public long LocalUserId { get; set; }
+    private SlidersCommands _sliderCommand;
+
+
+    public delegate void MessageCallback(NetworkInMessage msg);
+
+    private Dictionary<HoloMessageType, ServerMessageHandler.MessageCallback> _messageHandlers =
+        new Dictionary<HoloMessageType, ServerMessageHandler.MessageCallback>();
 
 
     // Use this for initialization
@@ -71,12 +85,25 @@ public class MessageManager : Singleton<MessageManager>
 
         LocalUserId = SharingStage.Instance.Manager.GetLocalUser().GetID();
 
+        _sliderCommand = GetComponentInParent<SlidersCommands>();
+
+
+        _messageHandlers = new Dictionary<HoloMessageType, ServerMessageHandler.MessageCallback>()
+        {
+            {HoloMessageType.DebugMsg, _sliderCommand.ShowServerMsg}
+        };
+
+
+        foreach (var entry in _messageHandlers)
+        {
+            _serverConnection.AddListener((byte) entry.Key, _connectionAdapter);
+        }
 
 //        MessageHandlers.Add();
 //        MessageHandlers.Add(HoloMessageType.DebugMsg, LogDebugMsg);
 //        MessageHandlers.Add(HoloMessageType.ChangeSize, HandleChangeSize);
 
-        _serverConnection.AddListener((byte) HoloMessageType.DebugMsg, _connectionAdapter);
+//        _serverConnection.AddListener((byte) HoloMessageType.DebugMsg, _connectionAdapter);
 
         InvokeRepeating("SendDebugMessage", 1.0f, 5.0f);
     }
@@ -92,15 +119,18 @@ public class MessageManager : Singleton<MessageManager>
     private void OnMessageReceived(NetworkConnection connection, NetworkInMessage msg)
     {
         Debug.Log("Messesage Received...");
-        byte messageType = msg.ReadByte();
+        var messageType = msg.ReadByte();
+        var userId = msg.ReadInt64();
+        string messageContent = msg.ReadString();
 
-        MessageCallback functionToCall = MessageHandlers[(HoloMessageType) messageType];
+        var functionToCall = _messageHandlers[(HoloMessageType) messageType];
         if (functionToCall != null)
         {
-            functionToCall(msg);
+            functionToCall(userId, messageContent);
         }
     }
 
+    #region Handlers
 
     private void LogDebugMsg(NetworkInMessage msg)
     {
@@ -132,4 +162,6 @@ public class MessageManager : Singleton<MessageManager>
         msg.Write(debugMsg);
         _serverConnection.Broadcast(msg);
     }
+
+    #endregion
 }

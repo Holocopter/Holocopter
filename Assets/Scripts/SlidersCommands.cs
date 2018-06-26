@@ -33,18 +33,23 @@ public class SlidersCommands : MonoBehaviour
         sizeSlider = SizeSlier.GetComponent<SliderGestureControl>();
         AirFlow = GameObject.Find("WindFx");
         airFlow = AirFlow.GetComponent<ButtonEvent>();
-        
+
         MainCamera = GameObject.Find("MixedRealityCameraParent");
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        pistonsController.speed = speedSlider.SliderValue*0.5f;
-        pistonsController.collectivey = collectiveSlider.SliderValue*0.00004f;
+        pistonsController.speed = speedSlider.SliderValue * 0.5f;
+        pistonsController.collectivey = collectiveSlider.SliderValue * 0.00004f;
         MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y,
-            sizeSlider.SliderValue*0.002f);
+            sizeSlider.SliderValue * 0.002f);
+    }
+
+
+    public void ShowServerMsg(long userId, string msgContent)
+    {
+        Debug.Log(string.Format("{0} said: {1}", userId, msgContent));
     }
 
     public void VoiceControlOnSlider(string voiceCommand)
@@ -70,7 +75,6 @@ public class SlidersCommands : MonoBehaviour
                 collectiveSlider.DecreaseSliderValue();
                 break;
         }
-  
     }
 
     public void VoiceControlOnButton(string voiceCommand)
@@ -84,7 +88,6 @@ public class SlidersCommands : MonoBehaviour
                 airFlow.WindFX_OFF();
                 break;
         }
-
     }
 
     public void VoiceControlOnSprite(string voiceCommand)
