@@ -66,7 +66,7 @@ namespace HoloToolkit.Examples.InteractiveElements
 
         public float mSliderValue;
         private int _syncSliderValueChangeCount = 1;
-        private const int SyncTriggerInterval = 40;
+        private const int SyncTriggerInterval = 10;
 
         // calculation variables
         public float mValueSpan;
@@ -278,11 +278,11 @@ namespace HoloToolkit.Examples.InteractiveElements
             }
 
 // By doing this, the sync event won't trigger too much times
-            if (_syncSliderValueChangeCount % SyncTriggerInterval != 0)
-            {
-                _syncSliderValueChangeCount += 1;
-                return;
-            }
+//            if (_syncSliderValueChangeCount % SyncTriggerInterval != 0)
+//            {
+//                _syncSliderValueChangeCount += 1;
+//                return;
+//            }
 
             _syncSliderValueChangeCount = 1;
 

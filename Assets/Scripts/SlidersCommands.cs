@@ -62,6 +62,12 @@ public class SlidersCommands : MonoBehaviour
             case "CollectiveSlider":
                 collectiveSlider.SetSliderValue(float.Parse(msgValue));
                 break;
+            case "SpeedSlider":
+                speedSlider.SetSliderValue(float.Parse(msgValue));
+                break;
+            case "SizeSlider":
+                sizeSlider.SetSliderValue(float.Parse(msgValue));
+                break;
         }
     }
 
