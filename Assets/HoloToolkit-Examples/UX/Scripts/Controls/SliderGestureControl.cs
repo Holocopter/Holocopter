@@ -163,6 +163,7 @@ namespace HoloToolkit.Examples.InteractiveElements
                         mStartCenter + SliderBar.transform.right * mSliderMagnitude / 2) -
                     SliderBar.transform.InverseTransformPoint(
                         mStartCenter - SliderBar.transform.right * mSliderMagnitude / 2);
+
                 AlignmentVector = SliderBar.transform.right;
 
                 mCachedRotation = SliderBar.transform.rotation;
@@ -172,10 +173,13 @@ namespace HoloToolkit.Examples.InteractiveElements
                 gestureState);
 
             // get the current delta
-            float delta = (CurrentDistance > 0) ? CurrentPercentage : -CurrentPercentage;
+            if (gestureState != GestureInteractive.GestureManipulationState.Lost)
+            {
+                float delta = (CurrentDistance > 0) ? CurrentPercentage : -CurrentPercentage;
+                mDeltaValue = Mathf.Clamp01(delta + mCachedValue);
+            }
 
             // combine the delta with the current slider position so the slider does not start over every time
-            mDeltaValue = Mathf.Clamp01(delta + mCachedValue);
 
             if (!Centered)
             {
@@ -188,7 +192,8 @@ namespace HoloToolkit.Examples.InteractiveElements
 
             UpdateVisuals();
 
-            if (gestureState == GestureInteractive.GestureManipulationState.None)
+            if (gestureState == GestureInteractive.GestureManipulationState.None ||
+                gestureState == GestureInteractive.GestureManipulationState.Lost)
             {
                 // gesture ended - cache the current delta
                 mCachedValue = mDeltaValue;
