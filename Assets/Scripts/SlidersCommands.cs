@@ -48,12 +48,15 @@ public class SlidersCommands : MonoBehaviour
         {
             if (sizeOld < sizeSlider.SliderValue)
             {
-                pistonsController.GetComponent<Transform>().localScale = new Vector3(pistonsController.rotorSize + 0.2f, pistonsController.rotorSize + 0.2f, pistonsController.rotorSize + 0.2f);
+                pistonsController.GetComponent<Transform>().localScale = new Vector3(pistonsController.rotorSize + 0.2f,
+                    pistonsController.rotorSize + 0.2f, pistonsController.rotorSize + 0.2f);
             }
             else if (sizeOld > sizeSlider.SliderValue)
             {
-                pistonsController.GetComponent<Transform>().localScale = new Vector3(pistonsController.rotorSize - 0.2f, pistonsController.rotorSize - 0.2f, pistonsController.rotorSize - 0.2f);
+                pistonsController.GetComponent<Transform>().localScale = new Vector3(pistonsController.rotorSize - 0.2f,
+                    pistonsController.rotorSize - 0.2f, pistonsController.rotorSize - 0.2f);
             }
+
             sizeOld = sizeSlider.SliderValue;
         }
     }
@@ -66,7 +69,7 @@ public class SlidersCommands : MonoBehaviour
 
     public void NetControlOnSlider(long userId, string msgKey, string msgValue)
     {
-        Debug.Log(string.Format("Got {0} value {1}", msgKey, float.Parse(msgValue)));
+        Debug.Log(string.Format("Got {0} value {1}", msgKey, msgValue));
 
         switch (msgKey)
         {
@@ -78,6 +81,13 @@ public class SlidersCommands : MonoBehaviour
                 break;
             case "SizeSlider":
                 sizeSlider.SetSliderValue(float.Parse(msgValue));
+                break;
+            case "RadialSlider":
+                var splited = msgValue.Split('_');
+                var ang = float.Parse(splited[0]);
+                var rad = float.Parse(splited[1]);
+                Debug.Log(string.Format("{0} - {1}", ang, rad));
+                radialSlider.SetAngRad(ang, rad);
                 break;
         }
     }
@@ -147,8 +157,7 @@ public class SlidersCommands : MonoBehaviour
                 speedSlider.SliderValue = 0;
                 collectiveSlider.SliderValue = 0;
                 sizeSlider.SliderValue = 0;
-                radialSlider.ang = 0;
-                radialSlider.rad = 0;
+                radialSlider.SetAngRad(0f, 0f);
                 radialSlider.ResetTheThrottle();
                 break;
         }

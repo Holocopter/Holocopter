@@ -17,9 +17,12 @@ public class MessageManager : Singleton<MessageManager>
         Max
     }
 
+    private int _frameCountSinceLastSync = 0;
+    private const int FrameInterval = 1;
 
     private NetworkConnection _serverConnection;
     private NetworkConnectionAdapter _connectionAdapter;
+
     public long LocalUserId { get; set; }
     private SlidersCommands _sliderCommand;
 
@@ -114,6 +117,22 @@ public class MessageManager : Singleton<MessageManager>
 
     #region SendMessage
 
+    public void SyncValue(string key, string value)
+    {
+        if (!this.IsMaster)
+        {
+            return;
+        }
+
+        if (Time.frameCount - _frameCountSinceLastSync < FrameInterval)
+        {
+            return;
+        }
+
+        _frameCountSinceLastSync = Time.frameCount;
+        SendSliderValue(key, value);
+    }
+
     public void SendSliderValue(string whichSlider, string value)
     {
         UnityEngine.Debug.Log(string.Format("Sending slider {0} value {1}", whichSlider, value));
@@ -125,7 +144,7 @@ public class MessageManager : Singleton<MessageManager>
 
     public void SendDebugMessage()
     {
-        UnityEngine.Debug.Log("Send debug message to server...");
+        UnityEngine.Debug.Log(string.Format("Send debug message to server, I'm {0}...", IsMaster));
 
         string debugMsg = string.Format("{0} is alive!", LocalUserId);
         NetworkOutMessage msg = CreateMessage((byte) HoloMessageType.DebugMsg);

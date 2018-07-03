@@ -4467,6 +4467,8 @@ MonoBehaviour:
   MaxGestureDistance: 0.15
   AlignmentVector: {x: 1, y: 1, z: 1}
   FlipDirectionOnCameraForward: 0
+  SyncMessage: 1
+  SyncManager: {fileID: 703351044}
   ang: 0
   rad: 0
 --- !u!114 &501700488
@@ -16094,6 +16096,8 @@ MonoBehaviour:
   MaxGestureDistance: 0.15
   AlignmentVector: {x: 1, y: 1, z: 1}
   FlipDirectionOnCameraForward: 0
+  SyncMessage: 1
+  SyncManager: {fileID: 0}
   ang: -1.54
   rad: 0
 --- !u!114 &1967456273
