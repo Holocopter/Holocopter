@@ -14,6 +14,7 @@ public class SlidersCommands : MonoBehaviour
     public GameObject FixedCamera;
     GameObject MainCamera;
     float start_camera_z;
+    float sizeOld;
     public RadialSlider radialSlider;
 
     public SliderGestureControl speedSlider;
@@ -32,19 +33,29 @@ public class SlidersCommands : MonoBehaviour
         collectiveSlider = CollectiveSlider.GetComponent<SliderGestureControl>();
         SizeSlier = GameObject.Find("SizeSlider");
         sizeSlider = SizeSlier.GetComponent<SliderGestureControl>();
-        AirFlow = GameObject.Find("WindFx");
+        AirFlow = GameObject.Find("windEffectSwitch");
         airFlow = AirFlow.GetComponent<ButtonEvent>();
-
+        sizeOld = sizeSlider.SliderValue;
         MainCamera = GameObject.Find("MixedRealityCameraParent");
     }
 
     // Update is called once per frame
     void Update()
     {
-        pistonsController.speed = speedSlider.SliderValue * 0.5f;
-        pistonsController.collectivey = collectiveSlider.SliderValue * 0.00004f;
-        MainCamera.transform.position = new Vector3(MainCamera.transform.position.x, MainCamera.transform.position.y,
-            sizeSlider.SliderValue * 0.002f);
+        pistonsController.roterSpeed = speedSlider.SliderValue * 0.5f;
+        pistonsController.collectiveY = collectiveSlider.SliderValue * 0.00004f;
+        if (sizeOld != sizeSlider.SliderValue)
+        {
+            if (sizeOld < sizeSlider.SliderValue)
+            {
+                pistonsController.GetComponent<Transform>().localScale = new Vector3(pistonsController.rotorSize + 0.2f, pistonsController.rotorSize + 0.2f, pistonsController.rotorSize + 0.2f);
+            }
+            else if (sizeOld > sizeSlider.SliderValue)
+            {
+                pistonsController.GetComponent<Transform>().localScale = new Vector3(pistonsController.rotorSize - 0.2f, pistonsController.rotorSize - 0.2f, pistonsController.rotorSize - 0.2f);
+            }
+            sizeOld = sizeSlider.SliderValue;
+        }
     }
 
 
@@ -120,10 +131,10 @@ public class SlidersCommands : MonoBehaviour
                 FixedCamera.gameObject.GetComponent<Image>().enabled = false;
                 break;
             case "FixedCam_A":
-                pistonsController.fix_angle = false;
+                pistonsController.fixedCamAngleSwitch = false;
                 break;
             case "FixedCam_B":
-                pistonsController.fix_angle = true;
+                pistonsController.fixedCamAngleSwitch = true;
                 break;
         }
     }

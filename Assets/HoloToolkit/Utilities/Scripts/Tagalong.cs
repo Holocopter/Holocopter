@@ -36,7 +36,7 @@ namespace HoloToolkit.Unity
         [Tooltip("When true, the Tagalong object maintains a fixed angular size.")]
         public bool MaintainFixedSize = true;
 
-        [Tooltip("The speed to update the Tagalong's distance when compensating for depth (meters/second).")]
+        [Tooltip("The roterSpeed to update the Tagalong's distance when compensating for depth (meters/second).")]
         public float DepthUpdateSpeed = 4.0f;
 
         private float defaultTagalongDistance;

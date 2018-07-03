@@ -17,13 +17,13 @@ namespace HoloToolkit.Unity
         // needs to run at all.
         private const float smallNumber = 0.0000001f;
 
-        // The movement speed in meters per second
+        // The movement roterSpeed in meters per second
         public float PositionPerSecond = 30.0f;
 
-        // The rotation speed, in degrees per second
+        // The rotation roterSpeed, in degrees per second
         public float RotationDegreesPerSecond = 720.0f;
 
-        // Adjusts rotation speed based on angular distance
+        // Adjusts rotation roterSpeed based on angular distance
         public float RotationSpeedScaler = 0.0f;
 
         // The amount to scale per second
@@ -234,11 +234,11 @@ namespace HoloToolkit.Unity
         /// <param name="start">The starting position.</param>
         /// <param name="target">The destination position.</param>
         /// <param name="deltaTime">Caller-provided Time.deltaTime.</param>
-        /// <param name="speed">The speed to apply to the interpolation.</param>
+        /// <param name="speed">The roterSpeed to apply to the interpolation.</param>
         /// <returns>New interpolated position closer to target</returns>
         public static Vector3 NonLinearInterpolateTo(Vector3 start, Vector3 target, float deltaTime, float speed)
         {
-            // If no interpolation speed, jump to target value.
+            // If no interpolation roterSpeed, jump to target value.
             if (speed <= 0.0f)
             {
                 return target;

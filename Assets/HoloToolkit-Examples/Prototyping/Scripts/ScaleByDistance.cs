@@ -28,7 +28,7 @@ namespace HoloToolkit.Examples.Prototyping
         [Tooltip("Auto start? or status")]
         public bool IsScaling;
 
-        [Tooltip("scaling speed : higher is faster")]
+        [Tooltip("scaling roterSpeed : higher is faster")]
         public float ScaleSpeed = 3;
 
         [Tooltip("Minimum scale")]

@@ -16,7 +16,7 @@ public class BoxCommands : MonoBehaviour {
 	}
 
     public void OnSelect() {
-        PC.collectivey += 0.1f;
+        PC.collectiveY += 0.1f;
 		Debug.Log ("dasdas");
     }
 }

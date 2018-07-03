@@ -20,7 +20,7 @@ namespace HoloToolkit.Examples.Prototyping
         [Tooltip("size of the orbit")]
         public float Radius = 0.2f;
 
-        [Tooltip("orbit speed")]
+        [Tooltip("orbit roterSpeed")]
         public float RevolutionSpeed = 2.0f;
 
         [Tooltip("starting position based on 360 degrees")]

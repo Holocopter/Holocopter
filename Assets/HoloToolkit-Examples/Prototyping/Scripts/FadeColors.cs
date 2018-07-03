@@ -16,9 +16,9 @@ namespace HoloToolkit.Examples.Prototyping
         /// <summary>
         /// The selectable ease types for the animation
         ///     Linear: steady progress
-        ///     EaseIn: ramp up in speed
-        ///     EaseOut: ramp down in speed
-        ///     EaseInOut: ramp up then down in speed
+        ///     EaseIn: ramp up in roterSpeed
+        ///     EaseOut: ramp down in roterSpeed
+        ///     EaseInOut: ramp up then down in roterSpeed
         /// </summary>
         public enum LerpTypes { Linear, EaseIn, EaseOut, EaseInOut }
 

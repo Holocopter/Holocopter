@@ -20,14 +20,14 @@ public class ButtonEvent : MonoBehaviour {
 	}
     public void WindFx_Switch()
     {
-        switch (pistonsController.WindFx)
+        switch (pistonsController.windEffectSwitch)
         {
             case true:
-                pistonsController.WindFx = false;
+                pistonsController.windEffectSwitch = false;
                 this.gameObject.GetComponentInChildren<Text>().text = "Airflow Effect: OFF";
                 break;
             case false:
-                pistonsController.WindFx = true;
+                pistonsController.windEffectSwitch = true;
                 this.gameObject.GetComponentInChildren<Text>().text = "Airflow Effect: ON";
                 break;
         }
@@ -35,12 +35,12 @@ public class ButtonEvent : MonoBehaviour {
 
     public void WindFX_ON()
     {
-        pistonsController.WindFx = true;
+        pistonsController.windEffectSwitch = true;
         this.gameObject.GetComponentInChildren<Text>().text = "Airflow Effect: ON";
     }
 
     public void WindFX_OFF() {
-        pistonsController.WindFx = false;
+        pistonsController.windEffectSwitch = false;
         this.gameObject.GetComponentInChildren<Text>().text = "Airflow Effect: OFF";
     }
     public void ButtonIndicationEnter()

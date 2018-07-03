@@ -18,7 +18,7 @@ namespace HoloToolkit.Unity
         [Tooltip("If true, forces the Tagalong to be TagalongDistance from the camera, even if it didn't need to move otherwise.")]
         public bool EnforceDistance = true;
 
-        [Tooltip("The speed at which to move the Tagalong when updating its position (meters/second).")]
+        [Tooltip("The roterSpeed at which to move the Tagalong when updating its position (meters/second).")]
         public float PositionUpdateSpeed = 9.8f;
         [Tooltip("When true, the Tagalong's motion is smoothed.")]
         public bool SmoothMotion = true;

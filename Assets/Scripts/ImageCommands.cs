@@ -15,7 +15,7 @@ public class ImageCommands : MonoBehaviour {
 	}
 
     public void WINDFX() {
-        pc.WindFx = true;
+        pc.windEffectSwitch = true;
     }
     public void test() {
         Destroy(this.gameObject);

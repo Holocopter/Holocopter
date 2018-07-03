@@ -7,64 +7,60 @@ public class PistonsController : MonoBehaviour {
 	
 	// UI - controls 
 	public RadialSlider radialSlider;
-	public Transform control_helper; 
-	public Transform fixed_cam;
-	public float collectivey = 0;
-	public float slidersp = 0;
-	public float collectivey_old = 0;
-    public float slidersp_old = 0;
-	public float sp_max = 500;
-	
-	public Vector3 fc_init;
-	public float slider_fixedcam = 0;
-	public float slider_fixedcam_min = -2.3f;
-	public float slider_fixedcam_max = 2.3f;
-	public float slider_fixedcam_old;
+	public Transform controlHelper; 
+	public Transform fixedCam;
+	public float collectiveY = 0;
+	public float collectiveY_Old = 0;
 
-    public bool fix_angle;
-    public float fix_speed;
+	
+	public Vector3 fixCamInitalPosition;
+	public float fixedCamAngle = 0;
+	public float fixedCamAngle_Min = -2.3f;
+	public float fixedCamAngle_Max = 2.3f;
+	public float fixedCamAngle_Old;
+
+    public bool fixedCamAngleSwitch;
+    public float fixedCamAngleChangeSpeed;
     float lerpStart = 0;
     public float lerpEnd = 1.4f;
-    float moveTime_up;
-    float moveTime_down;
+    float lerpTime_Up;
+    float lerpTime_Down;
     // rotation 
     public Transform[] rotateObjects;
-	public bool WindFx = false;
-	public float speed = 300f;
+	public bool windEffectSwitch = false;
+	public float roterSpeed = 300f;
 	
 	// define the piston points that push plate
-	public Transform p1;
-	public Transform p2;
-	public Transform p3;
-	public Transform targetObj;
-		 
-	// visualize plane, normals
-	private Plane plane;
-	private Mesh mesh;
-	public float adjustSpeed = 30;
+	public Transform pistonPoint1;
+	public Transform pistonPoint2;
+	public Transform pistonPoint3;
+	public Transform transparentPlate;
+
+    public float rotorSize;
+
+    // visualize virturalPlane, normals
+    private Plane virturalPlane;
 		
 	// set limits to piston y movement
-	public float y_init = 0;
-	public float dy_max = 0.032f;
-	public float dy_min = -0f;
-	public float ang_max = 20f;
+	public float controlHelperInitialY = 0;
+	public float controlHelperRotationAngle_Max = 20f;
 
-    Vector3 newfc_pos;
-    Vector3 newfc_pos_old;
+    Vector3 fixedCamPosition;
+    Vector3 fixedCamPosition_Old;
 
-    public Vector3 targy;
+    public Vector3 controlHelperPosition;
 	
 	void Start () {
       
-	    Vector3 _1 = p1.position;
-        Vector3 _2 = p2.position;
-        Vector3 _3 = p3.position;
+	    Vector3 _1 = pistonPoint1.position;
+        Vector3 _2 = pistonPoint2.position;
+        Vector3 _3 = pistonPoint3.position;
                 
-		plane = new Plane(_1, _2, _3);
+		virturalPlane = new Plane(_1, _2, _3);
 		
-		targy = control_helper.position;
-        y_init = targy.y;
-        fc_init = fixed_cam.localPosition;
+		controlHelperPosition = controlHelper.position;
+        controlHelperInitialY = controlHelperPosition.y;
+        fixCamInitalPosition = fixedCam.localPosition;
         
         
 
@@ -72,87 +68,78 @@ public class PistonsController : MonoBehaviour {
 	
 	void Update () {
 
-		Vector3 _1 = p1.position;
-        Vector3 _2 = p2.position;
-        Vector3 _3 = p3.position;
+		Vector3 _1 = pistonPoint1.position;
+        Vector3 _2 = pistonPoint2.position;
+        Vector3 _3 = pistonPoint3.position;
         
-        if (control_helper){
-			control_helper.rotation = Quaternion.Euler(0, radialSlider.ang, radialSlider.rad*ang_max);
-			//targy.y = y_init + collectivey;
-           // control_helper.position = Vector3.MoveTowards(control_helper.position, targy, 100);	
+        if (controlHelper){
+			controlHelper.rotation = Quaternion.Euler(0, radialSlider.ang, radialSlider.rad*controlHelperRotationAngle_Max);
+			//controlHelperPosition.y = controlHelperInitialY + collectiveY;
+           // controlHelper.position = Vector3.MoveTowards(controlHelper.position, controlHelperPosition, 100);	
         }
 
-        if (collectivey != collectivey_old)
+        if (collectiveY != collectiveY_Old)
         {
-            control_helper.position = new Vector3(control_helper.position.x, control_helper.position.y + (collectivey - collectivey_old), control_helper.position.z);
+            controlHelper.position = new Vector3(controlHelper.position.x, controlHelper.position.y + (collectiveY - collectiveY_Old), controlHelper.position.z);
         }
 
 
-        plane.Set3Points(_1, _2, _3);
+        virturalPlane.Set3Points(_1, _2, _3);
 
+	    rotorSize = transform.localScale.x;
 
-        // set plane
-       // Vector3 newUp = Vector3.RotateTowards(targetObj.up, plane.normal, adjustSpeed * Mathf.Deg2Rad, 0);
-        targetObj.rotation = Quaternion.FromToRotation(transform.up, plane.normal);
+        // set virturalPlane
+        // Vector3 newUp = Vector3.RotateTowards(transparentPlate.up, virturalPlane.normal, adjustSpeed * Mathf.Deg2Rad, 0);
+        transparentPlate.rotation = Quaternion.FromToRotation(transform.up, virturalPlane.normal);
 
-        //// move plate as plane moves
-        Vector3 obj_pos = targetObj.position;
-        obj_pos.y = control_helper.position.y;          //-1.0f * plane.distance;
-        targetObj.position = obj_pos;
+        //// move plate as virturalPlane moves
+        Vector3 obj_pos = transparentPlate.position;
+        obj_pos.y = controlHelper.position.y;          //-1.0f * virturalPlane.distance;
+        transparentPlate.position = obj_pos;
 
-        moveTime_up += fix_speed * Time.deltaTime;
-        moveTime_down += fix_speed * Time.deltaTime;
-        if (fix_angle)
+        lerpTime_Up += fixedCamAngleChangeSpeed * Time.deltaTime;
+        lerpTime_Down += fixedCamAngleChangeSpeed * Time.deltaTime;
+        if (fixedCamAngleSwitch)
         {
-            moveTime_down = 0;
-            slider_fixedcam = Mathf.Lerp(lerpStart, lerpEnd, moveTime_up);
+            lerpTime_Down = 0;
+            fixedCamAngle = Mathf.Lerp(lerpStart, lerpEnd, lerpTime_Up);
 
         }
         else
         {
-            moveTime_up = 0;
-            if (slider_fixedcam != 0)
+            lerpTime_Up = 0;
+            if (fixedCamAngle != 0)
             {
-                slider_fixedcam = Mathf.Lerp(lerpEnd, lerpStart, moveTime_down);
+                fixedCamAngle = Mathf.Lerp(lerpEnd, lerpStart, lerpTime_Down);
                 
             }
         }
 
-        newfc_pos = fixed_cam.localPosition;
-        newfc_pos.x = slider_fixedcam;
-        newfc_pos_old = new Vector3(0,0,0);
+        fixedCamPosition = fixedCam.localPosition;
+        fixedCamPosition.x = fixedCamAngle;
+        fixedCamPosition_Old = new Vector3(0,0,0);
         float theta;
         float theta_rounded;
         float _z_rounded;
-        //if (newfc_pos != newfc_pos_old)
-        //{
-        theta = Vector3.Angle(newfc_pos, fc_init) - Vector3.Angle(fc_init, new Vector3(0, fc_init.y, 0));
+
+        theta = Vector3.Angle(fixedCamPosition, fixCamInitalPosition) - Vector3.Angle(fixCamInitalPosition, new Vector3(0, fixCamInitalPosition.y, 0));
         theta_rounded = (Mathf.Round(theta * 100)) / 100;
-        float _z = Vector3.Distance(fc_init, new Vector3(0, fc_init.y, 0)) * Mathf.Sin(theta_rounded * Mathf.Deg2Rad);
+        float _z = Vector3.Distance(fixCamInitalPosition, new Vector3(0, fixCamInitalPosition.y, 0)) * Mathf.Sin(theta_rounded * Mathf.Deg2Rad);
         _z_rounded = (Mathf.Round(_z * 100)) / 100;
-        newfc_pos.z = -Mathf.Abs(_z_rounded);
-        //}
-
-
-        Debug.Log(newfc_pos);
-        //Debug.Log(newfc_pos_old);
-        //Debug.Log(theta);
-
-
-
-        fixed_cam.localPosition = Vector3.MoveTowards(fixed_cam.localPosition, newfc_pos, 100);
+        fixedCamPosition.z = -Mathf.Abs(_z_rounded);
+        fixedCam.localPosition = Vector3.MoveTowards(fixedCam.localPosition, fixedCamPosition, 100);
     }
 	
 	void LateUpdate(){
         DoRotate();
-        newfc_pos_old = newfc_pos;
-        collectivey_old = collectivey;
+        fixedCamPosition_Old = fixedCamPosition;
+        collectiveY_Old = collectiveY;
     }
 		
 	private void DoRotate(){
 		
 		foreach(Transform t in rotateObjects){
-			t.localRotation = Quaternion.Euler(0, speed*Time.time, 0);	
+			t.localRotation = Quaternion.Euler(0, roterSpeed*Time.time, 0);	
 		}
 	}
 		

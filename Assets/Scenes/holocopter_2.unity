@@ -4423,6 +4423,7 @@ GameObject:
   - component: {fileID: 501700489}
   - component: {fileID: 501700488}
   - component: {fileID: 501700487}
+  - component: {fileID: 501700490}
   m_Layer: 5
   m_Name: RadialSlider
   m_TagString: Untagged
@@ -4444,7 +4445,7 @@ RectTransform:
   - {fileID: 1592329504}
   - {fileID: 1355749403}
   m_Father: {fileID: 955499871}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4501,6 +4502,42 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 501700485}
+--- !u!114 &501700490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 501700485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71b5c94b2db7fb646b5a369ac83cf7aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParentObject: {fileID: 0}
+  IsEnabled: 1
+  DetectHold: 0
+  HoldTime: 0.5
+  RollOffTime: 0.02
+  Keyword: 
+  KeywordRequiresGaze: 1
+  OnSelectEvents:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnHoldEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  StartDelay: 0
+  Control: {fileID: 0}
+  HideCursorOnManipulation: 0
 --- !u!1 &516237054
 GameObject:
   m_ObjectHideFlags: 0
@@ -5527,7 +5564,7 @@ Transform:
   - {fileID: 986825079}
   - {fileID: 20598610}
   m_Father: {fileID: 955499871}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!114 &597209208
 MonoBehaviour:
@@ -6202,7 +6239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FixedCamera: {fileID: 84460840}
-  radialSlider: {fileID: 0}
+  radialSlider: {fileID: 501700487}
   speedSlider: {fileID: 1344956180}
   collectiveSlider: {fileID: 597209209}
   sizeSlider: {fileID: 457080293}
@@ -8406,8 +8443,8 @@ RectTransform:
   m_LocalScale: {x: 0.0044791703, y: 0.0044791703, z: 0.0044791703}
   m_Children:
   - {fileID: 1694312413}
-  - {fileID: 501700486}
   - {fileID: 597209207}
+  - {fileID: 501700486}
   m_Father: {fileID: 626757823}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12999,7 +13036,7 @@ GameObject:
   - component: {fileID: 1517692952}
   - component: {fileID: 1517692957}
   m_Layer: 5
-  m_Name: WindFx
+  m_Name: windEffectSwitch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15192,36 +15229,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radialSlider: {fileID: 501700487}
-  control_helper: {fileID: 1980189700}
-  fixed_cam: {fileID: 561224320}
-  collectivey: 0
-  slidersp: 0
-  collectivey_old: 0
-  slidersp_old: 0
-  sp_max: 500
-  fc_init: {x: 0, y: 0, z: 0}
-  slider_fixedcam: 0
-  slider_fixedcam_min: -2.3
-  slider_fixedcam_max: 2.3
-  slider_fixedcam_old: 0
-  fix_angle: 0
-  fix_speed: 0.5
+  controlHelper: {fileID: 1980189700}
+  fixedCam: {fileID: 561224320}
+  collectiveY: 0
+  collectiveY_Old: 0
+  fixCamInitalPosition: {x: 0, y: 0, z: 0}
+  fixedCamAngle: 0
+  fixedCamAngle_Min: -2.3
+  fixedCamAngle_Max: 2.3
+  fixedCamAngle_Old: 0
+  fixedCamAngleSwitch: 0
+  fixedCamAngleChangeSpeed: 0
   lerpEnd: 1.4
   rotateObjects:
   - {fileID: 1774516570}
   - {fileID: 573963601}
-  WindFx: 0
-  speed: 300
-  p1: {fileID: 240425924}
-  p2: {fileID: 744843543}
-  p3: {fileID: 471202987}
-  targetObj: {fileID: 1116157456}
-  adjustSpeed: 30
-  y_init: 0
-  dy_max: 0.04
-  dy_min: 0
-  ang_max: 5
-  targy: {x: 0, y: 0, z: 0}
+  windEffectSwitch: 0
+  roterSpeed: 300
+  pistonPoint1: {fileID: 240425924}
+  pistonPoint2: {fileID: 744843543}
+  pistonPoint3: {fileID: 471202987}
+  transparentPlate: {fileID: 1116157456}
+  rotorSize: 0
+  controlHelperInitialY: 0
+  controlHelperRotationAngle_Max: 20
+  controlHelperPosition: {x: 0, y: 0, z: 0}
 --- !u!4 &1849895885
 Transform:
   m_ObjectHideFlags: 0

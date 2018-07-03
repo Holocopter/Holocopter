@@ -32,10 +32,10 @@ namespace HoloToolkit.Examples.Prototyping
         [Tooltip("Auto start? or status")]
         public bool IsRunning = false;
 
-        [Tooltip("translation speed : higher is faster")]
+        [Tooltip("translation roterSpeed : higher is faster")]
         public float LerpPositionSpeed = 1f;
 
-        [Tooltip("rotation speed : higher is faster")]
+        [Tooltip("rotation roterSpeed : higher is faster")]
         public float LerpRotationSpeed = 0.5f;
 
         [Tooltip("Lock the x axis if the object is set to face the reference object")]
@@ -53,7 +53,7 @@ namespace HoloToolkit.Examples.Prototyping
         [Tooltip("Force the object to keep relative to the reference object's transform.forward")]
         public bool KeepInFront = true;
 
-        [Tooltip("Magnetism speed to move closer to the reference object")]
+        [Tooltip("Magnetism roterSpeed to move closer to the reference object")]
         public float Magnetism = 0;
 
         [Tooltip("Minimum distance to stay away from the reference object if magnetism is used")]

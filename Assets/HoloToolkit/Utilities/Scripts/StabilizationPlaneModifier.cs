@@ -25,10 +25,10 @@ namespace HoloToolkit.Unity
         [Tooltip("When lerping, use unscaled time. This is useful for games that have a pause mechanism or otherwise adjust the game timescale.")]
         public bool UseUnscaledTime = true;
 
-        [Tooltip("Lerp speed when moving focus point closer.")]
+        [Tooltip("Lerp roterSpeed when moving focus point closer.")]
         public float LerpStabilizationPlanePowerCloser = 4.0f;
 
-        [Tooltip("Lerp speed when moving focus point farther away.")]
+        [Tooltip("Lerp roterSpeed when moving focus point farther away.")]
         public float LerpStabilizationPlanePowerFarther = 7.0f;
 
         [SerializeField, Tooltip("Used to temporarily override the location of the stabilization plane.")]

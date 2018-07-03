@@ -37,7 +37,7 @@ public class WindFlex : MonoBehaviour {
 		
 		deltay =transform.eulerAngles.x; 
 		
-		onoff = script.WindFx;
+		onoff = script.windEffectSwitch;
 		if (onoff){
 			// pointing down
 			if (deltay<180){
