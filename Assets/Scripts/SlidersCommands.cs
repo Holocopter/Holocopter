@@ -86,8 +86,9 @@ public class SlidersCommands : MonoBehaviour
                 var splited = msgValue.Split('_');
                 var ang = float.Parse(splited[0]);
                 var rad = float.Parse(splited[1]);
+                var pos = new Vector2(float.Parse(splited[2]), float.Parse(splited[3]));
                 Debug.Log(string.Format("{0} - {1}", ang, rad));
-                radialSlider.SetAngRad(ang, rad);
+                radialSlider.SetAngRad(ang, rad, pos);
                 break;
         }
     }

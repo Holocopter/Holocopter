@@ -89,11 +89,19 @@ public class RadialSlider : GestureInteractiveControl
         SyncValue(this.ang, this.rad);
     }
 
+    public void SetAngRad(float outAng, float outRad, Vector2 pos)
+    {
+        this.ang = outAng;
+        this.rad = outRad;
+        throttle_rect.anchoredPosition = pos;
+    }
+
     private void SyncValue(float sAng, float sRad)
     {
         if (!SyncMessage)
             return;
-        var value = string.Format("{0}_{1}", sAng, sRad);
+        var throtPos = throttle_rect.anchoredPosition;
+        var value = string.Format("{0}_{1}_{2}_{3}", sAng, sRad, throtPos.x, throtPos.y);
         SyncManager.SyncValue(transform.name, value);
     }
 
@@ -130,7 +138,7 @@ public class RadialSlider : GestureInteractiveControl
         }
         else
         {
-            StopCoroutine("TrackPointer");
+            StopCoroutineForCyclic();
         }
     }
 
@@ -170,17 +178,13 @@ public class RadialSlider : GestureInteractiveControl
                     var temAng = ((angle) * 360f);
 
 
-                    //text.text = ((int)((angle)*360f )).ToString();
-
                     if (CurrentLocalPosition.magnitude < (0.45f * thisRect.rect.width))
                     {
                         throttle_rect.anchoredPosition = CurrentLocalPosition;
-                        // Debug.Log("CurrentLocalPosition.magnitude =" + CurrentLocalPosition.magnitude);
                     }
                     else
                     {
                         throttle_rect.anchoredPosition = CurrentLocalPosition.normalized * (0.5f * thisRect.rect.width);
-                        // Debug.Log("CurrentLocalPosition.magnitude =" + CurrentLocalPosition.magnitude);
                     }
 
                     ;
@@ -188,9 +192,6 @@ public class RadialSlider : GestureInteractiveControl
                     float tmpRad = (CurrentLocalPosition.magnitude) / (0.5f * thisRect.rect.width);
 
                     this.SetAngRad(temAng, tmpRad);
-                    // Vector3 rot = throttle_rect.localEulerAngles;
-                    // rot.z = -ang;
-                    // throttle_rect.localEulerAngles = rot;
                 }
 
                 //itsKGFOrbitCam.SetPanningEnable( !isPointerDown );
