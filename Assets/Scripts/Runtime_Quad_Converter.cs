@@ -51,6 +51,29 @@ public class Runtime_Quad_Converter : MonoBehaviour
             material = red.sharedMaterials;
         }
 
+        if (quadMesh != null)
+
+            /* foreach (MeshFilter quad in quadMesh)
+             {
+                 DestroyImmediate(quad.sharedMesh);
+             }*/
+            // DestroyImmediate(quadMesh[i]);
+
+
+
+            //Generate new quad mesh based on 'Coef' parameters
+
+            foreach (MeshFilter mf in components)
+            {
+
+                Mesh originalMesh = mf.sharedMesh;
+
+
+                quadMesh[i].sharedMesh = WireframeGenerator.GenerateQuads(originalMesh, normalCoef, angleCoef, areaCoef);
+
+                i++;
+            }
+        i = 0;
 
         /* if (originalMesh == null)
          {
@@ -67,6 +90,7 @@ public class Runtime_Quad_Converter : MonoBehaviour
         }*/
 
         i = 0;
+        this.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -104,7 +128,7 @@ public class Runtime_Quad_Converter : MonoBehaviour
                 Mesh originalMesh = mf.sharedMesh;
 
            
-                quadMesh[i].sharedMesh = WireframeGenerator.GenerateQuads(originalMesh, normalCoef, angleCoef, areaCoef);
+                //quadMesh[i].sharedMesh = WireframeGenerator.GenerateQuads(originalMesh, normalCoef, angleCoef, areaCoef);
          
                 i++;
             }
