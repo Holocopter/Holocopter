@@ -133,6 +133,7 @@ public class Runtime_Quad_Converter : MonoBehaviour
                 i++;
             }
             i = 0;
+            
             //Assign new mesh
             if (quadMesh != null)
             {

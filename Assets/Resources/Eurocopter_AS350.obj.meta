@@ -1,0 +1,184 @@
+fileFormatVersion: 2
+guid: f65a9a534dd05d2418f01c00f730dc62
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: arm1
+    100002: arm2
+    100004: arm3
+    100006: //RootNode
+    100008: exhaust
+    100010: fuselage
+    100012: rotorB1
+    100014: rotorB2
+    100016: rotorB3
+    100018: rotorMast
+    100020: rotorP1
+    100022: rotorP2
+    100024: rotorP3
+    100026: skids
+    100028: tailB1
+    100030: tailB2
+    100032: tailShaft
+    400000: arm1
+    400002: arm2
+    400004: arm3
+    400006: //RootNode
+    400008: exhaust
+    400010: fuselage
+    400012: rotorB1
+    400014: rotorB2
+    400016: rotorB3
+    400018: rotorMast
+    400020: rotorP1
+    400022: rotorP2
+    400024: rotorP3
+    400026: skids
+    400028: tailB1
+    400030: tailB2
+    400032: tailShaft
+    2100000: arm1Mat
+    2100002: arm2Mat
+    2100004: arm3Mat
+    2100006: exhaustMat
+    2100008: fuselageMat
+    2100010: rotorB1Mat
+    2100012: rotorB2Mat
+    2100014: rotorB3Mat
+    2100016: rotorMastMat
+    2100018: rotorP1Mat
+    2100020: rotorP2Mat
+    2100022: rotorP3Mat
+    2100024: skidsMat
+    2100026: tailB1Mat
+    2100028: tailB2Mat
+    2100030: tailShaftMat
+    2300000: arm1
+    2300002: arm2
+    2300004: arm3
+    2300006: exhaust
+    2300008: fuselage
+    2300010: rotorB1
+    2300012: rotorB2
+    2300014: rotorB3
+    2300016: rotorMast
+    2300018: rotorP1
+    2300020: rotorP2
+    2300022: rotorP3
+    2300024: skids
+    2300026: tailB1
+    2300028: tailB2
+    2300030: tailShaft
+    3300000: arm1
+    3300002: arm2
+    3300004: arm3
+    3300006: exhaust
+    3300008: fuselage
+    3300010: rotorB1
+    3300012: rotorB2
+    3300014: rotorB3
+    3300016: rotorMast
+    3300018: rotorP1
+    3300020: rotorP2
+    3300022: rotorP3
+    3300024: skids
+    3300026: tailB1
+    3300028: tailB2
+    3300030: tailShaft
+    4300000: arm1
+    4300002: arm2
+    4300004: arm3
+    4300006: exhaust
+    4300008: fuselage
+    4300010: rotorB1
+    4300012: rotorB2
+    4300014: rotorB3
+    4300016: rotorMast
+    4300018: rotorP1
+    4300020: rotorP2
+    4300022: rotorP3
+    4300024: skids
+    4300026: tailB1
+    4300028: tailB2
+    4300030: tailShaft
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
