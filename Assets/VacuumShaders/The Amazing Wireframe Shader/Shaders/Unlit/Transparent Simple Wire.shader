@@ -1,22 +1,23 @@
 // VacuumShaders 2017
 // https://www.facebook.com/VacuumShaders
 
-Shader "VacuumShaders/The Amazing Wireframe/Mobile/Unlit/Transparent/2 Sided/Wire Only"
+Shader "Hidden/VacuumShaders/The Amazing Wireframe/Mobile/Unlit/Transparent/Simple/Wire Only"
 {
-    Properties 
-    {        
+    Properties       
+    { 
 		//Tag 
 		[V_WIRE_Tag] _V_WIRE_Tag("", float) = 0 
 		
 		//Rendering Options
 		[V_WIRE_RenderingOptions] _V_WIRE_RenderingOptions_UnlitEnumID("", float) = 0
 
+		[MaterialEnum(Off,0,Front,1,Back,2)] _Cull ("Cull", Int) = 2
 
 		//Base
 		[HideInInspector] _Color("", color) = (1, 1, 1, 1)
 		[HideInInspector] _MainTex("", 2D) = "white"{}		
+				
 
-		 
 		//Wire S Options   
 		[V_WIRE_Title] _V_WIRE_Title_S_Options("Wire Source Options", float) = 0  		
 		
@@ -47,7 +48,7 @@ Shader "VacuumShaders/The Amazing Wireframe/Mobile/Unlit/Transparent/2 Sided/Wir
 		[V_WIRE_Transparency] _V_WIRE_TransparencyEnumID("", float) = 0 				
 		[HideInInspector]	  _V_WIRE_TransparentTex_Invert("    ", float) = 0
 		[HideInInspector]	  _V_WIRE_TransparentTex_Alpha_Offset("    ", Range(-1, 1)) = 0
-				 
+	
 		//Fresnel
 	    [V_WIRE_Fresnel]  _V_WIRE_FresnelEnumID ("Fresnel", Float) = 0	
 		[HideInInspector] _V_WIRE_FresnelInvert("", float) = 0
@@ -73,54 +74,23 @@ Shader "VacuumShaders/The Amazing Wireframe/Mobile/Unlit/Transparent/2 Sided/Wir
 
     SubShader  
     {
-		Tags { "Queue"="Transparent" 
+		Tags { "Queue"="Transparent+1" 
 		       "IgnoreProjector"="True" 
 			   "RenderType"="Transparent" 
 			 }
 			 		
 		Blend SrcAlpha OneMinusSrcAlpha 
+		Cull [_Cull]
 		 
 		Pass 
-	    {				 
-			ZWrite Off
-			Cull Front	
-
-            CGPROGRAM
-		    #pragma vertex vert
-	    	#pragma fragment frag
-			#pragma target 3.0 
-
-			 
-			#pragma multi_compile_fog 
-
-			#pragma shader_feature V_WIRE_SOURCE_BAKED V_WIRE_SOURCE_TEXTURE
-
-			#pragma shader_feature V_WIRE_TRANSPARENCY_OFF V_WIRE_TRANSPARENCY_ON
-			#pragma shader_feature V_WIRE_FRESNEL_OFF V_WIRE_FRESNEL_ON
-
-			#pragma shader_feature V_WIRE_DYNAMIC_MASK_OFF V_WIRE_DYNAMI_MASK_PLANE V_WIRE_DYNAMIC_MASK_SPHERE 
-
-			 
-			#define V_WIRE_TRANSPARENT
-			#define V_WIRE_NO_COLOR_BLACK
-			#define V_WIRE_SAME_COLOR
-			
-			#include "Assets/VacuumShaders/The Amazing Wireframe Shader/Shaders/cginc/Wireframe_Unlit.cginc"
-	    	ENDCG
-
-    	} //Pass
-
-		Pass 
-	    {				 
-			ZWrite On
-			Cull Back
+	    {			
+			Name "BASE"
 
             CGPROGRAM
 		    #pragma vertex vert
 	    	#pragma fragment frag
 			#pragma target 3.0
-
-
+			#pragma multi_compile_instancing
 			#pragma multi_compile_fog
 
 			#pragma shader_feature V_WIRE_SOURCE_BAKED V_WIRE_SOURCE_TEXTURE
@@ -134,8 +104,9 @@ Shader "VacuumShaders/The Amazing Wireframe/Mobile/Unlit/Transparent/2 Sided/Wir
 			#define V_WIRE_TRANSPARENT
 			#define V_WIRE_NO_COLOR_BLACK
 			#define V_WIRE_SAME_COLOR
-
+			
 			#include "Assets/VacuumShaders/The Amazing Wireframe Shader/Shaders/cginc/Wireframe_Unlit.cginc"
+
 	    	ENDCG
 
     	} //Pass
