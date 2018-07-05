@@ -19,8 +19,7 @@ namespace HoloToolkit.Unity.InputModule.Utilities.Interactions
     /// </summary>
     public class TwoHandManipulatable : MonoBehaviour, IInputHandler, ISourceStateHandler
     {
-        [SerializeField]
-        [Tooltip("Transform that will be dragged. Defaults to the object of the component.")]
+        [SerializeField] [Tooltip("Transform that will be dragged. Defaults to the object of the component.")]
         private Transform hostTransform = null;
 
         public Transform HostTransform
@@ -30,7 +29,8 @@ namespace HoloToolkit.Unity.InputModule.Utilities.Interactions
         }
 
         [SerializeField]
-        [Tooltip("To visualize the object bounding box, drop the HoloToolKit/UX/Prefabs/BoundingBoxes/BoundingBoxBasic.prefab here. This is optional.")]
+        [Tooltip(
+            "To visualize the object bounding box, drop the HoloToolKit/UX/Prefabs/BoundingBoxes/BoundingBoxBasic.prefab here. This is optional.")]
         private BoundingBox boundingBoxPrefab = null;
 
         /// <summary>
@@ -38,19 +38,12 @@ namespace HoloToolkit.Unity.InputModule.Utilities.Interactions
         /// </summary>
         public BoundingBox BoundingBoxPrefab
         {
-            set
-            {
-                boundingBoxPrefab = value;
-            }
+            set { boundingBoxPrefab = value; }
 
-            get
-            {
-                return boundingBoxPrefab;
-            }
+            get { return boundingBoxPrefab; }
         }
 
-        [SerializeField]
-        [Tooltip("What manipulation will two hands perform?")]
+        [SerializeField] [Tooltip("What manipulation will two hands perform?")]
         private ManipulationMode manipulationMode = ManipulationMode.Scale;
 
         public ManipulationMode ManipulationMode
@@ -59,8 +52,7 @@ namespace HoloToolkit.Unity.InputModule.Utilities.Interactions
             set { manipulationMode = value; }
         }
 
-        [SerializeField]
-        [Tooltip("Constrain rotation along an axis")]
+        [SerializeField] [Tooltip("Constrain rotation along an axis")]
         private AxisConstraint rotationConstraint = AxisConstraint.None;
 
         public AxisConstraint RotationConstraint
@@ -69,8 +61,7 @@ namespace HoloToolkit.Unity.InputModule.Utilities.Interactions
             set { rotationConstraint = value; }
         }
 
-        [SerializeField]
-        [Tooltip("If true, grabbing the object with one hand will initiate movement.")]
+        [SerializeField] [Tooltip("If true, grabbing the object with one hand will initiate movement.")]
         private bool enableOneHandMovement = true;
 
         public bool EnableEnableOneHandedMovement
@@ -80,6 +71,7 @@ namespace HoloToolkit.Unity.InputModule.Utilities.Interactions
         }
 
         // private fields that store transform information.
+
         #region Transform Info
 
         private BoundingBox boundingBoxInstance;
@@ -98,7 +90,8 @@ namespace HoloToolkit.Unity.InputModule.Utilities.Interactions
         /// <summary>
         /// Maps input id -> input source. Then obtain position of input source using currentInputSource.TryGetGripPosition(currentInputSourceId, out inputPosition);
         /// </summary>
-        private readonly Dictionary<uint, IInputSource> handsPressedInputSourceMap = new Dictionary<uint, IInputSource>();
+        private readonly Dictionary<uint, IInputSource> handsPressedInputSourceMap =
+            new Dictionary<uint, IInputSource>();
 
         /// <summary>
         /// Property that turns on and off the Visibility of the BoundingBox cloned from the BoundingBoxPrefab reference.
@@ -220,7 +213,9 @@ namespace HoloToolkit.Unity.InputModule.Utilities.Interactions
         /// <summary>
         /// OnSourceDetected Event Handler
         /// </summary>
-        public void OnSourceDetected(SourceStateEventData eventData) { }
+        public void OnSourceDetected(SourceStateEventData eventData)
+        {
+        }
 
         /// <summary>
         /// OnSourceLost
@@ -256,6 +251,7 @@ namespace HoloToolkit.Unity.InputModule.Utilities.Interactions
                     {
                         newState = manipulationMode;
                     }
+
                     break;
                 case ManipulationMode.Scale:
                 case ManipulationMode.Rotate:
@@ -272,6 +268,7 @@ namespace HoloToolkit.Unity.InputModule.Utilities.Interactions
                     {
                         newState = ManipulationMode.Move;
                     }
+
                     break;
             }
 
@@ -361,17 +358,79 @@ namespace HoloToolkit.Unity.InputModule.Utilities.Interactions
                 targetScale = scaleLogic.UpdateMap(handsPressedLocationsMap);
             }
 
-            hostTransform.position = targetPosition;
-            hostTransform.rotation = targetRotation;
-            hostTransform.localScale = targetScale;
+            UpdateHostTransform(targetPosition, targetRotation, targetScale);
 #endif // UNITY_2017_2_OR_NEWER
         }
+
 
         private void OnOneHandMoveUpdated()
         {
             var targetPosition = moveLogic.Update(handsPressedLocationsMap.Values.First(), hostTransform.position);
+            UpdateHostTransform(targetPosition);
+        }
 
-            hostTransform.position = targetPosition;
+        public MessageManager MessageManager;
+
+        private void UpdateHostTransform(Vector3 pos, Quaternion rot, Vector3 scale)
+        {
+            hostTransform.position = pos;
+            hostTransform.rotation = rot;
+            hostTransform.localScale = scale;
+
+            // TODO: this Thursday.   
+            var posStr = string.Format("{0}_{1}_{2}", pos.x, pos.y, pos.z);
+            var rotStr = string.Format("{0}_{1}_{2}_{3}", rot.x, rot.y, rot.z, rot.w);
+            var scaleStr = string.Format("{0}_{1}_{2}", scale.x, scale.y, scale.z);
+            MessageManager.SyncMessage(MessageManager.HoloMessageType.ChangeModel, "all",
+                string.Format("{0},{1},{2}", posStr, rotStr, scaleStr));
+        }
+
+        public void SyncFromNetwork(long userId, string msgKey, string msgValue)
+        {
+            Debug.Log(string.Format("Got change model msg: {0}", msgValue));
+            if (msgKey == "all")
+            {
+                var splited = msgValue.Split(',');
+                var splitedPos = splited[0].Split('_');
+                var splitedRot = splited[1].Split('_');
+                var splitedScale = splited[2].Split('_');
+                var pos = new Vector3(
+                    float.Parse(splitedPos[0]),
+                    float.Parse(splitedPos[1]),
+                    float.Parse(splitedPos[2])
+                );
+                var rot = new Quaternion(
+                    float.Parse(splitedRot[0]),
+                    float.Parse(splitedRot[1]),
+                    float.Parse(splitedRot[2]),
+                    float.Parse(splitedRot[3])
+                );
+                var scale = new Vector3(
+                    float.Parse(splitedScale[0]),
+                    float.Parse(splitedScale[1]),
+                    float.Parse(splitedScale[2])
+                );
+                UpdateHostTransform(pos, rot, scale);
+            }
+            else if (msgKey == "pos")
+            {
+                var splitedPos = msgValue.Split('_');
+                var pos = new Vector3(
+                    float.Parse(splitedPos[0]),
+                    float.Parse(splitedPos[1]),
+                    float.Parse(splitedPos[2])
+                );
+                UpdateHostTransform(pos);
+            }
+        }
+
+        private void UpdateHostTransform(Vector3 pos)
+        {
+            hostTransform.position = pos;
+
+            var posStr = string.Format("{0}_{1}_{2}", pos.x, pos.y, pos.z);
+            MessageManager.SyncMessage(MessageManager.HoloMessageType.ChangeModel,
+                "pos", posStr);
         }
 
         private void OnTwoHandManipulationEnded()
@@ -383,7 +442,8 @@ namespace HoloToolkit.Unity.InputModule.Utilities.Interactions
 
         private Vector3 GetHandsCentroid()
         {
-            Vector3 result = handsPressedLocationsMap.Values.Aggregate(Vector3.zero, (current, state) => current + state);
+            Vector3 result =
+                handsPressedLocationsMap.Values.Aggregate(Vector3.zero, (current, state) => current + state);
             return result / handsPressedLocationsMap.Count;
         }
 

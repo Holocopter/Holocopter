@@ -102,7 +102,7 @@ public class RadialSlider : GestureInteractiveControl
             return;
         var throtPos = throttle_rect.anchoredPosition;
         var value = string.Format("{0}_{1}_{2}_{3}", sAng, sRad, throtPos.x, throtPos.y);
-        SyncManager.SyncValue(transform.name, value);
+        SyncManager.SyncMessage(MessageManager.HoloMessageType.ChangeSlider, transform.name, value);
     }
 
     public override void ManipulationUpdate(Vector3 startGesturePosition, Vector3 currentGesturePosition,

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using HoloToolkit.Sharing;
 using HoloToolkit.Sharing.Tests;
 using HoloToolkit.Unity;
+using HoloToolkit.Unity.InputModule.Utilities.Interactions;
 using UnityEngine;
 
 
@@ -14,6 +15,7 @@ public class MessageManager : Singleton<MessageManager>
     {
         DebugMsg = HoloToolkit.Sharing.MessageID.UserMessageIDStart,
         ChangeSlider,
+        ChangeModel,
         Max
     }
 
@@ -25,6 +27,7 @@ public class MessageManager : Singleton<MessageManager>
 
     public long LocalUserId { get; set; }
     private SlidersCommands _sliderCommand;
+    private TwoHandManipulatable _handManipulatable;
 
     public bool IsMaster
     {
@@ -38,14 +41,17 @@ public class MessageManager : Singleton<MessageManager>
 
     private const bool Debug = true;
 
+
     // Use this for initialization
     void Start()
     {
         _sliderCommand = GetComponentInParent<SlidersCommands>();
+        _handManipulatable = GameObject.Find("Model").GetComponent<TwoHandManipulatable>();
         _messageHandlers = new Dictionary<HoloMessageType, MessageCallback>()
         {
             {HoloMessageType.DebugMsg, _sliderCommand.ShowServerMsg},
-            {HoloMessageType.ChangeSlider, _sliderCommand.NetControlOnSlider}
+            {HoloMessageType.ChangeSlider, _sliderCommand.NetControlOnSlider},
+            {HoloMessageType.ChangeModel, _handManipulatable.SyncFromNetwork}
         };
         if (SharingStage.Instance.IsConnected)
         {
@@ -117,7 +123,7 @@ public class MessageManager : Singleton<MessageManager>
 
     #region SendMessage
 
-    public void SyncValue(string key, string value)
+    public void SyncMessage(HoloMessageType type, string key, string value)
     {
         if (!this.IsMaster)
         {
@@ -130,17 +136,15 @@ public class MessageManager : Singleton<MessageManager>
         }
 
         _frameCountSinceLastSync = Time.frameCount;
-        SendSliderValue(key, value);
-    }
 
-    public void SendSliderValue(string whichSlider, string value)
-    {
-        UnityEngine.Debug.Log(string.Format("Sending slider {0} value {1}", whichSlider, value));
-        var msg = CreateMessage((byte) HoloMessageType.ChangeSlider);
-        msg.Write(whichSlider);
+
+        UnityEngine.Debug.Log(string.Format("Sending value {0} value {1}", key, value));
+        var msg = CreateMessage((byte) type);
+        msg.Write(key);
         msg.Write(value);
         _serverConnection.Broadcast(msg);
     }
+
 
     public void SendDebugMessage()
     {

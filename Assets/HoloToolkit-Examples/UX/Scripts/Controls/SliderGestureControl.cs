@@ -279,7 +279,7 @@ namespace HoloToolkit.Examples.InteractiveElements
         {
             if (!SyncMessage)
                 return;
-            SyncManager.SyncValue(transform.name, value.ToString());
+            SyncManager.SyncMessage(MessageManager.HoloMessageType.ChangeSlider, transform.name, value.ToString());
         }
 
         // update visuals

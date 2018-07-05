@@ -15293,6 +15293,7 @@ MonoBehaviour:
   manipulationMode: 3
   rotationConstraint: 0
   enableOneHandMovement: 1
+  MessageManager: {fileID: 703351044}
 --- !u!1 &1879581595
 GameObject:
   m_ObjectHideFlags: 0
