@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using HoloToolkit.Sharing;
-using HoloToolkit.Sharing.Tests;
+﻿using HoloToolkit.Sharing;
 using HoloToolkit.Unity;
 using HoloToolkit.Unity.InputModule.Utilities.Interactions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -16,6 +15,7 @@ public class MessageManager : Singleton<MessageManager>
         DebugMsg = HoloToolkit.Sharing.MessageID.UserMessageIDStart,
         ChangeSlider,
         ChangeModel,
+        ChangeCursor,
         Max
     }
 
@@ -28,13 +28,14 @@ public class MessageManager : Singleton<MessageManager>
     public long LocalUserId { get; set; }
     private SlidersCommands _sliderCommand;
     private TwoHandManipulatable _handManipulatable;
+    private SyncedCursor _syncedCursor;
 
     public bool IsMaster
     {
         get { return SharingStage.Instance.SessionUsersTracker.CurrentUsers[0].GetID() == LocalUserId; }
     }
 
-    public delegate void MessageCallback(long userId, string msgKey, string msgValue);
+    public delegate void MessageCallback(long userId, string msgKey, List<float> values);
 
     private Dictionary<HoloMessageType, MessageCallback> _messageHandlers =
         new Dictionary<HoloMessageType, MessageCallback>();
@@ -107,23 +108,43 @@ public class MessageManager : Singleton<MessageManager>
         return msg;
     }
 
+    private NetworkOutMessage CreateMessage(byte messageType, string msgKey, IReadOnlyCollection<float> values)
+    {
+        NetworkOutMessage msg = _serverConnection.CreateMessage(messageType);
+        msg.Write(messageType);
+        msg.Write(LocalUserId);
+
+        msg.Write(msgKey);
+        msg.Write(values.Count);
+
+        foreach (var value in values)
+        {
+            msg.Write(value);
+        }
+
+        return msg;
+    }
+
     private void OnMessageReceived(NetworkConnection connection, NetworkInMessage msg)
     {
         var messageType = msg.ReadByte();
         var userId = msg.ReadInt64();
         string messageKey = msg.ReadString();
-        string messageValue = msg.ReadString();
+        var floatCount = msg.ReadInt32();
+
+        var floats = new List<float>();
+        for (var i = 0; i < floatCount; i++)
+        {
+            floats[i] = msg.ReadFloat();
+        }
 
         var functionToCall = _messageHandlers[(HoloMessageType) messageType];
-        if (functionToCall != null)
-        {
-            functionToCall(userId, messageKey, messageValue);
-        }
+        functionToCall?.Invoke(userId, messageKey, floats);
     }
 
     #region SendMessage
 
-    public void SyncMessage(HoloMessageType type, string key, string value)
+    public void SyncMessage(HoloMessageType type, string key, List<float> values)
     {
         if (!this.IsMaster)
         {
@@ -138,23 +159,17 @@ public class MessageManager : Singleton<MessageManager>
         _frameCountSinceLastSync = Time.frameCount;
 
 
-        UnityEngine.Debug.Log(string.Format("Sending value {0} value {1}", key, value));
-        var msg = CreateMessage((byte) type);
-        msg.Write(key);
-        msg.Write(value);
+        UnityEngine.Debug.Log($"Sending key {key} value {string.Join(" ", values.Select(x => x.ToString()))}");
+        var msg = CreateMessage((byte) type, key, values);
         _serverConnection.Broadcast(msg);
     }
 
 
     public void SendDebugMessage()
     {
-        UnityEngine.Debug.Log(string.Format("Send debug message to server, I'm {0}...", IsMaster));
+        UnityEngine.Debug.Log($"Send debug message to server, I'm {IsMaster}...");
 
-        string debugMsg = string.Format("{0} is alive!", LocalUserId);
-        NetworkOutMessage msg = CreateMessage((byte) HoloMessageType.DebugMsg);
-        msg.Write(debugMsg);
-        msg.Write("...");
-        _serverConnection.Broadcast(msg);
+        SyncMessage(HoloMessageType.DebugMsg, $"{LocalUserId} is alive", new List<float>() {0});
     }
 
     #endregion

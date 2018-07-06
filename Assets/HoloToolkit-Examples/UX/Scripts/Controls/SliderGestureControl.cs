@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using System.Collections.Generic;
 using HoloToolkit.Unity;
 using UnityEngine;
 
@@ -65,8 +66,6 @@ namespace HoloToolkit.Examples.InteractiveElements
         public string LabelFormat = "#.##";
 
         public float mSliderValue;
-        private int FrameCountSinceLastSync = 0;
-        private const int FrameInterval = 5;
 
         // calculation variables
         public float mValueSpan;
@@ -279,7 +278,8 @@ namespace HoloToolkit.Examples.InteractiveElements
         {
             if (!SyncMessage)
                 return;
-            SyncManager.SyncMessage(MessageManager.HoloMessageType.ChangeSlider, transform.name, value.ToString());
+            SyncManager.SyncMessage(MessageManager.HoloMessageType.ChangeSlider, transform.name,
+                new List<float>() {value});
         }
 
         // update visuals

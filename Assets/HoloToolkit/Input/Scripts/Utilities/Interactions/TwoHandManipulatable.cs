@@ -3,6 +3,7 @@
 
 using HoloToolkit.Unity.UX;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -377,48 +378,52 @@ namespace HoloToolkit.Unity.InputModule.Utilities.Interactions
             hostTransform.rotation = rot;
             hostTransform.localScale = scale;
 
-            // TODO: this Thursday.   
-            var posStr = string.Format("{0}_{1}_{2}", pos.x, pos.y, pos.z);
-            var rotStr = string.Format("{0}_{1}_{2}_{3}", rot.x, rot.y, rot.z, rot.w);
-            var scaleStr = string.Format("{0}_{1}_{2}", scale.x, scale.y, scale.z);
             MessageManager.SyncMessage(MessageManager.HoloMessageType.ChangeModel, "all",
-                string.Format("{0},{1},{2}", posStr, rotStr, scaleStr));
+                new List<float>()
+                {
+                    pos.x,
+                    pos.y,
+                    pos.z,
+                    rot.x,
+                    rot.y,
+                    rot.z,
+                    rot.w,
+                    scale.x,
+                    scale.y,
+                    scale.z
+                });
         }
 
-        public void SyncFromNetwork(long userId, string msgKey, string msgValue)
+        public void SyncFromNetwork(long userId, string msgKey, List<float> values)
         {
-            Debug.Log(string.Format("Got change model msg: {0}", msgValue));
+            Debug.Log(
+                $"Got change model key: {msgKey} msg: {values.Select(x => x.ToString(CultureInfo.InvariantCulture))}");
             if (msgKey == "all")
             {
-                var splited = msgValue.Split(',');
-                var splitedPos = splited[0].Split('_');
-                var splitedRot = splited[1].Split('_');
-                var splitedScale = splited[2].Split('_');
                 var pos = new Vector3(
-                    float.Parse(splitedPos[0]),
-                    float.Parse(splitedPos[1]),
-                    float.Parse(splitedPos[2])
+                    values[0],
+                    values[1],
+                    values[2]
                 );
                 var rot = new Quaternion(
-                    float.Parse(splitedRot[0]),
-                    float.Parse(splitedRot[1]),
-                    float.Parse(splitedRot[2]),
-                    float.Parse(splitedRot[3])
+                    values[3],
+                    values[4],
+                    values[5],
+                    values[6]
                 );
                 var scale = new Vector3(
-                    float.Parse(splitedScale[0]),
-                    float.Parse(splitedScale[1]),
-                    float.Parse(splitedScale[2])
+                    values[7],
+                    values[8],
+                    values[9]
                 );
                 UpdateHostTransform(pos, rot, scale);
             }
             else if (msgKey == "pos")
             {
-                var splitedPos = msgValue.Split('_');
                 var pos = new Vector3(
-                    float.Parse(splitedPos[0]),
-                    float.Parse(splitedPos[1]),
-                    float.Parse(splitedPos[2])
+                    values[0],
+                    values[1],
+                    values[2]
                 );
                 UpdateHostTransform(pos);
             }
@@ -428,9 +433,8 @@ namespace HoloToolkit.Unity.InputModule.Utilities.Interactions
         {
             hostTransform.position = pos;
 
-            var posStr = string.Format("{0}_{1}_{2}", pos.x, pos.y, pos.z);
             MessageManager.SyncMessage(MessageManager.HoloMessageType.ChangeModel,
-                "pos", posStr);
+                "pos", new List<float>() {pos.x, pos.y, pos.z});
         }
 
         private void OnTwoHandManipulationEnded()

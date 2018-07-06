@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -101,8 +102,13 @@ public class RadialSlider : GestureInteractiveControl
         if (!SyncMessage)
             return;
         var throtPos = throttle_rect.anchoredPosition;
-        var value = string.Format("{0}_{1}_{2}_{3}", sAng, sRad, throtPos.x, throtPos.y);
-        SyncManager.SyncMessage(MessageManager.HoloMessageType.ChangeSlider, transform.name, value);
+        SyncManager.SyncMessage(MessageManager.HoloMessageType.ChangeSlider, transform.name, new List<float>()
+        {
+            sAng,
+            sRad,
+            throtPos.x,
+            throtPos.y
+        });
     }
 
     public override void ManipulationUpdate(Vector3 startGesturePosition, Vector3 currentGesturePosition,

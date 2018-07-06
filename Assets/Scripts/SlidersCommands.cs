@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using HoloToolkit.Examples.InteractiveElements;
+using HoloToolkit.Sharing;
 
 public class SlidersCommands : MonoBehaviour
 {
@@ -62,33 +65,30 @@ public class SlidersCommands : MonoBehaviour
     }
 
 
-    public void ShowServerMsg(long userId, string msgKey, string msgValue)
+    public void ShowServerMsg(long userId, string msgKey, List<float> msgs)
     {
-        Debug.Log(string.Format("{0} said: {1} change to {2}", userId, msgKey, msgValue));
+        var floats = string.Join(", ", msgs.Select(x => x.ToString(CultureInfo.CurrentCulture)));
+        Debug.Log($"{userId} said: {msgKey} change to {floats}");
     }
 
-    public void NetControlOnSlider(long userId, string msgKey, string msgValue)
+    public void NetControlOnSlider(long userId, string msgKey, List<float> msgs)
     {
-        Debug.Log(string.Format("Got {0} value {1}", msgKey, msgValue));
+        Debug.Log(string.Format("[slider] Got {0}", msgKey));
 
         switch (msgKey)
         {
             case "CollectiveSlider":
-                collectiveSlider.SetSliderValue(float.Parse(msgValue));
+                collectiveSlider.SetSliderValue(msgs[0]);
                 break;
             case "SpeedSlider":
-                speedSlider.SetSliderValue(float.Parse(msgValue));
+                speedSlider.SetSliderValue(msgs[0]);
                 break;
             case "SizeSlider":
-                sizeSlider.SetSliderValue(float.Parse(msgValue));
+                sizeSlider.SetSliderValue(msgs[0]);
                 break;
             case "RadialSlider":
-                var splited = msgValue.Split('_');
-                var ang = float.Parse(splited[0]);
-                var rad = float.Parse(splited[1]);
-                var pos = new Vector2(float.Parse(splited[2]), float.Parse(splited[3]));
-                Debug.Log(string.Format("{0} - {1}", ang, rad));
-                radialSlider.SetAngRad(ang, rad, pos);
+                var pos = new Vector2(msgs[2], msgs[3]);
+                radialSlider.SetAngRad(msgs[0], msgs[1], pos);
                 break;
         }
     }
