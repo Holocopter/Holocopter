@@ -2,7 +2,6 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace HoloToolkit.Unity.InputModule
@@ -16,13 +15,15 @@ namespace HoloToolkit.Unity.InputModule
         /// <summary>
         /// Enabled state Data when enabling
         /// </summary>
-        [Obsolete("Use InputEnabledParameter")] [Tooltip("Cursor State Data to use when enabling the cursor")]
+        [Obsolete("Use InputEnabledParameter")]
+        [Tooltip("Cursor State Data to use when enabling the cursor")]
         public AnimCursorDatum EnableStateData;
 
         /// <summary>
         /// Disabled state Data when disabled
         /// </summary>
-        [Obsolete("Use InputDisabledParameter")] [Tooltip("Cursor State Data to use when the cursor is disabled")]
+        [Obsolete("Use InputDisabledParameter")]
+        [Tooltip("Cursor State Data to use when the cursor is disabled")]
         public AnimCursorDatum DisableStateData;
 
         /// <summary>
@@ -42,7 +43,8 @@ namespace HoloToolkit.Unity.InputModule
         /// <summary>
         /// Link the cursor animator
         /// </summary>
-        [SerializeField] [Tooltip("Animator for the cursor")]
+        [SerializeField]
+        [Tooltip("Animator for the cursor")]
         protected Animator CursorAnimator;
 
         /// <summary>
@@ -107,7 +109,6 @@ namespace HoloToolkit.Unity.InputModule
                 }
             }
         }
-
 
         /// <summary>
         /// Based on the type of animator state info pass it through to the animator

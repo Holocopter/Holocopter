@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace HoloToolkit.Unity.InputModule
@@ -11,16 +10,11 @@ namespace HoloToolkit.Unity.InputModule
     /// </summary>
     public abstract class Cursor : MonoBehaviour, ICursor
     {
-        public CursorStateEnum CursorState
-        {
-            get { return cursorState; }
-        }
-
+        public CursorStateEnum CursorState { get { return cursorState; } }
         private CursorStateEnum cursorState = CursorStateEnum.None;
 
         [SerializeField]
-        [Tooltip(
-            "Set this in the editor to an object with a component that implements IPointerSource to tell this cursor which pointer to follow. To set the pointer programmatically, set Pointer directly.")]
+        [Tooltip("Set this in the editor to an object with a component that implements IPointerSource to tell this cursor which pointer to follow. To set the pointer programmatically, set Pointer directly.")]
         protected GameObject LoadPointer;
 
         /// <summary>
@@ -37,7 +31,6 @@ namespace HoloToolkit.Unity.InputModule
                 pointer = value;
             }
         }
-
         private IPointingSource pointer;
 
         /// <summary>
@@ -49,7 +42,8 @@ namespace HoloToolkit.Unity.InputModule
         /// <summary>
         /// Minimum distance for cursor if nothing is hit
         /// </summary>
-        [Header("Cursor Distance")] [Tooltip("The minimum distance the cursor can be with nothing hit")]
+        [Header("Cursor Distance")]
+        [Tooltip("The minimum distance the cursor can be with nothing hit")]
         public float MinCursorDistance = 1.0f;
 
         /// <summary>
@@ -65,8 +59,7 @@ namespace HoloToolkit.Unity.InputModule
         public float SurfaceCursorDistance = 0.02f;
 
         [Header("Motion")]
-        [Tooltip(
-            "When lerping, use unscaled time. This is useful for games that have a pause mechanism or otherwise adjust the game timescale.")]
+        [Tooltip("When lerping, use unscaled time. This is useful for games that have a pause mechanism or otherwise adjust the game timescale.")]
         public bool UseUnscaledTime = true;
 
         /// <summary>
@@ -87,12 +80,14 @@ namespace HoloToolkit.Unity.InputModule
         /// <summary>
         /// Blend value for surface normal to user facing lerp
         /// </summary>
-        [Range(0, 1)] public float LookRotationBlend = 0.5f;
+        [Range(0, 1)]
+        public float LookRotationBlend = 0.5f;
 
         /// <summary>
         /// Visual that is displayed when cursor is active normally
         /// </summary>
-        [Header("Transform References")] public Transform PrimaryCursorVisual;
+        [Header("Transform References")]
+        public Transform PrimaryCursorVisual;
 
         public Vector3 Position
         {
@@ -129,7 +124,6 @@ namespace HoloToolkit.Unity.InputModule
         /// Position, scale and rotational goals for cursor
         /// </summary>
         private Vector3 targetPosition;
-
         private Vector3 targetScale;
         private Quaternion targetRotation;
 
@@ -151,9 +145,6 @@ namespace HoloToolkit.Unity.InputModule
             }
         }
 
-        public MessageManager MessageManager;
-
-
         #region MonoBehaviour Functions
 
         private void Awake()
@@ -167,7 +158,6 @@ namespace HoloToolkit.Unity.InputModule
 
         private void Start()
         {
-            MessageManager = GameObject.Find("Manager").GetComponent<MessageManager>();
             RegisterManagers();
             TryLoadPointerIfNeeded();
         }
@@ -187,7 +177,6 @@ namespace HoloToolkit.Unity.InputModule
             {
                 OnPointerSpecificFocusChanged(Pointer, null, FocusManager.Instance.GetFocusedObject(Pointer));
             }
-
             OnCursorStateChange(CursorStateEnum.None);
         }
 
@@ -216,7 +205,7 @@ namespace HoloToolkit.Unity.InputModule
         protected virtual void RegisterManagers()
         {
             // This accounts for any input sources that were detected before we register as a global listener below.
-            visibleHandsCount = (uint) InputManager.Instance.DetectedInputSources.Count;
+            visibleHandsCount = (uint)InputManager.Instance.DetectedInputSources.Count;
             IsHandVisible = visibleHandsCount > 0;
 
             // Register the cursor as a global listener, so that it can always get input events it cares about
@@ -271,7 +260,7 @@ namespace HoloToolkit.Unity.InputModule
                     Debug.LogErrorFormat("Load pointer object \"{0}\" is missing its {1} component.",
                         LoadPointer.name,
                         typeof(IPointingSource).Name
-                    );
+                        );
                 }
             }
             else if (FocusManager.IsInitialized)
@@ -297,8 +286,7 @@ namespace HoloToolkit.Unity.InputModule
         /// <param name="pointer">The pointer associated with this focus change.</param>
         /// <param name="oldFocusedObject">Object that was previously being focused.</param>
         /// <param name="newFocusedObject">New object being focused.</param>
-        protected virtual void OnPointerSpecificFocusChanged(IPointingSource pointer, GameObject oldFocusedObject,
-            GameObject newFocusedObject)
+        protected virtual void OnPointerSpecificFocusChanged(IPointingSource pointer, GameObject oldFocusedObject, GameObject newFocusedObject)
         {
             if (pointer == Pointer)
             {
@@ -356,9 +344,7 @@ namespace HoloToolkit.Unity.InputModule
 
                 targetPosition = RayStep.GetPointByDistance(Pointer.Rays, DefaultCursorDistance);
                 lookForward = -RayStep.GetDirectionByDistance(Pointer.Rays, DefaultCursorDistance);
-                targetRotation = lookForward.magnitude > 0
-                    ? Quaternion.LookRotation(lookForward, Vector3.up)
-                    : transform.rotation;
+                targetRotation = lookForward.magnitude > 0 ? Quaternion.LookRotation(lookForward, Vector3.up) : transform.rotation;
             }
             else
             {
@@ -367,8 +353,7 @@ namespace HoloToolkit.Unity.InputModule
 
                 if (TargetedCursorModifier != null)
                 {
-                    TargetedCursorModifier.GetModifiedTransform(this, out targetPosition, out targetRotation,
-                        out targetScale);
+                    TargetedCursorModifier.GetModifiedTransform(this, out targetPosition, out targetRotation, out targetScale);
                 }
                 else
                 {
@@ -379,14 +364,10 @@ namespace HoloToolkit.Unity.InputModule
                     lookForward = -RayStep.GetDirectionByDistance(Pointer.Rays, distanceToTarget);
                     targetPosition = focusDetails.Point + (lookForward * SurfaceCursorDistance);
                     Vector3 lookRotation = Vector3.Slerp(focusDetails.Normal, lookForward, LookRotationBlend);
-                    targetRotation = Quaternion.LookRotation(lookRotation == Vector3.zero ? lookForward : lookRotation,
-                        Vector3.up);
+                    targetRotation = Quaternion.LookRotation(lookRotation == Vector3.zero ? lookForward : lookRotation, Vector3.up);
                 }
             }
 
-//            UpdateCursorSync(targetPosition, targetScale, targetRotation);
-
-
             float deltaTime = UseUnscaledTime
                 ? Time.unscaledDeltaTime
                 : Time.deltaTime;
@@ -396,36 +377,6 @@ namespace HoloToolkit.Unity.InputModule
             transform.localScale = Vector3.Lerp(transform.localScale, targetScale, deltaTime / ScaleLerpTime);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, deltaTime / RotationLerpTime);
         }
-
-
-        private void UpdateCursorSync(Vector3 pos, Vector3 scale, Quaternion rot)
-        {
-            float deltaTime = UseUnscaledTime
-                ? Time.unscaledDeltaTime
-                : Time.deltaTime;
-
-            // Use the lerp times to blend the position to the target position
-            transform.position = Vector3.Lerp(transform.position, targetPosition, deltaTime / PositionLerpTime);
-            transform.localScale = Vector3.Lerp(transform.localScale, targetScale, deltaTime / ScaleLerpTime);
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, deltaTime / RotationLerpTime);
-            Debug.Log("Cursor updated");
-
-            MessageManager.SyncMessage(MessageManager.HoloMessageType.ChangeCursor, "cursor",
-                new List<float>()
-                {
-                    pos.x,
-                    pos.y,
-                    pos.z,
-                    rot.x,
-                    rot.y,
-                    rot.z,
-                    rot.w,
-                    scale.x,
-                    scale.y,
-                    scale.z
-                });
-        }
-
 
         /// <summary>
         /// Updates the visual representation of the cursor.
@@ -555,10 +506,8 @@ namespace HoloToolkit.Unity.InputModule
                 {
                     return TargetedObject != null ? CursorStateEnum.InteractHover : CursorStateEnum.Interact;
                 }
-
                 return TargetedObject != null ? CursorStateEnum.ObserveHover : CursorStateEnum.Observe;
             }
-
             return CursorStateEnum.Contextual;
         }
 
