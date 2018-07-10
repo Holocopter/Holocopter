@@ -17,12 +17,13 @@ public class SyncedCursor : MonoBehaviour
 
     public bool Enabled { get; private set; }
 
-    public void UpdateCursor(Vector3 point, Vector3 normal)
+    public void UpdateCursor(Vector3 point, Quaternion rotation, Vector3 scale)
     {
         this.meshRenderer.enabled = true;
         this.Enabled = true;
         this.transform.position = point;
-        this.transform.rotation = Quaternion.FromToRotation(Vector3.up, normal);
+        this.transform.rotation = rotation;
+        this.transform.localScale = scale;
     }
 
     public void SyncFromNetwork(long userId, string msgKey, List<float> values)
@@ -40,12 +41,18 @@ public class SyncedCursor : MonoBehaviour
                 values[1],
                 values[2]
             );
-            var rot = new Vector3(
+            var rot = new Quaternion(
                 values[3],
                 values[4],
-                values[5]
+                values[5],
+                values[6]
             );
-            UpdateCursor(pos, rot);
+            var scale = new Vector3(
+                values[7],
+                values[8],
+                values[9]
+            );
+            UpdateCursor(pos, rot, scale);
         }
     }
 
