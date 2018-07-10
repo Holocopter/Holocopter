@@ -8,21 +8,26 @@ public class SyncedCursor : MonoBehaviour
 {
     private MeshRenderer meshRenderer;
 
+    private MessageManager syncManager;
+
     // Use this for initialization
     void Start()
     {
         meshRenderer = this.gameObject.GetComponentInChildren<MeshRenderer>();
+        syncManager = GameObject.Find("Manager").GetComponent<MessageManager>();
         this.Enabled = false;
+        this.enabled = !syncManager.IsMaster;
     }
 
     public bool Enabled { get; private set; }
 
-    public void UpdateCursor(Vector3 point, Vector3 normal)
+    public void UpdateCursor(Vector3 point, Quaternion rot, Vector3 scale)
     {
-        this.meshRenderer.enabled = true;
+//        this.meshRenderer.enabled = true;
         this.Enabled = true;
         this.transform.position = point;
-        this.transform.rotation = Quaternion.FromToRotation(Vector3.up, normal);
+        this.transform.localScale = scale;
+        this.transform.rotation = rot;
     }
 
     public void SyncFromNetwork(long userId, string msgKey, List<float> values)
@@ -40,12 +45,17 @@ public class SyncedCursor : MonoBehaviour
                 values[1],
                 values[2]
             );
-            var rot = new Vector3(
+            var rot = new Quaternion(
                 values[3],
                 values[4],
-                values[5]
+                values[5],
+                values[6]
             );
-            UpdateCursor(pos, rot);
+            var scale = new Vector3(
+                values[7],
+                values[8],
+                values[9]);
+            UpdateCursor(pos, rot, scale);
         }
     }
 

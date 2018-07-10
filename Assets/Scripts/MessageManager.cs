@@ -20,7 +20,6 @@ public class MessageManager : Singleton<MessageManager>
     }
 
     private int _frameCountSinceLastSync = 0;
-    private const int FrameInterval = 1;
 
     private NetworkConnection _serverConnection;
     private NetworkConnectionAdapter _connectionAdapter;
@@ -32,7 +31,11 @@ public class MessageManager : Singleton<MessageManager>
 
     public bool IsMaster
     {
-        get { return SharingStage.Instance.SessionUsersTracker.CurrentUsers[0].GetID() == LocalUserId; }
+        get
+        {
+            var users = SharingStage.Instance.SessionUsersTracker.CurrentUsers;
+            return users.Count > 0 && users[0].GetID() == LocalUserId;
+        }
     }
 
     public delegate void MessageCallback(long userId, string msgKey, List<float> values);
@@ -48,11 +51,13 @@ public class MessageManager : Singleton<MessageManager>
     {
         _sliderCommand = GetComponentInParent<SlidersCommands>();
         _handManipulatable = GameObject.Find("Model").GetComponent<TwoHandManipulatable>();
+        _syncedCursor = GameObject.Find("SyncedCursor").GetComponent<SyncedCursor>();
         _messageHandlers = new Dictionary<HoloMessageType, MessageCallback>()
         {
             {HoloMessageType.DebugMsg, _sliderCommand.ShowServerMsg},
             {HoloMessageType.ChangeSlider, _sliderCommand.NetControlOnSlider},
-            {HoloMessageType.ChangeModel, _handManipulatable.SyncFromNetwork}
+            {HoloMessageType.ChangeModel, _handManipulatable.SyncFromNetwork},
+            {HoloMessageType.ChangeCursor, _syncedCursor.SyncFromNetwork}
         };
         if (SharingStage.Instance.IsConnected)
         {
@@ -144,14 +149,14 @@ public class MessageManager : Singleton<MessageManager>
 
     #region SendMessage
 
-    public void SyncMessage(HoloMessageType type, string key, List<float> values)
+    public void SyncMessage(HoloMessageType type, string key, List<float> values, int urgency = 1)
     {
         if (!this.IsMaster)
         {
             return;
         }
 
-        if (Time.frameCount - _frameCountSinceLastSync < FrameInterval)
+        if (Time.frameCount - _frameCountSinceLastSync < urgency)
         {
             return;
         }
