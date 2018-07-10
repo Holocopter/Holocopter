@@ -1,14 +1,14 @@
 fileFormatVersion: 2
-guid: 9d783ddbc42db114985e52a815ad50de
+guid: 5de4869c1a8b89445a339feab84335f3
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: No Name
+    2100000: 01 - Default
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Torus001
+    4300000: Box001
   externalObjects: {}
   materials:
     importMaterials: 1

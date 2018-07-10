@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Light Grey Shine
-  m_Shader: {fileID: 4800000, guid: 6d72e60ebbc70394f890e5f00d37160f, type: 3}
+  m_Shader: {fileID: 4800000, guid: 30a4b737399ad0e4bad2784b9b26befc, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
@@ -114,6 +114,7 @@ Material:
     - _V_WIRE_PBR_Compiler: 0
     - _V_WIRE_RenderingOptions_PBREnumID: 0
     - _V_WIRE_RenderingOptions_UnlitEnumID: 0
+    - _V_WIRE_RenderingOptions_VertexLitEnumID: 0
     - _V_WIRE_Size: 1
     - _V_WIRE_Source_Options: 0
     - _V_WIRE_Tag: 0
@@ -133,7 +134,7 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 0.1764706}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _V_WIRE_Color: {r: 0.5424528, g: 0.8151241, b: 1, a: 0.1882353}
+    - _V_WIRE_Color: {r: 0.5424528, g: 0.8151241, b: 1, a: 0.3137255}
     - _V_WIRE_MainTex_Scroll: {r: 0, g: 0, b: 0, a: 0}
     - _V_WIRE_ObjectWorldPos: {r: 0, g: 0, b: 0, a: 0}
     - _V_WIRE_SourceTex_Scroll: {r: 0, g: 0, b: 0, a: 0}
