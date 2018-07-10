@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: speed_pop_up
+  m_Name: _pop_up
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Enter
@@ -67,9 +67,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0
+  m_TransitionDuration: 0.056201816
   m_TransitionOffset: 0
-  m_ExitTime: 0.0000000018348445
+  m_ExitTime: 0.9156973
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -91,9 +91,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0
+  m_TransitionDuration: 0.25
   m_TransitionOffset: 0
-  m_ExitTime: 2.297829e-11
+  m_ExitTime: 0.625
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -105,7 +105,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: SpeedInit
+  m_Name: AirFlowInit
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -119,7 +119,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 18a8fb99126e0a14d8a0cb242efe05d6, type: 2}
+  m_Motion: {fileID: 7400000, guid: f13f7d415b9a82547bb9ae8e22cfb625, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -131,7 +131,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: SpeedPopUp
+  m_Name: AirFlowPopUp
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -145,7 +145,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: c6dd6c4c93424324ba95d39e57286e11, type: 2}
+  m_Motion: {fileID: 7400000, guid: 9b51d9ae9a7f44241afbd8a4ca66877e, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -157,7 +157,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: SpeedPopDown
+  m_Name: AirFlowPopDown
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -171,7 +171,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 876ebcb30e709784ba961914875f0706, type: 2}
+  m_Motion: {fileID: 7400000, guid: a8f1836a206c5094e99e2ac7c56f0eb9, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -187,13 +187,13 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102678680658601550}
-    m_Position: {x: 432, y: 36, z: 0}
+    m_Position: {x: 420, y: 36, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102733063272151812}
-    m_Position: {x: 588, y: 120, z: 0}
+    m_Position: {x: 576, y: 132, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102286486235592940}
-    m_Position: {x: 168, y: 72, z: 0}
+    m_Position: {x: 144, y: 72, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions:
