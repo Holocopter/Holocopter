@@ -131,11 +131,11 @@ public class MessageManager : Singleton<MessageManager>
         var userId = msg.ReadInt64();
         string messageKey = msg.ReadString();
         var floatCount = msg.ReadInt32();
-
+        UnityEngine.Debug.Log($"message type: {messageType}, key:{messageKey}, count:{floatCount}");
         var floats = new List<float>();
         for (var i = 0; i < floatCount; i++)
         {
-            floats[i] = msg.ReadFloat();
+            floats.Add(msg.ReadFloat());
         }
 
         var functionToCall = _messageHandlers[(HoloMessageType) messageType];
