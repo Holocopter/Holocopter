@@ -49,7 +49,9 @@ public class ButtonEvent : MonoBehaviour {
 
         if (IndicationBar != null)
         {
-            IndicationBar.SetActive(true);
+            // IndicationBar.SetActive(true);
+
+            IndicationBar.GetComponent<Animator>().SetBool("Enter", true);
         }
 
 
@@ -61,7 +63,8 @@ public class ButtonEvent : MonoBehaviour {
 
         if (IndicationBar != null)
         {
-            IndicationBar.SetActive(false);
+           // IndicationBar.SetActive(false);
+            IndicationBar.GetComponent<Animator>().SetBool("Enter", false);
         }
 
 

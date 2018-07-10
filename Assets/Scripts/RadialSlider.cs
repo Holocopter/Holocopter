@@ -184,16 +184,25 @@ public class RadialSlider : GestureInteractiveControl
                     var temAng = ((angle) * 360f);
 
 
-                    if (CurrentLocalPosition.magnitude < (0.45f * thisRect.rect.width))
+                    //text.text = ((int)((angle)*360f )).ToString();
+
+                    if (CurrentLocalPosition.magnitude < (0.35f * thisRect.rect.width))
+
                     {
                         throttle_rect.anchoredPosition = CurrentLocalPosition;
                     }
                     else
                     {
-                        throttle_rect.anchoredPosition = CurrentLocalPosition.normalized * (0.5f * thisRect.rect.width);
+                        throttle_rect.anchoredPosition =
+                            CurrentLocalPosition.normalized * (0.35f * thisRect.rect.width);
+                        // Debug.Log("CurrentLocalPosition.magnitude =" + CurrentLocalPosition.magnitude);
                     }
 
                     ;
+
+                    float CurrentLocalPositionMagnitudeScaler = 0.2f;
+                    rad = (CurrentLocalPosition.magnitude * CurrentLocalPositionMagnitudeScaler) /
+                          (0.5f * thisRect.rect.width);
 
                     float tmpRad = (CurrentLocalPosition.magnitude) / (0.5f * thisRect.rect.width);
 

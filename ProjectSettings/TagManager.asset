@@ -16,8 +16,8 @@ TagManager:
   - 
   - PostProcessing
   - Contact Plane
-  - 
-  - 
+  - UIText
+  - UIModel
   - 
   - 
   - 
@@ -41,4 +41,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UIModel
+    uniqueID: 930372707
+    locked: 0
+  - name: UIText
+    uniqueID: 2133767293
     locked: 0
