@@ -9,7 +9,7 @@ public class UIFollow : MonoBehaviour {
     Quaternion initialRotation;
     // Use this for initialization
     void Start () {
-        //store initial rotation
+        //store initial rotation 
        initialRotation = Quaternion.Euler(new Vector3(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, transform.localRotation.eulerAngles.z));
     }
 	
