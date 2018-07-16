@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class SelfRotate : MonoBehaviour {
 
-	
-	// Update is called once per frame
-	void Update () {
-		transform.Rotate(new Vector3(0, 0, 1));
+    public float amount_x;
+    public float amount_y;
+    public float amount_z;
+    // Update is called once per frame
+    void Update () {
+		transform.Rotate(new Vector3(amount_x, amount_y, amount_z));
     }
 }

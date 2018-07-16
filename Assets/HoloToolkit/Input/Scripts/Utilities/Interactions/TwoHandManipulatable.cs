@@ -433,8 +433,8 @@ namespace HoloToolkit.Unity.InputModule.Utilities.Interactions
         {
             hostTransform.position = pos;
 
-            MessageManager.SyncMessage(MessageManager.HoloMessageType.ChangeModel,
-                "pos", new List<float>() {pos.x, pos.y, pos.z});
+          //  MessageManager.SyncMessage(MessageManager.HoloMessageType.ChangeModel,
+              //  "pos", new List<float>() {pos.x, pos.y, pos.z});
         }
 
         private void OnTwoHandManipulationEnded()

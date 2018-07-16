@@ -1,13 +1,16 @@
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
 
-public class LookAtTarget : MonoBehaviour {
-	public Transform target;
+public class LookAtOpposite : MonoBehaviour
+{
+    public Transform target;
     float i;
     public bool NeedBackToFace;
     public float followSmooth = 1.0f;
 
-    void Start() {
+    void Start()
+    {
         if (NeedBackToFace)
         {
             i = -transform.localRotation.z;
@@ -17,12 +20,15 @@ public class LookAtTarget : MonoBehaviour {
             i = transform.localRotation.z;
         }
     }
-	void Update () {
+    void Update()
+    {
 
         //var lookPos = target.position - transform.position;
         //lookPos.z = lookPos.z*1;
         //var rotation = Quaternion.LookRotation(lookPos);
         //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * followSmooth);
-        transform.LookAt(target);
+        transform.LookAt(2 * transform.position - target.position);
     }
 }
+
+

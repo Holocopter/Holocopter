@@ -32,7 +32,12 @@ public class MessageManager : Singleton<MessageManager>
 
     public bool IsMaster
     {
-        get { return SharingStage.Instance.SessionUsersTracker.CurrentUsers[0].GetID() == LocalUserId; }
+        get {
+            if (SharingStage.Instance != null)
+                return SharingStage.Instance.SessionUsersTracker.CurrentUsers[0].GetID() == LocalUserId;
+            else
+                return true;
+        }
     }
 
     public delegate void MessageCallback(long userId, string msgKey, List<float> values);
