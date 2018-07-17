@@ -15,7 +15,6 @@ public class SlidersCommands : MonoBehaviour
     GameObject SizeSlier;
     GameObject AirFlow;
     public GameObject FixedCamera;
-    GameObject MainCamera;
     float start_camera_z;
     float sizeOld;
     public RadialSlider radialSlider;
@@ -42,7 +41,6 @@ public class SlidersCommands : MonoBehaviour
         AirFlow = GameObject.Find("windEffectSwitch");
         airFlow = AirFlow.GetComponent<ButtonEvent>();
         sizeOld = sizeSlider.SliderValue;
-        MainCamera = GameObject.Find("MixedRealityCameraParent");
 
         Sharing = GameObject.Find("/Sharing");
         Sharing.SetActive(false);

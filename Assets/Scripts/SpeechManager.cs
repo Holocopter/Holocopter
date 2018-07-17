@@ -49,7 +49,7 @@ public class SpeechManager : MonoBehaviour
             new VoiceCommand("Fixed Camera Angle A", sliderCommand.VoiceControlOnSprite, "FixedCam_A"),
             new VoiceCommand("Fixed Camera Angle B", sliderCommand.VoiceControlOnSprite, "FixedCam_B"),
             new VoiceCommand("Start Multiplayer", sliderCommand.MultiplayerVoiceControl, "start"),
-            new VoiceCommand("Exit Multiplayer", sliderCommand.MultiplayerVoiceControl, "stop")
+            new VoiceCommand("Stop Multiplayer", sliderCommand.MultiplayerVoiceControl, "stop")
         };
 
         foreach (var voice in _voiceCommands)

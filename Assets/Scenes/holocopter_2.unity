@@ -4941,7 +4941,7 @@ MonoBehaviour:
   manipulationMode: 3
   rotationConstraint: 2
   enableOneHandMovement: 1
-  MessageManager: {fileID: 0}
+  MessageManager: {fileID: 703351044}
 --- !u!114 &343576211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5983,7 +5983,7 @@ MonoBehaviour:
   MinSliderValue: 0
   MaxSliderValue: 1000
   Centered: 0
-  SyncMessage: 0
+  SyncMessage: 1
   LabelFormat: 0.0
   mSliderValue: 0
   mValueSpan: 0
@@ -6391,7 +6391,7 @@ MonoBehaviour:
   MaxGestureDistance: 0.15
   AlignmentVector: {x: 1, y: 1, z: 1}
   FlipDirectionOnCameraForward: 0
-  SyncMessage: 0
+  SyncMessage: 1
   SyncManager: {fileID: 703351044}
   ang: 0
   rad: 0
@@ -8069,7 +8069,7 @@ MonoBehaviour:
   MinSliderValue: 0
   MaxSliderValue: 1000
   Centered: 0
-  SyncMessage: 0
+  SyncMessage: 1
   LabelFormat: 00
   mSliderValue: 0
   mValueSpan: 0
@@ -18255,7 +18255,7 @@ MonoBehaviour:
   MinSliderValue: 0
   MaxSliderValue: 1000
   Centered: 0
-  SyncMessage: 0
+  SyncMessage: 1
   LabelFormat: 00
   mSliderValue: 0
   mValueSpan: 0
