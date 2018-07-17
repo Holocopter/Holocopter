@@ -32,10 +32,18 @@ public class MessageManager : Singleton<MessageManager>
 
     public bool IsMaster
     {
+<<<<<<< HEAD
         get
         {
             var users = SharingStage.Instance.SessionUsersTracker.CurrentUsers;
             return users.Count > 0 && users[0].GetID() == LocalUserId;
+=======
+        get {
+            if (SharingStage.Instance != null)
+                return SharingStage.Instance.SessionUsersTracker.CurrentUsers[0].GetID() == LocalUserId;
+            else
+                return true;
+>>>>>>> 6d282ce6bcd0fb079cbe2ee184075a5cad08aa42
         }
     }
 

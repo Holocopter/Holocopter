@@ -67,8 +67,9 @@ public class PistonsController : MonoBehaviour {
     }
 	
 	void Update () {
-
-		Vector3 _1 = pistonPoint1.position;
+        Debug.Log(radialSlider.ang);
+        Debug.Log(radialSlider.rad);
+        Vector3 _1 = pistonPoint1.position;
         Vector3 _2 = pistonPoint2.position;
         Vector3 _3 = pistonPoint3.position;
         
