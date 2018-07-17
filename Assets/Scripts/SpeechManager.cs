@@ -27,6 +27,7 @@ public class SpeechManager : MonoBehaviour
 
 
     private List<VoiceCommand> _voiceCommands;
+
     // Use this for initialization
     void Start()
     {
@@ -46,7 +47,9 @@ public class SpeechManager : MonoBehaviour
             new VoiceCommand("Hide Fixed Camera", sliderCommand.VoiceControlOnSprite, "FixedCam_OFF"),
             new VoiceCommand("Reset The Scene", sliderCommand.VoiceControlOnScene, "Reset"),
             new VoiceCommand("Fixed Camera Angle A", sliderCommand.VoiceControlOnSprite, "FixedCam_A"),
-            new VoiceCommand("Fixed Camera Angle B", sliderCommand.VoiceControlOnSprite, "FixedCam_B")
+            new VoiceCommand("Fixed Camera Angle B", sliderCommand.VoiceControlOnSprite, "FixedCam_B"),
+            new VoiceCommand("Start Multiplayer", sliderCommand.MultiplayerVoiceControl, "start"),
+            new VoiceCommand("Exit Multiplayer", sliderCommand.MultiplayerVoiceControl, "stop")
         };
 
         foreach (var voice in _voiceCommands)

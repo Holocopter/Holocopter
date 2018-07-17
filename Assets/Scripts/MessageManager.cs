@@ -20,7 +20,6 @@ public class MessageManager : Singleton<MessageManager>
     }
 
     private int _frameCountSinceLastSync = 0;
-    private const int FrameInterval = 1;
 
     private NetworkConnection _serverConnection;
     private NetworkConnectionAdapter _connectionAdapter;
@@ -32,18 +31,12 @@ public class MessageManager : Singleton<MessageManager>
 
     public bool IsMaster
     {
-<<<<<<< HEAD
         get
         {
-            var users = SharingStage.Instance.SessionUsersTracker.CurrentUsers;
-            return users.Count > 0 && users[0].GetID() == LocalUserId;
-=======
-        get {
             if (SharingStage.Instance != null)
                 return SharingStage.Instance.SessionUsersTracker.CurrentUsers[0].GetID() == LocalUserId;
             else
                 return true;
->>>>>>> 6d282ce6bcd0fb079cbe2ee184075a5cad08aa42
         }
     }
 
@@ -59,7 +52,7 @@ public class MessageManager : Singleton<MessageManager>
     void Start()
     {
         _sliderCommand = GetComponentInParent<SlidersCommands>();
-        _handManipulatable = GameObject.Find("Model").GetComponent<TwoHandManipulatable>();
+        _handManipulatable = GameObject.Find("rotor").GetComponent<TwoHandManipulatable>();
         _messageHandlers = new Dictionary<HoloMessageType, MessageCallback>()
         {
             {HoloMessageType.DebugMsg, _sliderCommand.ShowServerMsg},
