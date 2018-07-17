@@ -32,7 +32,11 @@ public class MessageManager : Singleton<MessageManager>
 
     public bool IsMaster
     {
-        get { return SharingStage.Instance.SessionUsersTracker.CurrentUsers[0].GetID() == LocalUserId; }
+        get
+        {
+            var users = SharingStage.Instance.SessionUsersTracker.CurrentUsers;
+            return users.Count > 0 && users[0].GetID() == LocalUserId;
+        }
     }
 
     public delegate void MessageCallback(long userId, string msgKey, List<float> values);
@@ -144,14 +148,14 @@ public class MessageManager : Singleton<MessageManager>
 
     #region SendMessage
 
-    public void SyncMessage(HoloMessageType type, string key, List<float> values)
+    public void SyncMessage(HoloMessageType type, string key, List<float> values, int priority = 5)
     {
         if (!this.IsMaster)
         {
             return;
         }
 
-        if (Time.frameCount - _frameCountSinceLastSync < FrameInterval)
+        if (Time.frameCount - _frameCountSinceLastSync < priority)
         {
             return;
         }
