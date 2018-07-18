@@ -10027,7 +10027,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &755915838
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13158,8 +13158,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 124833491}
-  NeedBackToFace: 0
   followSmooth: 1
+  UIPanel: {fileID: 0}
 --- !u!1 &959520380
 GameObject:
   m_ObjectHideFlags: 0
@@ -17973,6 +17973,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   user: {fileID: 124833491}
   target: {fileID: 343576209}
+  followOnY: 0
   followSmooth: 1.5
 --- !u!1 &1298641253
 GameObject:
@@ -19035,9 +19036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf02def2383c7614b82538c94c06a344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tester: 0
-  tester_old: 0
-  level: 0
+  currentLevel: 0
   Cube_indicator:
   - {fileID: 1177630651}
   - {fileID: 1576152865}
@@ -22069,8 +22068,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 124833491}
-  NeedBackToFace: 0
   followSmooth: 1
+  UIPanel: {fileID: 0}
 --- !u!114 &1595682656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22084,6 +22083,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   user: {fileID: 343576209}
   target: {fileID: 0}
+  followOnY: 0
   followSmooth: 0
 --- !u!1 &1599649308
 GameObject:
