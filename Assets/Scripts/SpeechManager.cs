@@ -52,6 +52,7 @@ public class SpeechManager : MonoBehaviour
             new VoiceCommand("Stop Multiplayer", sliderCommand.MultiplayerVoiceControl, "stop")
         };
 
+
         foreach (var voice in _voiceCommands)
         {
             var voice1 = voice;

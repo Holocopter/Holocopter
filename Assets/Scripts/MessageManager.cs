@@ -29,14 +29,29 @@ public class MessageManager : Singleton<MessageManager>
     private TwoHandManipulatable _handManipulatable;
     private SyncedCursor _syncedCursor;
 
+    private bool _isMasterCache = false;
+    private int _isMasterLastUpdate = 0;
+    private const int IsMastUpdateFrq = 60;
+
     public bool IsMaster
     {
         get
         {
+            if (Time.frameCount - _isMasterLastUpdate < IsMastUpdateFrq)
+            {
+                return _isMasterCache;
+            }
+
+            _isMasterLastUpdate = Time.frameCount;
+
             if (SharingStage.Instance != null)
-                return SharingStage.Instance.SessionUsersTracker.CurrentUsers[0].GetID() == LocalUserId;
+            {
+                var users = SharingStage.Instance.SessionUsersTracker.CurrentUsers;
+                _isMasterCache = users.Count > 0 && users[0].GetID() == LocalUserId;
+                return _isMasterCache;
+            }
             else
-                return true;
+                return false;
         }
     }
 
@@ -52,12 +67,14 @@ public class MessageManager : Singleton<MessageManager>
     void Start()
     {
         _sliderCommand = GetComponentInParent<SlidersCommands>();
-        _handManipulatable = GameObject.Find("rotor").GetComponent<TwoHandManipulatable>();
+        _handManipulatable = GameObject.Find("/rotor").GetComponent<TwoHandManipulatable>();
+        _syncedCursor = GameObject.Find("/SyncedCursor").GetComponent<SyncedCursor>();
         _messageHandlers = new Dictionary<HoloMessageType, MessageCallback>()
         {
             {HoloMessageType.DebugMsg, _sliderCommand.ShowServerMsg},
             {HoloMessageType.ChangeSlider, _sliderCommand.NetControlOnSlider},
-            {HoloMessageType.ChangeModel, _handManipulatable.SyncFromNetwork}
+            {HoloMessageType.ChangeModel, _handManipulatable.SyncFromNetwork},
+            {HoloMessageType.ChangeCursor, _syncedCursor.SyncFromNetwork}
         };
         if (SharingStage.Instance.IsConnected)
         {

@@ -43,7 +43,7 @@ public class SlidersCommands : MonoBehaviour
         sizeOld = sizeSlider.SliderValue;
 
         Sharing = GameObject.Find("/Sharing");
-        Sharing.SetActive(false);
+//        Sharing.SetActive(false);
     }
 
     // Update is called once per frame

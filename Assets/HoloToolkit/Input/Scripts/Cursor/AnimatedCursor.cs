@@ -15,15 +15,13 @@ namespace HoloToolkit.Unity.InputModule
         /// <summary>
         /// Enabled state Data when enabling
         /// </summary>
-        [Obsolete("Use InputEnabledParameter")]
-        [Tooltip("Cursor State Data to use when enabling the cursor")]
+        [Obsolete("Use InputEnabledParameter")] [Tooltip("Cursor State Data to use when enabling the cursor")]
         public AnimCursorDatum EnableStateData;
 
         /// <summary>
         /// Disabled state Data when disabled
         /// </summary>
-        [Obsolete("Use InputDisabledParameter")]
-        [Tooltip("Cursor State Data to use when the cursor is disabled")]
+        [Obsolete("Use InputDisabledParameter")] [Tooltip("Cursor State Data to use when the cursor is disabled")]
         public AnimCursorDatum DisableStateData;
 
         /// <summary>
@@ -43,8 +41,7 @@ namespace HoloToolkit.Unity.InputModule
         /// <summary>
         /// Link the cursor animator
         /// </summary>
-        [SerializeField]
-        [Tooltip("Animator for the cursor")]
+        [SerializeField] [Tooltip("Animator for the cursor")]
         protected Animator CursorAnimator;
 
         /// <summary>
@@ -89,6 +86,7 @@ namespace HoloToolkit.Unity.InputModule
                 OnCursorStateChange(CursorStateEnum.None);
             }
         }
+
 
         /// <summary>
         /// Override OnCursorState change to set the correct animation
