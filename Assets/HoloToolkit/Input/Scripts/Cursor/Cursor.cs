@@ -414,7 +414,7 @@ namespace HoloToolkit.Unity.InputModule
                     rot.y,
                     rot.z,
                     rot.w
-                }, 30);
+                }, 15);
         }
 
         /// <summary>

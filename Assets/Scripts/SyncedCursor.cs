@@ -12,17 +12,37 @@ public class SyncedCursor : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        meshRenderer = this.GetComponentInChildren<MeshRenderer>(true);
+        meshRenderer = this.gameObject.GetComponentInChildren<MeshRenderer>(true);
         meshRenderer.enabled = false;
     }
 
+    public bool UseUnscaledTime = true;
+
+    /// <summary>
+    /// Blend value for surface normal to user facing lerp
+    /// </summary>
+    public float PositionLerpTime = 0.01f;
+
+    /// <summary>
+    /// Blend value for surface normal to user facing lerp
+    /// </summary>
+    public float ScaleLerpTime = 0.01f;
+
+    /// <summary>
+    /// Blend value for surface normal to user facing lerp
+    /// </summary>
+    public float RotationLerpTime = 0.01f;
 
     public void UpdateCursor(Vector3 point, Vector3 scale, Quaternion rot)
     {
+        float deltaTime = UseUnscaledTime
+            ? Time.unscaledDeltaTime
+            : Time.deltaTime;
         this.meshRenderer.enabled = true;
-        this.transform.position = point;
-        this.transform.rotation = rot;
-        this.transform.localScale = scale;
+
+        transform.position = Vector3.Lerp(transform.position, point, deltaTime / PositionLerpTime);
+        transform.localScale = Vector3.Lerp(transform.localScale, scale, deltaTime / ScaleLerpTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, deltaTime / RotationLerpTime);
     }
 
     public void SyncFromNetwork(long userId, string msgKey, List<float> values)

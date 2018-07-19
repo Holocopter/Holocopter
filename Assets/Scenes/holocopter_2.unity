@@ -11333,7 +11333,7 @@ Prefab:
     - target: {fileID: 114000013851064060, guid: b2db04283121ca74495c2ee000fb4243,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000012943254746, guid: b2db04283121ca74495c2ee000fb4243, type: 2}
       propertyPath: m_IsActive
@@ -11344,9 +11344,15 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013851064060, guid: b2db04283121ca74495c2ee000fb4243,
+        type: 2}
+      propertyPath: Manager
+      value: 
+      objectReference: {fileID: 703351044}
     m_RemovedComponents:
     - {fileID: 114056822817505688, guid: b2db04283121ca74495c2ee000fb4243, type: 2}
     - {fileID: 108047025051955252, guid: b2db04283121ca74495c2ee000fb4243, type: 2}
+    - {fileID: 114000013851064060, guid: b2db04283121ca74495c2ee000fb4243, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: b2db04283121ca74495c2ee000fb4243, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &842099546 stripped
@@ -11365,6 +11371,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34119f87484f3594e9447c437fc7d0a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UseUnscaledTime: 1
+  PositionLerpTime: 0.01
+  ScaleLerpTime: 0.01
+  RotationLerpTime: 0.01
 --- !u!1 &842099548 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000013615056792, guid: b2db04283121ca74495c2ee000fb4243,
@@ -11384,7 +11394,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 0.8039216, g: 0.6431373, b: 0.9529412, a: 1}
+  m_Color: {r: 0.9528302, g: 0.43728366, b: 0.3460751, a: 1}
   m_Intensity: 1
   m_Range: 0.05
   m_SpotAngle: 30

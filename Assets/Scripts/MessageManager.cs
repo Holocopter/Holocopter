@@ -31,7 +31,7 @@ public class MessageManager : Singleton<MessageManager>
 
     private bool _isMasterCache = false;
     private int _isMasterLastUpdate = 0;
-    private const int IsMastUpdateFrq = 60;
+    private const int IsMastUpdateFrq = 120;
 
     public bool IsMaster
     {
@@ -50,8 +50,8 @@ public class MessageManager : Singleton<MessageManager>
                 _isMasterCache = users.Count > 0 && users[0].GetID() == LocalUserId;
                 return _isMasterCache;
             }
-            else
-                return false;
+
+            return false;
         }
     }
 
