@@ -89,10 +89,10 @@ namespace HoloToolkit.Examples.InteractiveElements
 
         private const int VoiceValueStep = 5;
 
+
         protected override void Awake()
         {
             base.Awake();
-
             if (Knob != null)
             {
                 mStartCenter.z = Knob.transform.localPosition.z;

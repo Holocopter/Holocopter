@@ -16,7 +16,6 @@ public class SlidersCommands : MonoBehaviour
     GameObject AirFlow;
 
     public GameObject FixedCamera;
-    GameObject MainCamera;
     float start_camera_z;
     float sizeOld;
     int MaxSliderLevel =5;
@@ -28,6 +27,9 @@ public class SlidersCommands : MonoBehaviour
     public ButtonEvent airFlow;
     public VoiceCommondIndicator speedSliderIndicator;
     public VoiceCommondIndicator sizeSliderIndicator;
+
+
+    public GameObject Sharing;
 
     // Use this for initialization
     void Start()
@@ -43,7 +45,9 @@ public class SlidersCommands : MonoBehaviour
         AirFlow = GameObject.Find("windEffectSwitch");
         airFlow = AirFlow.GetComponent<ButtonEvent>();
         sizeOld = sizeSlider.SliderValue;
-        MainCamera = GameObject.Find("MixedRealityCameraParent");
+
+        Sharing = GameObject.Find("/Sharing");
+        Sharing.SetActive(false);
     }
 
     // Update is called once per frame
@@ -75,9 +79,15 @@ public class SlidersCommands : MonoBehaviour
         Debug.Log($"{userId} said: {msgKey} change to {floats}");
     }
 
+    public void MultiplayerVoiceControl(string command)
+    {
+        Sharing.SetActive(command == "start");
+        Debug.Log($"Muliplayer is now : {command == "start"}");
+    }
+
     public void NetControlOnSlider(long userId, string msgKey, List<float> msgs)
     {
-        Debug.Log(string.Format("[slider] Got {0}", msgKey));
+        Debug.Log($"[slider] Got {msgKey}");
 
         switch (msgKey)
         {
