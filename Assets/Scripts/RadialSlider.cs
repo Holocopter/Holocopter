@@ -21,6 +21,8 @@ public class RadialSlider : GestureInteractiveControl
 
     private RectTransform thisRect;
 
+    private Vector3 transform_old;
+
     //  private GestureInteractiveControl control;
     // public GameObject radialSlider_handControll;
     //private Vector3 HandPosition;
@@ -36,7 +38,7 @@ public class RadialSlider : GestureInteractiveControl
         throttle_rect = throttle_img.GetComponent<RectTransform>();
         throttle_ori = throttle_rect.anchoredPosition;
         thisRect = gameObject.GetComponent<RectTransform>();
-
+        transform_old = transform.position;
         /*  if (radialSlider = null)
           {
                radialSlider =this.gameObject;
@@ -122,6 +124,10 @@ public class RadialSlider : GestureInteractiveControl
         base.ManipulationUpdate(startGesturePosition, currentGesturePosition, startHeadOrigin, startHeadRay,
             gestureState);
     }
+    public void ResetPosition() {
+        GestureInteractive gestureInteractive = GetComponent<GestureInteractive>();
+       gestureInteractive.ResetPosition();
+    }
 
     public void StartCoroutineForCyclic()
     {
@@ -146,6 +152,14 @@ public class RadialSlider : GestureInteractiveControl
         {
             StopCoroutineForCyclic();
         }
+
+        //if (transform.position != transform_old)
+        //{
+        //    GestureInteractive gestureInteractive = GetComponent<GestureInteractive>();
+        //    gestureInteractive.HandleStartGesture();
+        //    transform_old = transform.position;
+        //    Debug.Log("changed pos");
+        //}
     }
 
     // mainloop

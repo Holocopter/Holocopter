@@ -49,6 +49,7 @@ namespace HoloToolkit.Examples.InteractiveElements
         private Vector3 mStartHeadRay;
         private Vector3 mStartHandPosition;
         private Vector3 mCurrentHandPosition;
+        private Vector3 handPositionSaved;
         private Cursor mCursor;
 
         private Coroutine mTicker;
@@ -127,7 +128,7 @@ namespace HoloToolkit.Examples.InteractiveElements
         /// <summary>
         /// Start the gesture
         /// </summary>
-        private void HandleStartGesture()
+        public void HandleStartGesture()
         {
             InputManager.Instance.ClearModalInputStack();
 
@@ -141,12 +142,29 @@ namespace HoloToolkit.Examples.InteractiveElements
             mStartHeadRay = CameraCache.Main.transform.forward;
 
             Vector3 handPosition;
+
             mCurrentInputSource.TryGetGripPosition(mCurrentInputSourceId, out handPosition);
 
             mStartHandPosition = handPosition;
             mCurrentHandPosition = handPosition;
             Control.ManipulationUpdate(mStartHandPosition, mStartHandPosition, mStartHeadPosition, mStartHeadRay, GestureManipulationState.Start);
             HandleCursor(true);
+        }
+
+        public void ResetPosition() {
+
+
+            mStartHeadPosition = CameraCache.Main.transform.position;
+            mStartHeadRay = CameraCache.Main.transform.forward;
+
+            Vector3 handPosition;
+            mCurrentInputSource.TryGetGripPosition(mCurrentInputSourceId, out handPosition);
+
+            mStartHandPosition = handPosition;
+            mCurrentHandPosition = handPosition;
+            Control.ManipulationUpdate(mStartHandPosition, mStartHandPosition, mStartHeadPosition, mStartHeadRay, GestureManipulationState.Start);
+            HandleCursor(true);
+            Debug.Log("damn");
         }
 
         /// <summary>

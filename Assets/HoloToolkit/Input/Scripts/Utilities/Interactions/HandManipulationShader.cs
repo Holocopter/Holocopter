@@ -15,6 +15,8 @@ public class HandManipulationShader : MonoBehaviour, IInputHandler, ISourceState
         protected GameObject rotorOrigin;
         [SerializeField]
         protected GameObject rotorFrame;
+
+        public RadialSlider radialSlider;
         
 
         // Use this for initialization
@@ -31,7 +33,7 @@ public class HandManipulationShader : MonoBehaviour, IInputHandler, ISourceState
 
         public void OnInputDown(InputEventData eventData)
         {
-            // Add to hand map\
+            // Add to hand map
             if (rotorOrigin != null)
             {
                 rotorOrigin.SetActive(false);
@@ -40,8 +42,8 @@ public class HandManipulationShader : MonoBehaviour, IInputHandler, ISourceState
             {
                 rotorFrame.SetActive(true);
             }
-      
 
+            radialSlider.ResetPosition();
         }
 
         /// <summary>

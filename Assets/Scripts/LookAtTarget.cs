@@ -3,19 +3,8 @@ using System.Collections;
 
 public class LookAtTarget : MonoBehaviour {
 	public Transform target;
-    float i;
-    public bool NeedBackToFace;
-    public float followSmooth = 1.0f;
 
     void Start() {
-        if (NeedBackToFace)
-        {
-            i = -transform.localRotation.z;
-        }
-        else
-        {
-            i = transform.localRotation.z;
-        }
     }
 	void Update () {
 
