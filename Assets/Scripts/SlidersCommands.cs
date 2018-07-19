@@ -14,15 +14,19 @@ public class SlidersCommands : MonoBehaviour
     GameObject CollectiveSlider;
     GameObject SizeSlier;
     GameObject AirFlow;
+
     public GameObject FixedCamera;
     float start_camera_z;
     float sizeOld;
+    int MaxSliderLevel =5;
     public RadialSlider radialSlider;
 
     public SliderGestureControl speedSlider;
     public SliderGestureControl collectiveSlider;
     public SliderGestureControl sizeSlider;
     public ButtonEvent airFlow;
+    public VoiceCommondIndicator speedSliderIndicator;
+    public VoiceCommondIndicator sizeSliderIndicator;
 
 
     public GameObject Sharing;
@@ -109,15 +113,23 @@ public class SlidersCommands : MonoBehaviour
         {
             case "Faster":
                 speedSlider.IncreaseSliderValue();
+                int speedSliderlevel_Faster = (int)((speedSlider.SliderValue / speedSlider.MaxSliderValue)*MaxSliderLevel);
+                speedSliderIndicator.CurrentLevel = speedSliderlevel_Faster;
                 break;
             case "Slower":
                 speedSlider.DecreaseSliderValue();
+                int speedSliderlevel_Slower = (int)((speedSlider.SliderValue / speedSlider.MaxSliderValue) * MaxSliderLevel);
+                speedSliderIndicator.CurrentLevel = speedSliderlevel_Slower;
                 break;
             case "Bigger":
                 sizeSlider.IncreaseSliderValue();
+                int sizeSliderlevel_Bigger = (int)((sizeSlider.SliderValue / sizeSlider.MaxSliderValue) * MaxSliderLevel);
+                sizeSliderIndicator.CurrentLevel = sizeSliderlevel_Bigger;
                 break;
             case "Smaller":
                 sizeSlider.DecreaseSliderValue();
+                int sizeSliderlevel_Smaller = (int)((sizeSlider.SliderValue / sizeSlider.MaxSliderValue) * MaxSliderLevel);
+                sizeSliderIndicator.CurrentLevel = sizeSliderlevel_Smaller;
                 break;
             case "Coll_de":
                 collectiveSlider.IncreaseSliderValue();
