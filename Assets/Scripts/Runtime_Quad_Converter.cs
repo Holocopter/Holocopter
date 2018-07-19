@@ -135,7 +135,7 @@ public class Runtime_Quad_Converter : MonoBehaviour
             i = 0;
             
             //Assign new mesh
-            if (quadMesh != null)
+           /* if (quadMesh != null)
             {
                 components = GetComponentsInChildren<MeshFilter>();
 
@@ -159,7 +159,7 @@ public class Runtime_Quad_Converter : MonoBehaviour
             else
             {
                 Debug.Log("houston we have a problem");
-            }
+            }*/
 
         }
     }
