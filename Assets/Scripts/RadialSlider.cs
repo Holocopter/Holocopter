@@ -119,10 +119,16 @@ public class RadialSlider : GestureInteractiveControl
         GestureInteractiveData gestureData =
             GetGestureData(new Vector3(1, 0, 0), MaxGestureDistance, FlipDirectionOnCameraForward);
         vertData.Direction = gestureData.Direction;
-        HandPosition2D.x = vertData.Direction.x * 30;
-        HandPosition2D.y = vertData.Direction.y * 30;
+        //HandPosition2D.x = vertData.Direction.x * 300/(1+CurrentPercentage*CurrentPercentage*CurrentPercentage*12);
+        //HandPosition2D.y = vertData.Direction.y * 300/(1+CurrentPercentage*CurrentPercentage*CurrentPercentage*10);
+
+       // Debug.Log("CurrentPercentage=" + CurrentPercentage);
+       // Debug.Log("CurrentPercentage=" + CurrentPercentage);
+        HandPosition2D.x = DirectionVector.x *200;
+        HandPosition2D.y = DirectionVector.y *200;
         base.ManipulationUpdate(startGesturePosition, currentGesturePosition, startHeadOrigin, startHeadRay,
             gestureState);
+      
     }
     public void ResetPosition() {
         GestureInteractive gestureInteractive = GetComponent<GestureInteractive>();
@@ -179,17 +185,20 @@ public class RadialSlider : GestureInteractiveControl
                 if (GestureStarted)
 
                 {
-                    Vector2 CurrentLocalPosition; // Mouse position  
+                    
+                    Vector2 CurrentLocalPosition; // Mouse or gesture position  
 
                     RectTransformUtility.ScreenPointToLocalPointInRectangle(transform as RectTransform, HandPosition2D,
                         null, out CurrentLocalPosition);
 
                     // local pos is the mouse position.
-                    //Debug.Log("HandPosition2D.x=" + HandPosition2D.x);
-                    // Debug.Log("HandPosition2D.y=" + HandPosition2D.y);
-
-                    CurrentLocalPosition.x = CurrentLocalPosition.x / 15;
-                    CurrentLocalPosition.y = CurrentLocalPosition.y / 15;
+                 
+                    
+                    CurrentLocalPosition.x = CurrentLocalPosition.x / (150);
+                    CurrentLocalPosition.y = CurrentLocalPosition.y / (150);
+                    
+                   // Debug.Log("CurrentLocalPosition.x=" + CurrentLocalPosition.x);
+                   // Debug.Log("CurrentLocalPosition.y=" + CurrentLocalPosition.y);
                     float angle =
                         (Mathf.Atan2(-CurrentLocalPosition.y, CurrentLocalPosition.x) * 180f / Mathf.PI + 180f) / 360f;
 

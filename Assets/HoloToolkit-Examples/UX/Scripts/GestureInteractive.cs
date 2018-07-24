@@ -26,7 +26,7 @@ namespace HoloToolkit.Examples.InteractiveElements
         /// </summary>
         public enum GestureManipulationState { None, Start, Update, Lost }
         public GestureManipulationState GestureState { get; protected set; }
-
+        [SerializeField]
         private IInputSource mCurrentInputSource;
         private uint mCurrentInputSourceId;
 
@@ -84,9 +84,10 @@ namespace HoloToolkit.Examples.InteractiveElements
         {
             base.OnInputDown(eventData);
 
+
             mTempInputSource = eventData.InputSource;
             mTempInputSourceId = eventData.SourceId;
-
+            Debug.Log("mTempInputSource " + mCurrentInputSourceId);
             if (StartDelay > 0)
             {
                 if (mTicker == null)
@@ -146,6 +147,7 @@ namespace HoloToolkit.Examples.InteractiveElements
             mCurrentInputSource.TryGetGripPosition(mCurrentInputSourceId, out handPosition);
 
             mStartHandPosition = handPosition;
+            Debug.Log("handposition" + handPosition.x + handPosition.y);
             mCurrentHandPosition = handPosition;
             Control.ManipulationUpdate(mStartHandPosition, mStartHandPosition, mStartHeadPosition, mStartHeadRay, GestureManipulationState.Start);
             HandleCursor(true);
@@ -159,12 +161,12 @@ namespace HoloToolkit.Examples.InteractiveElements
 
             Vector3 handPosition;
             mCurrentInputSource.TryGetGripPosition(mCurrentInputSourceId, out handPosition);
-
+          
             mStartHandPosition = handPosition;
             mCurrentHandPosition = handPosition;
             Control.ManipulationUpdate(mStartHandPosition, mStartHandPosition, mStartHeadPosition, mStartHeadRay, GestureManipulationState.Start);
             HandleCursor(true);
-            Debug.Log("damn");
+           // Debug.Log("damn");
         }
 
         /// <summary>

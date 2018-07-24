@@ -43,7 +43,7 @@ public class HandManipulationShader : MonoBehaviour, IInputHandler, ISourceState
                 rotorFrame.SetActive(true);
             }
 
-            radialSlider.ResetPosition();
+            //radialSlider.ResetPosition();
         }
 
         /// <summary>

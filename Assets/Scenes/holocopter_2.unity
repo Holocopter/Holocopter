@@ -4271,7 +4271,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 163528, guid: 8aaf37823b26ee449bb3b3d7775965c3, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 475158, guid: 8aaf37823b26ee449bb3b3d7775965c3, type: 2}
       propertyPath: m_LocalScale.y
@@ -5106,7 +5106,7 @@ MonoBehaviour:
   manipulationMode: 3
   rotationConstraint: 2
   enableOneHandMovement: 1
-  MessageManager: {fileID: 0}
+  MessageManager: {fileID: 1614471044}
 --- !u!114 &343576211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5120,7 +5120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotorOrigin: {fileID: 1849895883}
   rotorFrame: {fileID: 610490226}
-  radialSlider: {fileID: 0}
+  radialSlider: {fileID: 501700487}
 --- !u!1 &344247170
 GameObject:
   m_ObjectHideFlags: 0
@@ -6814,7 +6814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803cebee00d5c504e930205383017dc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GestureData: 0
+  GestureData: 2
   MaxGestureDistance: 0.15
   AlignmentVector: {x: 1, y: 1, z: 1}
   FlipDirectionOnCameraForward: 0
@@ -6866,7 +6866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71b5c94b2db7fb646b5a369ac83cf7aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParentObject: {fileID: 0}
+  ParentObject: {fileID: 955499870}
   IsEnabled: 1
   DetectHold: 0
   HoldTime: 0.5
@@ -6889,7 +6889,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   StartDelay: 0
-  Control: {fileID: 0}
+  Control: {fileID: 501700487}
   HideCursorOnManipulation: 0
 --- !u!1 &514605036
 GameObject:
@@ -22397,7 +22397,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1614471042}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 901300a156a6290478fb9c4567c1e3d4, type: 3}
   m_Name: 
