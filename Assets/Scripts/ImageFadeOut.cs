@@ -12,8 +12,6 @@ public class ImageFadeOut : MonoBehaviour {
     public float TimeToFadeIn;
     public float TimeToFadeOut;
     public float TimeToStayOnScreen;
-    public float TimeToPlaySound;
-    public AudioSource Welcome_sound;
     Component[] Texts;
 
     IEnumerator Start() {
@@ -24,12 +22,10 @@ public class ImageFadeOut : MonoBehaviour {
                 text.CrossFadeAlpha(0.0f, -1.0f, false);
         }
         FadeImage.canvasRenderer.SetAlpha(0.0f);
-        Welcome_sound = GetComponent<AudioSource>();
 
 
 
         FadeIn();
-        yield return new WaitForSeconds(TimeToPlaySound);
         PlayVoiceOver();
         yield return new WaitForSeconds(TimeToStayOnScreen);
         FadeOut();
@@ -55,6 +51,6 @@ public class ImageFadeOut : MonoBehaviour {
     }
 
     void PlayVoiceOver() {
-        Welcome_sound.Play();
+        FindObjectOfType<VoiceOverManager>().PlayFirstAudioClip();
     }
 }

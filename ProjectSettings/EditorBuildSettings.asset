@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/holocopter_hao.unity
     guid: 2eb54d6160c70e14eac22b01ccad6416
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/holocopter_2.unity
-    guid: 6f87d953a0696af478c4e17933168ed1
+    guid: dc83c653bc2d08f4b9141a25731fc711
   m_configObjects: {}

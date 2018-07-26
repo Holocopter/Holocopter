@@ -82,6 +82,7 @@ public class SlidersCommands : MonoBehaviour
     public void MultiplayerVoiceControl(string command)
     {
         Sharing.SetActive(command == "start");
+        FindObjectOfType<VoiceOverManager>().PlayThirdAudioClip();
         Debug.Log($"Muliplayer is now : {command == "start"}");
     }
 
