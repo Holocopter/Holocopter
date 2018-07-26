@@ -173,6 +173,7 @@ namespace HoloToolkit.Examples.InteractiveElements
             {
                 CameraMatrix = GetCameraMatrix();
                 StartGesturePosition = startGesturePosition;
+               // Debug.Log("StartGesturePosition.x=" + StartGesturePosition.x + "StartGesturePosition.y=" + StartGesturePosition.y);
                 CurrentGesturePosition = startGesturePosition;
                 StartHeadPosition = startHeadOrigin;
                 StartHeadRay = startHeadRay;
@@ -293,6 +294,7 @@ namespace HoloToolkit.Examples.InteractiveElements
             KeywordGestureTimeCounter = 0;
             CameraMatrix = GetCameraMatrix();
             StartGesturePosition = gestureVector * MaxGestureDistance * (KeywordGestureTimeCounter / KeywordGestureTime);
+            Debug.Log("StartGesturePosition" + StartGesturePosition.x + StartGesturePosition.y + StartGesturePosition.z);
             StartHeadPosition = new Vector3();
             StartHeadRay = Vector3.forward;
 
@@ -416,6 +418,7 @@ namespace HoloToolkit.Examples.InteractiveElements
         protected void UpdateGesture()
         {
             DirectionVector = CurrentGesturePosition - StartGesturePosition;
+            Debug.Log("DirectionVector" + DirectionVector.x + DirectionVector.y + DirectionVector.z);
             CurrentDistance = DirectionVector.magnitude;
             bool flipDirection = Vector3.Dot(Vector3.forward, StartHeadRay) < 0 && FlipDirectionOnCameraForward;
             switch (GestureData)
