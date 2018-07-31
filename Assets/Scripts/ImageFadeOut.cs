@@ -52,5 +52,6 @@ public class ImageFadeOut : MonoBehaviour {
 
     void PlayVoiceOver() {
         FindObjectOfType<VoiceOverManager>().PlayFirstAudioClip();
+        FindObjectOfType<VoiceOverManager>().PlayThirdAudioClip();
     }
 }

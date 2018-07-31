@@ -15,6 +15,8 @@ public class SlidersCommands : MonoBehaviour
     GameObject SizeSlier;
     GameObject AirFlow;
 
+    bool SoundEffectPlayed;
+
     public GameObject FixedCamera;
     float start_camera_z;
     float sizeOld;
@@ -82,7 +84,7 @@ public class SlidersCommands : MonoBehaviour
     public void MultiplayerVoiceControl(string command)
     {
         Sharing.SetActive(command == "start");
-        FindObjectOfType<VoiceOverManager>().PlayThirdAudioClip();
+        FindObjectOfType<VoiceOverManager>().PlaySecondAudioClip();
         Debug.Log($"Muliplayer is now : {command == "start"}");
     }
 

@@ -5,31 +5,47 @@ using UnityEngine;
 public class VoiceOverManager : MonoBehaviour {
 
     [SerializeField]
-    AudioClip audioClip_1;
+    AudioClip StartUpVoiceOver;
     [SerializeField]
-    AudioClip audioClip_2;
+    AudioClip MultiplayerVoiceOver;
     [SerializeField]
-    AudioClip audioClip_3;
+    AudioClip EngineStartUpSound;
+    [SerializeField]
+    AudioClip EngineLoopSound;
 
-    [SerializeField]
-    AudioSource audioSource;
+    AudioSource audioSource_EngineSound;
+    AudioSource audioSource_VoiceOver;
     // Use this for initialization
 
     void Awake() {
-        audioSource = GetComponentInChildren<AudioSource>();
+        audioSource_VoiceOver = GameObject.Find("VoiceOverSpeaker").GetComponent<AudioSource>();
+        audioSource_EngineSound = GameObject.Find("EngineSoundSpeaker").GetComponent<AudioSource>();
+        StartCoroutine(PlayEngineLoopSound());
     }
+
     public void PlayFirstAudioClip() {
-        audioSource.clip = audioClip_1;
-        audioSource.Play();
+        audioSource_VoiceOver.clip = StartUpVoiceOver;
+        audioSource_VoiceOver.Play();
     }
 
     public void PlaySecondAudioClip() {
-        audioSource.clip = audioClip_2;
-        audioSource.Play();
+        audioSource_VoiceOver.clip = MultiplayerVoiceOver;
+        audioSource_VoiceOver.Play();
     }
 
     public void PlayThirdAudioClip() {
-        audioSource.clip = audioClip_3;
-        audioSource.Play();
+        audioSource_EngineSound.clip = EngineStartUpSound;
+        audioSource_EngineSound.Play();
+    }
+
+    public void PlayFourthAudioClip() {
+        audioSource_EngineSound.clip = EngineLoopSound;
+        audioSource_EngineSound.loop = true;
+        audioSource_EngineSound.Play();
+    }
+
+    IEnumerator PlayEngineLoopSound() {
+        yield return new WaitForSeconds(EngineStartUpSound.length-1.5f);
+        PlayFourthAudioClip();
     }
 }
