@@ -391,7 +391,7 @@ namespace HoloToolkit.Unity.InputModule.Utilities.Interactions
                     scale.x,
                     scale.y,
                     scale.z
-                });
+                }, 1);
         }
 
         public void SyncFromNetwork(long userId, string msgKey, List<float> values)
@@ -434,7 +434,7 @@ namespace HoloToolkit.Unity.InputModule.Utilities.Interactions
             hostTransform.position = pos;
 
             MessageManager.SyncMessage(MessageManager.HoloMessageType.ChangeModel,
-                "pos", new List<float>() {pos.x, pos.y, pos.z});
+                "pos", new List<float>() {pos.x, pos.y, pos.z}, 1);
         }
 
         private void OnTwoHandManipulationEnded()
