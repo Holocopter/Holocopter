@@ -161,21 +161,12 @@ public class SlidersCommands : MonoBehaviour
         switch (voiceCommand)
         {
             case "FixedCam_ON":
-<<<<<<< Updated upstream
-                FixedCamera.gameObject.GetComponent<Image>().enabled = true;
-                GameObject.Find("FixedCamera").gameObject.SetActive(true);
+               // FixedCamera.gameObject.GetComponent<Image>().enabled = true;
+               FixedCamera.SetActive(true);
                 break;
             case "FixedCam_OFF":
-                FixedCamera.gameObject.GetComponent<Image>().enabled = false;
-                GameObject.Find("FixedCamera").gameObject.SetActive(false);
-=======
-                FixedCamera.SetActive(true);
-                //FixedCamera.gameObject.GetComponent<Image>().enabled = true;
-                break;
-            case "FixedCam_OFF":
-                FixedCamera.SetActive(false);
                 // FixedCamera.gameObject.GetComponent<Image>().enabled = false;
->>>>>>> Stashed changes
+                FixedCamera.SetActive(false);
                 break;
             case "FixedCam_A":
                 pistonsController.fixedCamAngleSwitch = false;
