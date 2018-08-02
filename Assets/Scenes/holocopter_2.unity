@@ -1131,7 +1131,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &84460841
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8537,7 +8537,7 @@ MonoBehaviour:
   MinSliderValue: 0
   MaxSliderValue: 1000
   Centered: 0
-  SyncMessage: 0
+  SyncMessage: 1
   LabelFormat: 00
   mSliderValue: 0
   mValueSpan: 0
@@ -22271,7 +22271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c600e9eae71f1046b314b056fd567df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FixedCamera: {fileID: 0}
+  FixedCamera: {fileID: 84460840}
   radialSlider: {fileID: 501700487}
   speedSlider: {fileID: 1344956180}
   collectiveSlider: {fileID: 597209209}
