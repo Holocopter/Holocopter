@@ -4645,7 +4645,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1387436127324564, guid: 7dab853a9c4e0b442a0dced7af6d9c12, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114175348365470018, guid: 7dab853a9c4e0b442a0dced7af6d9c12,
         type: 2}
@@ -15628,7 +15628,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1116157456}
   m_Layer: 0
-  m_Name: holder_tilt plates
+  m_Name: tilt holder plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26229,7 +26229,13 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114000013868099214, guid: 3eddd1c29199313478dd3f912bfab2ab,
+        type: 2}
+      propertyPath: SetStabilizationPlane
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114000013868099214, guid: 3eddd1c29199313478dd3f912bfab2ab, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3eddd1c29199313478dd3f912bfab2ab, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1967769783
